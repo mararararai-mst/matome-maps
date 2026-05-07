@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>葉や根のつくり｜まとめマップ</title>
+<style>
+@page { size: A4 landscape; margin: 10mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "UD デジタル 教科書体 NP-B", "Hiragino Maru Gothic ProN", "Meiryo", sans-serif;
+  background: white;
+  color: #222;
+  padding: 12px 16px;
+}
+.wrap { max-width: 1280px; margin: 0 auto; }
+h1 {
+  font-size: 18px;
+  text-align: center;
+  color: #222;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #222;
+  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+}
+.meta { text-align: center; font-size: 12px; color: #888; margin-bottom: 12px; }
+
+svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1280px; }
+
+.node {
+  fill: white;
+  stroke: #222;
+  stroke-width: 1.6;
+}
+.node-main {
+  fill: #fff9ec;
+  stroke: #222;
+  stroke-width: 2.5;
+}
+.node-leaf {
+  fill: #fff4c2;
+  stroke: #222;
+  stroke-width: 2;
+}
+.node-info {
+  fill: #f7f7f0;
+  stroke: #888;
+  stroke-width: 1.2;
+}
+.node-question {
+  fill: #fef6dd;
+  stroke: #C8961E;
+  stroke-width: 1.6;
+}
+.label {
+  font-family: inherit;
+  font-size: 14px;
+  fill: #222;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+.label-main { font-size: 16px; font-weight: bold; }
+.label-leaf { font-weight: bold; font-size: 16px; }
+.label-info { font-size: 12px; fill: #555; }
+.label-question { font-size: 13px; fill: #6b4a00; }
+.link {
+  stroke: #222;
+  stroke-width: 1.4;
+  fill: none;
+}
+.linkword {
+  font-size: 11px;
+  fill: #666;
+  text-anchor: middle;
+  dominant-baseline: central;
+  font-style: italic;
+}
+
+.summary {
+  margin-top: 16px;
+  padding: 12px 16px;
+  border: 1.5px solid #222;
+  font-size: 13px;
+  line-height: 1.9;
+}
+.summary strong { display: block; margin-bottom: 4px; font-size: 14px; }
+.summary .blank {
+  display: inline-block;
+  border-bottom: 1.5px solid #222;
+  min-width: 70px;
+  text-align: center;
+  padding: 0 6px;
+  color: #666;
+  font-size: 12px;
+}
+.print-btn {
+  display: inline-block;
+  padding: 4px 14px;
+  background: #D63384;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 12px;
+}
+@media print {
+  .print-btn { display: none; }
+  body { padding: 0; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>葉や根のつくり｜まとめマップ <button class="print-btn" onclick="window.print()">🖨 印刷</button></h1>
+<div class="meta">中1理科 単元1-2「植物の分類」P.36-37</div>
+
+<svg viewBox="0 0 1280 440" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- 問いバナー -->
+  <rect class="node-question" x="180" y="15" width="920" height="44" rx="8"/>
+  <text class="label label-question" x="640" y="30" style="font-size:12px;">Q（問い）</text>
+  <text class="label label-question" x="640" y="48">植物を葉脈や根で分類するには、どんな特徴に注目するとよいだろうか？</text>
+
+  <!-- 問い → 中心 -->
+  <line class="link" x1="640" y1="59" x2="640" y2="85"/>
+
+  <!-- 中心ノード -->
+  <rect class="node-main" x="430" y="85" width="420" height="55" rx="10"/>
+  <text class="label label-main" x="640" y="105" style="font-size:15px;">花がない時期の植物も</text>
+  <text class="label label-main" x="640" y="125">葉や根のつくりで分類できる</text>
+
+  <!-- 中心 → 分岐 -->
+  <line class="link" x1="640" y1="140" x2="640" y2="170"/>
+  <text class="linkword" x="710" y="156">注目するのは…</text>
+
+  <!-- 分岐線 -->
+  <line class="link" x1="320" y1="170" x2="960" y2="170"/>
+  <line class="link" x1="320" y1="170" x2="320" y2="200"/>
+  <line class="link" x1="960" y1="170" x2="960" y2="200"/>
+
+  <!-- 葉脈ノード（左） -->
+  <rect class="node-leaf" x="220" y="200" width="200" height="50" rx="8"/>
+  <text class="label label-leaf" x="320" y="225">葉脈</text>
+
+  <!-- 葉脈の説明（左） -->
+  <line class="link" x1="320" y1="250" x2="320" y2="285"/>
+  <text class="linkword" x="370" y="267">＝ 葉に通る</text>
+  <rect class="node-info" x="200" y="285" width="240" height="80" rx="8"/>
+  <text class="label label-info" x="320" y="305" style="font-size:13px;font-weight:bold;">葉のすじ（形）</text>
+  <text class="label label-info" x="320" y="328">・網目のようなすじ？</text>
+  <text class="label label-info" x="320" y="350">・平行に並ぶすじ？</text>
+
+  <!-- 根ノード（右） -->
+  <rect class="node-leaf" x="860" y="200" width="200" height="50" rx="8"/>
+  <text class="label label-leaf" x="960" y="225">根</text>
+
+  <!-- 根の説明（右） -->
+  <line class="link" x1="960" y1="250" x2="960" y2="285"/>
+  <text class="linkword" x="1010" y="267">＝ 地下の</text>
+  <rect class="node-info" x="840" y="285" width="240" height="80" rx="8"/>
+  <text class="label label-info" x="960" y="305" style="font-size:13px;font-weight:bold;">根のつくり（形）</text>
+  <text class="label label-info" x="960" y="328">・太い根＋細い根？</text>
+  <text class="label label-info" x="960" y="350">・たくさんの細い根？</text>
+
+  <!-- 下方向への合流 → 次ページへ -->
+  <line class="link" x1="320" y1="365" x2="320" y2="395"/>
+  <line class="link" x1="960" y1="365" x2="960" y2="395"/>
+  <line class="link" x1="320" y1="395" x2="960" y2="395"/>
+  <line class="link" x1="640" y1="395" x2="640" y2="415"/>
+  <text class="linkword" x="700" y="408">次ページで具体的に分類！</text>
+
+</svg>
+
+<div class="summary">
+  <strong>📝 まとめ文（マップを矢印の順になぞって書こう）</strong>
+  花がない時期の植物も、 <span class="blank">葉や根</span> のつくりに注目すれば分類することができる。<br>
+  葉では <span class="blank">葉脈</span>（葉に通るすじ）の形を観察する。網目のようなすじか、 <span class="blank">平行</span> に並ぶすじか。<br>
+  根では <span class="blank">根</span> のつくりを観察する。太い根に細い根がついているか、たくさんの細い根が広がっているか。<br>
+  これらの特徴を使って、次ページで <span class="blank">被子植物</span> を分類していく。
+</div>
+
+</div>
+</body>
+</html>

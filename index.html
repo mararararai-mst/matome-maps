@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中学理科 まとめマップ｜教科書を1枚で見渡そう</title>
+<meta name="description" content="中学理科の教科書ページを1枚のまとめマップに。用語のつながりが見えると、覚えるのではなく『分かる』に変わります。葛原祥太さんのQNKS発展版。">
+
+<!-- OGP -->
+<meta property="og:title" content="中学理科 まとめマップ｜教科書を1枚で見渡そう">
+<meta property="og:description" content="中学理科の教科書ページを1枚のマップに。用語のつながりが見えれば、覚えるのではなく『分かる』に変わる。葛原祥太さんのQNKS発展版。">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+
+<style>
+:root {
+  --bg: #fff8ef;
+  --card-bg: #ffffff;
+  --text: #2a2a2a;
+  --text-soft: #6a6a6a;
+  --accent-yellow: #fff4c2;
+  --accent-yellow-edge: #e8c84a;
+  --accent-green: #d8f3dc;
+  --accent-green-edge: #74c69d;
+  --accent-pink: #ffe3ec;
+  --accent-pink-edge: #f7a8c1;
+  --accent-blue: #d6ebff;
+  --accent-blue-edge: #88b9e6;
+  --header-from: #ffeec2;
+  --header-to: #ffe1ee;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "UD デジタル 教科書体 NP-B", "Hiragino Maru Gothic ProN", "Meiryo", "Noto Sans JP", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  padding: 0 0 60px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============ Hero ============ */
+.hero {
+  background: linear-gradient(135deg, var(--header-from) 0%, var(--header-to) 100%);
+  padding: 40px 24px 36px;
+  text-align: center;
+  border-bottom: 3px dashed #f0c97a;
+}
+.hero .badge {
+  display: inline-block;
+  background: white;
+  color: #c8961e;
+  font-size: 12px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  border: 1.5px solid #f0c97a;
+  margin-bottom: 12px;
+  letter-spacing: 0.05em;
+  font-weight: bold;
+}
+.hero h1 {
+  font-size: 28px;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+  color: #2c1810;
+}
+.hero h1 .deco { color: #d57f8c; }
+.hero p.lead {
+  font-size: 14px;
+  color: #5a4030;
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* ============ How to use ============ */
+.howto {
+  max-width: 880px;
+  margin: 28px auto 0;
+  padding: 18px 24px;
+  background: white;
+  border: 1.5px dashed #d8c89a;
+  border-radius: 14px;
+  font-size: 13px;
+  line-height: 1.85;
+  color: #4a3a28;
+}
+.howto strong { color: #c8961e; }
+.howto .step-icon {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  background: #fff4c2;
+  border: 1.5px solid #c8961e;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: bold;
+  color: #c8961e;
+  margin-right: 4px;
+}
+
+/* ============ Grid ============ */
+.section {
+  max-width: 1080px;
+  margin: 36px auto 0;
+  padding: 0 20px;
+}
+.section-title {
+  font-size: 18px;
+  margin-bottom: 16px;
+  padding-left: 10px;
+  border-left: 5px solid #f0c97a;
+  color: #5a4030;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+}
+.card {
+  display: block;
+  background: var(--card-bg);
+  border: 2px solid #eadcc4;
+  border-radius: 16px;
+  padding: 18px 18px 16px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  position: relative;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(216, 173, 105, 0.25);
+  border-color: #d8af6a;
+}
+.card .icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+  display: block;
+}
+.card .title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #2c1810;
+}
+.card .words {
+  font-size: 11px;
+  color: var(--text-soft);
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+.card .meta {
+  display: inline-block;
+  font-size: 11px;
+  background: #fff4c2;
+  color: #946800;
+  padding: 2px 10px;
+  border-radius: 999px;
+  border: 1px solid #e8c84a;
+  font-weight: bold;
+}
+
+/* カードのカテゴリ色変え */
+.card.c-pink { border-color: var(--accent-pink-edge); }
+.card.c-pink .meta { background: var(--accent-pink); border-color: var(--accent-pink-edge); color: #b03856; }
+.card.c-green { border-color: var(--accent-green-edge); }
+.card.c-green .meta { background: var(--accent-green); border-color: var(--accent-green-edge); color: #2e7d32; }
+.card.c-blue { border-color: var(--accent-blue-edge); }
+.card.c-blue .meta { background: var(--accent-blue); border-color: var(--accent-blue-edge); color: #2c5a8e; }
+
+/* ============ Footer ============ */
+footer {
+  max-width: 880px;
+  margin: 56px auto 0;
+  padding: 24px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-soft);
+  border-top: 1px dashed #d8c89a;
+}
+footer .source {
+  margin-bottom: 6px;
+}
+footer .updated {
+  color: #aa9a7a;
+}
+
+@media (max-width: 600px) {
+  .hero h1 { font-size: 22px; }
+  .hero p.lead { font-size: 13px; }
+  .section { padding: 0 14px; }
+  .cards { gap: 12px; }
+  .card { padding: 14px; }
+  .card .icon { font-size: 28px; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="badge">QNKS発展版 ／ 中学理科</div>
+  <h1>📊 まとめマップ <span class="deco">✿</span></h1>
+  <p class="lead">教科書1ページを1枚のマップに。<br>
+  用語と用語のつながりが見えると、暗記から「分かった！」に変わります。</p>
+</header>
+
+<div class="howto">
+  <strong>📖 使い方</strong><br>
+  <span class="step-icon">1</span> カードをクリックしてマップを開く<br>
+  <span class="step-icon">2</span> 矢印の順に語句をなぞって読む<br>
+  <span class="step-icon">3</span> 下の <strong>まとめ文</strong> を穴埋めしながら書く（プリントも可）
+</div>
+
+<section class="section">
+  <h2 class="section-title">🌱 中1 ／ 単元1-2 植物の分類</h2>
+  <div class="cards">
+
+    <a class="card c-pink" href="chu1-p31-hana-no-tsukuri.html">
+      <span class="icon">🌸</span>
+      <div class="title">花のつくり</div>
+      <div class="words">花弁 ／ がく ／ おしべ ／ めしべ ／ 離弁花 ／ 合弁花 ／ 子房 ／ 胚珠 ／ 柱頭 ／ やく ／ 花粉</div>
+      <span class="meta">中1理科 P.31</span>
+    </a>
+
+    <a class="card" href="chu1-p34-35-kajitsu-tsukuranai-hana.html">
+      <span class="icon">🌲</span>
+      <div class="title">果実をつくらない花</div>
+      <div class="words">マツ ／ 雌花 ／ 雄花 ／ りん片 ／ 子房 ／ 胚珠 ／ 花粉のう ／ 受粉 ／ 種子 ／ 裸子植物 ／ 被子植物 ／ 種子植物</div>
+      <span class="meta">中1理科 P.34-35</span>
+    </a>
+
+    <a class="card c-green" href="chu1-p36-37-ha-ne-de-bunrui.html">
+      <span class="icon">🌿</span>
+      <div class="title">葉や根のつくり</div>
+      <div class="words">葉脈 ／ 主脈 ／ 側脈 ／ 根 ／ 観察 ／ 分類</div>
+      <span class="meta">中1理科 P.36-37</span>
+    </a>
+
+    <a class="card c-blue" href="chu1-p38-39-hishi-shokubutsu-bunrui.html">
+      <span class="icon">🌱</span>
+      <div class="title">被子植物の分類<br><span style="font-size:13px;color:#666;font-weight:normal;">（双子葉類・単子葉類）</span></div>
+      <div class="words">被子植物 ／ 双子葉類 ／ 単子葉類 ／ 子葉 ／ 網状脈 ／ 平行脈 ／ 主根 ／ 側根 ／ ひげ根</div>
+      <span class="meta">中1理科 P.38-39</span>
+    </a>
+
+  </div>
+</section>
+
+<footer>
+  <div class="source">考え方の元 ＝ <a href="https://kuzuhara-shobou.com/" target="_blank" rel="noopener" style="color:#c8961e;">葛原祥太さんのQNKS</a>（問い→抜き出し→組み立て→整理）</div>
+  <div class="updated">最終更新：2026-05-07 ／ 全 4 マップ</div>
+</footer>
+
+</body>
+</html>
