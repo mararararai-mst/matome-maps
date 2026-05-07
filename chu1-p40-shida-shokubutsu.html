@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>葉や根のつくり｜まとめマップ</title>
+<title>シダ植物｜まとめマップ</title>
 <style>
 @page { size: A4 landscape; margin: 10mm; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -41,6 +41,11 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1280
   stroke: #222;
   stroke-width: 2;
 }
+.node-cross {
+  fill: #ffe3ec;
+  stroke: #D63384;
+  stroke-width: 2;
+}
 .node-info {
   fill: #f7f7f0;
   stroke: #888;
@@ -60,6 +65,7 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1280
 }
 .label-main { font-size: 16px; font-weight: bold; }
 .label-leaf { font-weight: bold; font-size: 16px; }
+.label-cross { fill: #D63384; font-weight: bold; }
 .label-info { font-size: 12px; fill: #555; }
 .label-question { font-size: 13px; fill: #6b4a00; }
 .link {
@@ -180,84 +186,86 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1280
 <body>
 <div class="wrap">
 
-<h1>葉や根のつくり｜まとめマップ <a href="index.html" class="back-btn">📋 一覧へ</a><button class="words-btn" onclick="toggleWords(this)">📝 語句のみ</button><button class="print-btn" onclick="window.print()">🖨 印刷</button></h1>
-<div class="meta">中1理科 生物2章「植物の分類」P.36-37</div>
+<h1>シダ植物｜まとめマップ <a href="index.html" class="back-btn">📋 一覧へ</a><button class="words-btn" onclick="toggleWords(this)">📝 語句のみ</button><button class="print-btn" onclick="window.print()">🖨 印刷</button></h1>
+<div class="meta">中1理科 生物2章「植物の分類」P.40</div>
 
-<svg viewBox="0 0 1280 440" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 1280 460" xmlns="http://www.w3.org/2000/svg">
 
   <!-- 問いバナー -->
-  <rect class="node-question" x="180" y="15" width="920" height="44" rx="8"/>
+  <rect class="node-question" x="160" y="15" width="960" height="44" rx="8"/>
   <text class="label label-question" x="640" y="30" style="font-size:12px;">Q（問い）</text>
-  <text class="label label-question" x="640" y="48">植物を葉脈や根で分類するには、どんな特徴に注目するとよいだろうか？</text>
+  <text class="label label-question" x="640" y="48">種子をつくらない植物のからだのつくりとふえ方の特徴は？</text>
 
-  <!-- 問い → 中心 -->
+  <!-- Q → 中心 -->
   <line class="link" x1="640" y1="59" x2="640" y2="85"/>
 
   <!-- 中心ノード -->
-  <rect class="node-main" x="430" y="85" width="420" height="55" rx="10"/>
-  <text class="label label-main" x="640" y="105" style="font-size:15px;">花がない時期の植物も</text>
-  <text class="label label-main" x="640" y="125">葉や根のつくりで分類できる</text>
+  <rect class="node-main" x="490" y="85" width="300" height="55" rx="10"/>
+  <text class="label label-main" x="640" y="105" style="font-size:17px;">シダ植物</text>
+  <text class="label" x="640" y="125" style="font-size:12px;fill:#666;">（種子をつくらない植物の仲間）</text>
 
   <!-- 中心 → 分岐 -->
   <line class="link" x1="640" y1="140" x2="640" y2="170"/>
-  <text class="linkword" x="710" y="156">注目するのは…</text>
-
-  <!-- 分岐線 -->
   <line class="link" x1="320" y1="170" x2="960" y2="170"/>
   <line class="link" x1="320" y1="170" x2="320" y2="200"/>
   <line class="link" x1="960" y1="170" x2="960" y2="200"/>
 
-  <!-- 葉脈ノード（左） -->
-  <rect class="node-leaf" x="220" y="200" width="200" height="50" rx="8"/>
-  <text class="label label-leaf" x="320" y="225">葉脈</text>
+  <!-- セクションタイトル -->
+  <text x="320" y="187" style="font-size:11px;fill:#2E7D32;font-weight:bold;text-anchor:middle;">◆ からだのつくり ◆</text>
+  <text x="960" y="187" style="font-size:11px;fill:#2E7D32;font-weight:bold;text-anchor:middle;">◆ ふえ方 ◆</text>
 
-  <!-- 葉脈の説明（左） -->
-  <line class="link" x1="320" y1="250" x2="320" y2="285"/>
-  <text class="linkword" x="370" y="267">＝ 葉に通る</text>
-  <rect class="node-info" x="200" y="285" width="240" height="80" rx="8"/>
-  <text class="label label-info" x="320" y="305" style="font-size:13px;font-weight:bold;">葉のすじ（形）</text>
-  <text class="label label-info" x="320" y="328">・網目のようなすじ？</text>
-  <text class="label label-info" x="320" y="350">・平行に並ぶすじ？</text>
+  <!-- ============ 左枝：からだのつくり ============ -->
 
-  <!-- 根ノード（右） -->
-  <rect class="node-leaf" x="860" y="200" width="200" height="50" rx="8"/>
-  <text class="label label-leaf" x="960" y="225">根</text>
+  <!-- 葉・茎・根 がある -->
+  <rect class="node-leaf" x="180" y="200" width="280" height="60" rx="8"/>
+  <text class="label label-leaf" x="320" y="221" style="font-size:15px;">葉・茎・根 がある</text>
+  <text class="label" x="320" y="244" style="font-size:11px;fill:#666;">（種子植物と同じ）</text>
 
-  <!-- 根の説明（右） -->
-  <line class="link" x1="960" y1="250" x2="960" y2="285"/>
-  <text class="linkword" x="1010" y="267">＝ 地下の</text>
-  <rect class="node-info" x="840" y="285" width="240" height="80" rx="8"/>
-  <text class="label label-info" x="960" y="305" style="font-size:13px;font-weight:bold;">根のつくり（形）</text>
-  <text class="label label-info" x="960" y="328">・太い根＋細い根？</text>
-  <text class="label label-info" x="960" y="350">・たくさんの細い根？</text>
+  <!-- → 茎は地下 -->
+  <line class="link" x1="320" y1="260" x2="320" y2="295"/>
+  <text class="linkword" x="375" y="278">とくに</text>
+  <rect class="node-info" x="200" y="295" width="240" height="44" rx="8"/>
+  <text class="label label-info" x="320" y="317" style="font-size:13px;">茎は地下にある</text>
 
-  <!-- 下方向への合流 → 次ページへ -->
-  <line class="link" x1="320" y1="365" x2="320" y2="395"/>
-  <line class="link" x1="960" y1="365" x2="960" y2="395"/>
-  <line class="link" x1="320" y1="395" x2="960" y2="395"/>
-  <line class="link" x1="640" y1="395" x2="640" y2="415"/>
-  <text class="linkword" x="700" y="408">次ページで具体的に分類！</text>
+  <!-- ============ 右枝：ふえ方 ============ -->
+
+  <!-- 種子をつくらない (cross) -->
+  <rect class="node-cross" x="820" y="200" width="280" height="44" rx="8"/>
+  <text class="label label-cross" x="960" y="222" style="font-size:14px;">種子 ✕（つくらない）</text>
+
+  <!-- → 胞子でふえる -->
+  <line class="link" x1="960" y1="244" x2="960" y2="280"/>
+  <text class="linkword" x="1020" y="262">代わりに</text>
+  <rect class="node-leaf" x="860" y="280" width="200" height="44" rx="8"/>
+  <text class="label label-leaf" x="960" y="302">胞子 でふえる</text>
+
+  <!-- → 胞子のう -->
+  <line class="link" x1="960" y1="324" x2="960" y2="360"/>
+  <text class="linkword" x="1015" y="342">入れ物</text>
+  <rect class="node-leaf" x="820" y="360" width="280" height="65" rx="8"/>
+  <text class="label label-leaf" x="960" y="380" style="font-size:15px;">胞子のう</text>
+  <text class="label" x="960" y="404" style="font-size:11px;fill:#555;">葉の裏（イヌワラビ）／つくし（スギナ）</text>
 
 </svg>
 
 <div class="summary">
   <strong>📝 まとめ文（マップを矢印の順になぞって書こう）</strong>
-  花がない時期の植物も、 <span class="blank">葉や根</span> のつくりに注目すれば分類することができる。<br>
-  葉では <span class="blank">葉脈</span>（葉に通るすじ）の形を観察する。網目のようなすじか、 <span class="blank">平行</span> に並ぶすじか。<br>
-  根では <span class="blank">根</span> のつくりを観察する。太い根に細い根がついているか、たくさんの細い根が広がっているか。<br>
-  これらの特徴を使って、次ページで <span class="blank">被子植物</span> を分類していく。
+  <span class="blank">シダ植物</span> は、種子をつくらない植物の仲間である。<br>
+  からだのつくりは種子植物と同じで、 <span class="blank">葉</span> ・ <span class="blank">茎</span> ・ <span class="blank">根</span> がある。とくに茎は <span class="blank">地下</span> にある場合が多い。<br>
+  ふえ方は種子植物と異なり、 <span class="blank">種子</span> をつくらず、代わりに <span class="blank">胞子</span> でふえる。胞子は <span class="blank">胞子のう</span> という入れ物の中につくられる。
 </div>
 
 <div class="words-only" hidden>
   <h2>📝 語句チェック</h2>
   <p class="hint">この語句が、マップのどこにあって、どうつながっていたか思い出せるかな？</p>
   <div class="words-grid">
-    <div class="word-card">葉脈</div>
-    <div class="word-card">主脈</div>
-    <div class="word-card">側脈</div>
+    <div class="word-card">シダ植物</div>
+    <div class="word-card">葉</div>
+    <div class="word-card">茎</div>
     <div class="word-card">根</div>
-    <div class="word-card">観察</div>
-    <div class="word-card">分類</div>
+    <div class="word-card">種子</div>
+    <div class="word-card">胞子</div>
+    <div class="word-card">胞子のう</div>
   </div>
 </div>
 

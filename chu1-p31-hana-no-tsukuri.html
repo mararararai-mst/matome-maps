@@ -12,7 +12,7 @@ body {
   color: #222;
   padding: 16px;
 }
-.wrap { max-width: 1000px; margin: 0 auto; }
+.wrap { max-width: 1100px; margin: 0 auto; }
 h1 {
   font-size: 18px;
   text-align: center;
@@ -28,7 +28,7 @@ h1 {
   color: #888;
   margin-bottom: 14px;
 }
-svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1000px; }
+svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1100px; }
 
 .node {
   fill: white;
@@ -88,6 +88,71 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1000
   color: #666;
   font-size: 13px;
 }
+.back-btn {
+  display: inline-block;
+  padding: 4px 14px;
+  background: #74c69d;
+  color: white;
+  border-radius: 14px;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.back-btn:hover { background: #57b387; }
+.words-btn {
+  display: inline-block;
+  padding: 4px 14px;
+  background: #f0a000;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.words-btn:hover { background: #d68a00; }
+.words-only {
+  margin-top: 24px;
+  padding: 28px 24px 50px;
+  text-align: center;
+  background: #fff8e8;
+  border: 2px dashed #e8c84a;
+  border-radius: 16px;
+}
+.words-only h2 {
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: #946800;
+}
+.words-only .hint {
+  color: #886a3a;
+  font-size: 13px;
+  margin-bottom: 26px;
+  line-height: 1.7;
+}
+.words-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 14px;
+  max-width: 820px;
+  margin: 0 auto;
+}
+.word-card {
+  background: #fff4c2;
+  border: 2px solid #e8c84a;
+  border-radius: 12px;
+  padding: 18px 10px;
+  font-size: 17px;
+  font-weight: bold;
+  color: #6b4a00;
+  box-shadow: 0 2px 4px rgba(216,173,105,0.2);
+}
 .print-btn {
   display: inline-block;
   padding: 4px 14px;
@@ -99,10 +164,11 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1000
   font-family: inherit;
   font-size: 12px;
   font-weight: bold;
-  margin-left: 12px;
+  margin-left: 8px;
+  vertical-align: middle;
 }
 @media print {
-  .print-btn { display: none; }
+  .print-btn, .back-btn, .words-btn, .words-only { display: none; }
   body { padding: 0; }
 }
 </style>
@@ -110,30 +176,30 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1000
 <body>
 <div class="wrap">
 
-<h1>花のつくり｜まとめマップ <button class="print-btn" onclick="window.print()">🖨 印刷</button></h1>
-<div class="meta">中1理科 単元1-2「植物の分類」P.31</div>
+<h1>花のつくり｜まとめマップ <a href="index.html" class="back-btn">📋 一覧へ</a><button class="words-btn" onclick="toggleWords(this)">📝 語句のみ</button><button class="print-btn" onclick="window.print()">🖨 印刷</button></h1>
+<div class="meta">中1理科 生物2章「植物の分類」P.31</div>
 
-<svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 1100 620" xmlns="http://www.w3.org/2000/svg">
 
   <!-- ── 花のつくり（中心） ── -->
-  <rect class="node-main" x="410" y="14" width="180" height="48" rx="8"/>
-  <text class="label label-main" x="500" y="38">花のつくり</text>
+  <rect class="node-main" x="415" y="14" width="180" height="48" rx="8"/>
+  <text class="label label-main" x="505" y="38">花のつくり</text>
 
   <!-- 中心 → 4要素（外側から順に） -->
-  <line class="link" x1="500" y1="62" x2="500" y2="92"/>
-  <text class="linkword" x="586" y="78">外側から順に</text>
+  <line class="link" x1="505" y1="62" x2="505" y2="92"/>
+  <text class="linkword" x="591" y="78">外側から順に</text>
 
-  <line class="link" x1="100" y1="92" x2="900" y2="92"/>
+  <line class="link" x1="100" y1="92" x2="910" y2="92"/>
   <line class="link" x1="100" y1="92" x2="100" y2="120"/>
   <line class="link" x1="370" y1="92" x2="370" y2="120"/>
-  <line class="link" x1="630" y1="92" x2="630" y2="120"/>
-  <line class="link" x1="900" y1="92" x2="900" y2="120"/>
+  <line class="link" x1="640" y1="92" x2="640" y2="120"/>
+  <line class="link" x1="910" y1="92" x2="910" y2="120"/>
 
   <!-- 順序の番号 -->
   <text class="linkword" x="100" y="108" style="font-size:13px;fill:#c0392b;font-weight:bold;">①</text>
   <text class="linkword" x="370" y="108" style="font-size:13px;fill:#c0392b;font-weight:bold;">②</text>
-  <text class="linkword" x="630" y="108" style="font-size:13px;fill:#c0392b;font-weight:bold;">③</text>
-  <text class="linkword" x="900" y="108" style="font-size:13px;fill:#c0392b;font-weight:bold;">④</text>
+  <text class="linkword" x="640" y="108" style="font-size:13px;fill:#c0392b;font-weight:bold;">③</text>
+  <text class="linkword" x="910" y="108" style="font-size:13px;fill:#c0392b;font-weight:bold;">④</text>
 
   <!-- 4要素 -->
   <rect class="node" x="40" y="120" width="120" height="44" rx="8"/>
@@ -142,11 +208,11 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1000
   <rect class="node" x="310" y="120" width="120" height="44" rx="8"/>
   <text class="label" x="370" y="142">花弁</text>
 
-  <rect class="node" x="570" y="120" width="120" height="44" rx="8"/>
-  <text class="label" x="630" y="142">おしべ</text>
+  <rect class="node" x="580" y="120" width="120" height="44" rx="8"/>
+  <text class="label" x="640" y="142">おしべ</text>
 
-  <rect class="node" x="840" y="120" width="120" height="44" rx="8"/>
-  <text class="label" x="900" y="142">めしべ</text>
+  <rect class="node" x="850" y="120" width="120" height="44" rx="8"/>
+  <text class="label" x="910" y="142">めしべ</text>
 
   <!-- ── 花弁の枝 ── -->
   <line class="link" x1="370" y1="164" x2="370" y2="200"/>
@@ -166,40 +232,40 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1000
   <text class="label label-leaf" x="480" y="272">合弁花</text>
 
   <!-- ── おしべの枝 ── -->
-  <line class="link" x1="630" y1="164" x2="630" y2="200"/>
-  <text class="linkword" x="676" y="184">先端</text>
+  <line class="link" x1="640" y1="164" x2="640" y2="200"/>
+  <text class="linkword" x="686" y="184">先端</text>
 
-  <rect class="node" x="570" y="200" width="120" height="44" rx="8"/>
-  <text class="label" x="630" y="222">やく</text>
+  <rect class="node" x="580" y="200" width="120" height="44" rx="8"/>
+  <text class="label" x="640" y="222">やく</text>
 
-  <line class="link" x1="630" y1="244" x2="630" y2="280"/>
-  <text class="linkword" x="676" y="262">の中</text>
+  <line class="link" x1="640" y1="244" x2="640" y2="280"/>
+  <text class="linkword" x="686" y="262">の中</text>
 
-  <rect class="node-leaf" x="570" y="280" width="120" height="44" rx="8"/>
-  <text class="label label-leaf" x="630" y="302">花粉</text>
+  <rect class="node-leaf" x="580" y="280" width="120" height="44" rx="8"/>
+  <text class="label label-leaf" x="640" y="302">花粉</text>
 
   <!-- ── めしべの枝 ── -->
   <!-- めしべ は2方向（子房系・柱頭系） -->
-  <line class="link" x1="900" y1="164" x2="900" y2="200"/>
-  <line class="link" x1="740" y1="200" x2="940" y2="200"/>
-  <line class="link" x1="740" y1="200" x2="740" y2="250"/>
-  <line class="link" x1="940" y1="200" x2="940" y2="250"/>
+  <line class="link" x1="910" y1="164" x2="910" y2="200"/>
+  <line class="link" x1="800" y1="200" x2="1020" y2="200"/>
+  <line class="link" x1="800" y1="200" x2="800" y2="250"/>
+  <line class="link" x1="1020" y1="200" x2="1020" y2="250"/>
 
-  <text class="linkword" x="740" y="222" style="font-size:11px;">ふくらんだ部分</text>
-  <text class="linkword" x="940" y="222" style="font-size:11px;">先端</text>
+  <text class="linkword" x="810" y="222" style="font-size:11px;text-anchor:start;">ふくらんだ部分</text>
+  <text class="linkword" x="1030" y="222" style="font-size:11px;text-anchor:start;">先端</text>
 
-  <rect class="node" x="680" y="250" width="120" height="44" rx="8"/>
-  <text class="label" x="740" y="272">子房</text>
+  <rect class="node" x="740" y="250" width="120" height="44" rx="8"/>
+  <text class="label" x="800" y="272">子房</text>
 
-  <rect class="node-leaf" x="880" y="250" width="120" height="44" rx="8"/>
-  <text class="label label-leaf" x="940" y="272">柱頭</text>
+  <rect class="node-leaf" x="960" y="250" width="120" height="44" rx="8"/>
+  <text class="label label-leaf" x="1020" y="272">柱頭</text>
 
   <!-- 子房 → 胚珠 -->
-  <line class="link" x1="740" y1="294" x2="740" y2="335"/>
-  <text class="linkword" x="780" y="314">の中</text>
+  <line class="link" x1="800" y1="294" x2="800" y2="335"/>
+  <text class="linkword" x="844" y="314" style="text-anchor:start;">の中</text>
 
-  <rect class="node-leaf" x="680" y="335" width="120" height="44" rx="8"/>
-  <text class="label label-leaf" x="740" y="357">胚珠</text>
+  <rect class="node-leaf" x="740" y="335" width="120" height="44" rx="8"/>
+  <text class="label label-leaf" x="800" y="357">胚珠</text>
 
 </svg>
 
@@ -210,6 +276,43 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1000
   おしべの先端を <span class="blank">やく</span> といい、その中に <span class="blank">花粉</span> が入っている。<br>
   めしべのふくらんだ部分を <span class="blank">子房</span> 、その中の小さなつぶを <span class="blank">胚珠</span> という。めしべの先端を <span class="blank">柱頭</span> という。
 </div>
+
+<div class="words-only" hidden>
+  <h2>📝 語句チェック</h2>
+  <p class="hint">この語句が、マップのどこにあって、どうつながっていたか思い出せるかな？</p>
+  <div class="words-grid">
+    <div class="word-card">花弁</div>
+    <div class="word-card">がく</div>
+    <div class="word-card">おしべ</div>
+    <div class="word-card">めしべ</div>
+    <div class="word-card">離弁花</div>
+    <div class="word-card">合弁花</div>
+    <div class="word-card">やく</div>
+    <div class="word-card">花粉</div>
+    <div class="word-card">子房</div>
+    <div class="word-card">胚珠</div>
+    <div class="word-card">柱頭</div>
+  </div>
+</div>
+
+<script>
+function toggleWords(btn) {
+  const svg = document.querySelector('svg');
+  const summary = document.querySelector('.summary');
+  const words = document.querySelector('.words-only');
+  if (words.hidden) {
+    svg.style.display = 'none';
+    summary.style.display = 'none';
+    words.hidden = false;
+    btn.textContent = '🗺️ マップへ戻る';
+  } else {
+    svg.style.display = '';
+    summary.style.display = '';
+    words.hidden = true;
+    btn.textContent = '📝 語句のみ';
+  }
+}
+</script>
 
 </div>
 </body>
