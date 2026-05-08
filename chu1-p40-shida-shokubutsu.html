@@ -182,6 +182,38 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1280
   .print-btn, .back-btn, .words-btn, .words-only { display: none; }
   body { padding: 0; }
 }
+.svg-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  margin: 0 auto;
+}
+@media (max-width: 600px) {
+  body { padding: 8px 6px; }
+  .wrap { max-width: 100%; }
+  h1 {
+    font-size: 14px;
+    line-height: 1.6;
+    padding-bottom: 8px;
+    letter-spacing: 0.03em;
+  }
+  .meta { font-size: 11px; margin-bottom: 8px; }
+  .back-btn, .words-btn, .print-btn {
+    padding: 4px 10px;
+    font-size: 11px;
+    margin-left: 4px;
+    margin-top: 6px;
+  }
+  svg { min-width: 720px; }
+  .summary { font-size: 12px; padding: 10px 12px; line-height: 1.85; }
+  .summary strong { font-size: 13px; }
+  .summary .blank { min-width: 50px; padding: 0 4px; }
+  .words-only { padding: 20px 12px 32px; margin-top: 16px; }
+  .words-only h2 { font-size: 17px; }
+  .words-only .hint { font-size: 12px; margin-bottom: 18px; }
+  .words-grid { gap: 8px; grid-template-columns: repeat(auto-fill, minmax(95px, 1fr)); }
+  .word-card { font-size: 14px; padding: 12px 6px; }
+}
 </style>
 </head>
 <body>
@@ -190,7 +222,7 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1280
 <h1>シダ植物｜まとめマップ <a href="index.html" class="back-btn">📋 一覧へ</a><button class="words-btn" onclick="toggleWords(this)">📝 語句のみ</button><button class="print-btn" onclick="window.print()">🖨 印刷</button></h1>
 <div class="meta">中1理科 生物2章「植物の分類」P.40</div>
 
-<svg viewBox="0 0 1280 460" xmlns="http://www.w3.org/2000/svg">
+<div class="svg-scroll"><svg viewBox="0 0 1280 460" xmlns="http://www.w3.org/2000/svg">
 
   <!-- 問いバナー -->
   <rect class="node-question" x="160" y="15" width="960" height="44" rx="8"/>
@@ -247,7 +279,7 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1280
   <text class="label label-leaf" x="960" y="380" style="font-size:15px;">胞子のう</text>
   <text class="label" x="960" y="404" style="font-size:11px;fill:#555;">葉の裏（イヌワラビ）／つくし（スギナ）</text>
 
-</svg>
+</svg></div>
 
 <div class="summary">
   <strong>📝 まとめ文（マップを矢印の順になぞって書こう）</strong>
