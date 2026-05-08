@@ -119,8 +119,14 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1280
   border: none; border-radius: 14px; cursor: pointer; font-family: inherit; font-size: 12px;
   font-weight: bold; margin-left: 8px; vertical-align: middle;
 }
+.challenge-btn {
+  display: inline-block; padding: 4px 14px; background: #4ab4d6; color: white;
+  border-radius: 14px; text-decoration: none; font-family: inherit; font-size: 12px;
+  font-weight: bold; margin-left: 8px; vertical-align: middle;
+}
+.challenge-btn:hover { background: #3a9bbd; }
 @media print {
-  .print-btn, .back-btn, .words-btn, .words-only { display: none; }
+  .print-btn, .back-btn, .words-btn, .challenge-btn, .words-only { display: none; }
   body { padding: 0; }
 }
 </style>
@@ -128,7 +134,7 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1280
 <body>
 <div class="wrap">
 
-<h1>単体と化合物・物質の分類｜まとめマップ <a href="index.html" class="back-btn">📋 一覧へ</a><button class="words-btn" onclick="toggleWords(this)">📝 語句のみ</button><button class="print-btn" onclick="window.print()">🖨 印刷</button></h1>
+<h1>単体と化合物・物質の分類｜まとめマップ <a href="index.html" class="back-btn">📋 一覧へ</a><button class="words-btn" onclick="toggleWords(this)">📝 語句のみ</button><a href="https://mararararai-mst.github.io/bunrui-challenge/" target="_blank" rel="noopener" class="challenge-btn">🎮 チャレンジへ</a><button class="print-btn" onclick="window.print()">🖨 印刷</button></h1>
 <div class="meta">中2理科 化学1章「化学変化と原子・分子」P.32-33（見開き）</div>
 
 <svg viewBox="0 0 1280 480" xmlns="http://www.w3.org/2000/svg">
