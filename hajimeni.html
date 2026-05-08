@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>マップを自分で作ると、なぜ「ちゃんとわかる」のか｜まとめマップ</title>
+<meta name="description" content="読むだけと、描くこと、何が違うんだろう。マップを自分で作ることで、わかったつもりが、ちゃんとわかるに変わる7つの理由。">
+<meta property="og:title" content="マップを自分で作ると、なぜ「ちゃんとわかる」のか">
+<meta property="og:description" content="読むだけと、描くこと、何が違うんだろう。">
+<meta property="og:type" content="article">
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "UD デジタル 教科書体 NP-B", "Hiragino Maru Gothic ProN", "Meiryo", sans-serif;
+  background: #fff8ef;
+  color: #2a2a2a;
+  line-height: 1.85;
+  padding: 0 0 80px;
+}
+
+/* ============ Hero ============ */
+.hero {
+  background: linear-gradient(135deg, #ffeec2 0%, #ffe1ee 100%);
+  padding: 50px 24px 44px;
+  text-align: center;
+  border-bottom: 3px dashed #f0c97a;
+}
+.hero .tag {
+  display: inline-block;
+  background: white;
+  color: #c8961e;
+  font-size: 12px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  border: 1.5px solid #f0c97a;
+  margin-bottom: 14px;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+.hero h1 {
+  font-size: 26px;
+  letter-spacing: 0.04em;
+  color: #2c1810;
+  line-height: 1.6;
+  max-width: 720px;
+  margin: 0 auto 14px;
+}
+.hero .lead {
+  font-size: 14px;
+  color: #6b4a30;
+  line-height: 1.8;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* ============ Back link ============ */
+.back-bar {
+  max-width: 760px;
+  margin: 16px auto 0;
+  padding: 0 20px;
+}
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #74c69d;
+  color: white;
+  text-decoration: none;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: bold;
+}
+.back-link:hover { background: #57b387; }
+
+/* ============ Content ============ */
+.content {
+  max-width: 760px;
+  margin: 32px auto 0;
+  padding: 0 24px;
+}
+.opening {
+  background: white;
+  padding: 28px 28px 24px;
+  border-radius: 18px;
+  border: 1px solid #f0e6d6;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.04);
+  margin-bottom: 36px;
+  font-size: 15.5px;
+  line-height: 2;
+}
+.opening p { margin-bottom: 10px; }
+.opening p:last-child { margin-bottom: 0; }
+
+.pullquote {
+  margin: 30px 0;
+  padding: 22px 28px;
+  background: #fff4c2;
+  border-left: 6px solid #c8961e;
+  border-radius: 4px 16px 16px 4px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #6b4a00;
+  line-height: 1.8;
+}
+.pullquote::before { content: "\201C"; font-size: 30px; color: #c8961e; margin-right: 4px; vertical-align: -8px; }
+
+.section {
+  margin-bottom: 42px;
+}
+.section-num {
+  display: inline-block;
+  background: #c8961e;
+  color: white;
+  font-weight: bold;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 30px;
+  font-size: 14px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.section h2 {
+  font-size: 20px;
+  color: #2c1810;
+  margin-bottom: 14px;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+.section p {
+  margin-bottom: 12px;
+  font-size: 15px;
+  line-height: 1.95;
+  color: #3a3a3a;
+}
+.section ul {
+  list-style: none;
+  margin: 12px 0;
+  padding-left: 0;
+}
+.section ul li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 6px;
+  font-size: 14.5px;
+  line-height: 1.85;
+  color: #3a3a3a;
+}
+.section ul li::before {
+  content: "▸";
+  position: absolute;
+  left: 4px;
+  color: #c8961e;
+  font-weight: bold;
+}
+.callout {
+  margin: 14px 0;
+  padding: 14px 18px;
+  background: #f7f7f0;
+  border-radius: 12px;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.8;
+  border: 1px solid #e8e3d0;
+}
+.callout strong { color: #2c1810; }
+
+/* ============ Final ============ */
+.final {
+  background: linear-gradient(135deg, #fff4c2 0%, #ffe3ec 100%);
+  padding: 32px 28px;
+  border-radius: 20px;
+  margin-top: 44px;
+  border: 2px dashed #c8961e;
+}
+.final h2 {
+  font-size: 19px;
+  color: #6b4a00;
+  margin-bottom: 14px;
+  text-align: center;
+}
+.final ol {
+  list-style: none;
+  counter-reset: step;
+  padding: 0;
+  max-width: 480px;
+  margin: 18px auto;
+}
+.final ol li {
+  counter-increment: step;
+  position: relative;
+  padding: 10px 14px 10px 44px;
+  background: white;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  font-size: 14.5px;
+  font-weight: bold;
+  color: #2c1810;
+  border: 1.5px solid #f0c97a;
+}
+.final ol li::before {
+  content: counter(step);
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  background: #c8961e;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 22px;
+  font-size: 12px;
+}
+.final p {
+  font-size: 14px;
+  color: #6b4a30;
+  text-align: center;
+  margin-top: 14px;
+  line-height: 1.8;
+}
+
+/* ============ Closing ============ */
+.closing {
+  margin-top: 44px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #6b4a30;
+  line-height: 2;
+  padding: 24px 16px;
+}
+.closing .small { font-size: 13px; font-weight: normal; color: #888; margin-top: 8px; }
+
+.bottom-cta {
+  text-align: center;
+  margin-top: 36px;
+}
+.bottom-cta a {
+  display: inline-block;
+  padding: 12px 28px;
+  background: #c8961e;
+  color: white;
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: bold;
+  font-size: 14px;
+  box-shadow: 0 4px 14px rgba(200,150,30,0.3);
+}
+.bottom-cta a:hover { background: #a87a18; }
+
+@media (max-width: 600px) {
+  .hero h1 { font-size: 21px; }
+  .hero { padding: 36px 18px 30px; }
+  .content { padding: 0 18px; }
+  .opening { padding: 22px 18px; font-size: 14.5px; }
+  .section h2 { font-size: 17px; }
+  .pullquote { padding: 18px 20px; font-size: 14.5px; }
+  .final { padding: 24px 18px; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="tag">📖 はじめに</div>
+  <h1>マップを自分で作ると、<br>なぜ「ちゃんとわかる」のか</h1>
+  <p class="lead">読むだけと、描くこと、何が違うんだろう。</p>
+</header>
+
+<div class="back-bar">
+  <a href="index.html" class="back-link">📋 マップ一覧へ戻る</a>
+</div>
+
+<main class="content">
+
+<div class="opening">
+  <p>教科書を読んだあと、なんか「わかった」気がすることってあるよね。</p>
+  <p>でも、その内容を <strong>自分でマップに描こうとすると、必ずペンが止まる瞬間がきます。</strong></p>
+  <p>「あれ、子房と胚珠ってどっちが中？」<br>
+  「シダ植物って茎あったっけ？」</p>
+  <p><strong>そのペンが止まった場所こそ、本当はわかってなかったところ。</strong></p>
+</div>
+
+<div class="pullquote">
+  ペンが止まった場所こそ、伸びしろのある場所。
+</div>
+
+<section class="section">
+  <h2><span class="section-num">1</span>自分をごまかせなくなる</h2>
+  <p>読書は「わかったつもり」を許してくれる。読んでる間は、なんとなく分かってる感じで脳が動くから。</p>
+  <p>でもマップは許してくれない。<strong>描けない＝わかってない</strong>が、目で見える。</p>
+  <p>これが、マップを自分で作る一番の効果。<strong>自分をごまかせなくなる</strong>。</p>
+</section>
+
+<section class="section">
+  <h2><span class="section-num">2</span>「つながり」を選ぶことになる</h2>
+  <p>教科書を読むだけだと、関係はぼんやりしたまま読み飛ばせる。</p>
+  <p>でもマップで矢印を1本引くたびに、「これは何の関係？」を毎回決めないといけない。</p>
+  <ul>
+    <li>「〜の中にある」関係（子房の中に胚珠）</li>
+    <li>「〜から〜になる」関係（受粉から種子）</li>
+    <li>「〜の仲間」関係（被子植物のうち双子葉類）</li>
+  </ul>
+  <p>これを選ばないと線が引けない。だから飛ばせない。<strong>バラバラの単語が「つながり」に変わる瞬間。</strong></p>
+</section>
+
+<section class="section">
+  <h2><span class="section-num">3</span>全体の地図を持つことになる</h2>
+  <p>3〜4個ならどこに置いてもいい。</p>
+  <p>でも10個、20個になると、<strong>全体の構造を頭の中に持ってないと配置できない</strong>。</p>
+  <p>上から下に流れる時間？　左右で対比？　中心から枝分かれ？</p>
+  <p>この「全体をどう組み立てる？」を考えること自体、教科書を読むだけでは一度もしない。<strong>マップを描くから、初めて考える</strong>。</p>
+</section>
+
+<section class="section">
+  <h2><span class="section-num">4</span>間違いが目で見える</h2>
+  <p>もし「マツは被子植物の仲間」と勘違いしてたら、マップを描いたとき、マツが被子植物のグループに置かれる。</p>
+  <p>そして友達のマップを見ると——「あれ、お前のマツこっち側？」</p>
+  <p><strong>勘違いが、空間的に丸見えになる。</strong></p>
+  <div class="callout">読んでるだけだと、勘違いはずっと頭に残ったまま。マップを描けば、<strong>勘違いが目で見えて、議論できて、直せる</strong>。</div>
+</section>
+
+<section class="section">
+  <h2><span class="section-num">5</span>矢印1本ごとに「自分で説明」している</h2>
+  <p>矢印を引くとき、頭の中ではこう動いてる。</p>
+  <div class="callout"><strong>「これは…これとつながる、なぜなら…」</strong></div>
+  <p>この心の中のひとり言を <strong>「自己説明」</strong> と呼ぶ。学習で一番効くと証明されてる活動が、矢印1本ごとに自動で発動する。</p>
+</section>
+
+<section class="section">
+  <h2><span class="section-num">6</span>「形」で覚える</h2>
+  <p>これがたぶん一番すごい効果。</p>
+  <p>読んで覚えるのは <strong>言葉の記憶</strong>。<br>
+  描いて覚えるのは <strong>形の記憶</strong>。</p>
+  <p>形の記憶はすごい：</p>
+  <ul>
+    <li>「右下にあったやつ」と位置で思い出せる</li>
+    <li>白紙から再現できる</li>
+    <li>新しい例（タンポポとか）を見て、どこに入るか判断できる</li>
+    <li>矛盾に気づける</li>
+  </ul>
+  <p><strong>これが「ちゃんとわかった」と「わかったつもり」を分ける本体。</strong></p>
+</section>
+
+<section class="section">
+  <h2><span class="section-num">7</span>何枚も描くと、もっと深い場所へ</h2>
+  <p>植物分類マップを描いて、その後 動物分類のマップも描く。すると気づく。</p>
+  <div class="callout"><strong>「あれ、また同じ形になった」</strong></div>
+  <p>二分岐ツリーという抽象的な「形」が見えてくる。</p>
+  <p>これが起きると、<strong>「分類するときはこう考えるんだ」という方法そのものを手に入れたことになる。</strong></p>
+  <p>1枚では起きない。<strong>複数描いた子だけが手にする深さ。</strong></p>
+</section>
+
+<div class="final">
+  <h2>🌟 「ちゃんとわかった」の4つのサイン</h2>
+  <p style="text-align:center;font-size:13px;color:#6b4a30;">学習研究では、本当にわかった人はこの4つができると言われている：</p>
+  <ol>
+    <li>ほかの問題でも使える</li>
+    <li>おかしいと気づける</li>
+    <li>なぜそうなるか説明できる</li>
+    <li>何も見ないで白紙から書ける</li>
+  </ol>
+  <p>マップを自分で描くと、この4つが <strong>同時に育つ</strong>。<br>教科書を読んだだけでは、せいぜい1〜2しか育たない。</p>
+</div>
+
+<div class="pullquote">
+  配ってもらうのは、ちょっと工夫した暗記。<br>
+  自分で描くのは、ちゃんとわかる ことを始める、ほぼ唯一の方法。
+</div>
+
+<div class="closing">
+  ペンが止まった瞬間、それは失敗じゃない。<br>
+  <strong>学びが始まる合図。</strong>
+  <div class="small">止まった場所こそ、伸びしろのある場所。</div>
+</div>
+
+<div class="bottom-cta">
+  <a href="index.html">→ マップ一覧へ進む</a>
+</div>
+
+</main>
+
+</body>
+</html>
