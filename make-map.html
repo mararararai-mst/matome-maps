@@ -337,6 +337,7 @@ html, body {
     <div class="title">🗺️ まとめマップを自分でつくる <small>練習ツール ／ 中1理科 生物2章「植物の分類」</small></div>
     <button class="tool-btn active" data-mode="move" title="ボックスを動かす">🤚 動かす</button>
     <button class="tool-btn" data-mode="arrow" title="矢印で結ぶ：2つのボックスを順にタップ">↗ 矢印</button>
+    <button class="tool-btn" data-mode="line" title="線で結ぶ：2つのボックスを順にタップ">─ 線</button>
     <button class="tool-btn danger" data-mode="delete" title="削除：消したいボックスや矢印をタップ">🗑 削除</button>
     <div class="divider"></div>
     <button class="tool-btn" id="btn-hint">💡 答え合わせ</button>
@@ -513,17 +514,18 @@ function renderArrow(a) {
   const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
   path.setAttribute('class', 'arrow-path');
   path.setAttribute('d', `M${p1.x},${p1.y} L${p2.x},${p2.y}`);
+  const useArrowhead = (a.type || 'arrow') === 'arrow';
   if (hintData) {
     if (a._hintCorrect) {
       path.classList.add('correct');
-      path.setAttribute('marker-end', 'url(#arrowhead-correct)');
+      if (useArrowhead) path.setAttribute('marker-end', 'url(#arrowhead-correct)');
     } else if (a._hintWrong) {
       path.classList.add('wrong');
-      path.setAttribute('marker-end', 'url(#arrowhead-wrong)');
-    } else {
+      if (useArrowhead) path.setAttribute('marker-end', 'url(#arrowhead-wrong)');
+    } else if (useArrowhead) {
       path.setAttribute('marker-end', 'url(#arrowhead)');
     }
-  } else {
+  } else if (useArrowhead) {
     path.setAttribute('marker-end', 'url(#arrowhead)');
   }
   if (selection && selection.type === 'arrow' && selection.id === a.id) {
@@ -616,12 +618,12 @@ function deleteBox(id) {
   render();
 }
 
-function addArrow(fromId, toId) {
+function addConnection(fromId, toId, type) {
   if (fromId === toId) return;
   // duplicate check (same direction)
   if (state.arrows.some(a => a.fromId === fromId && a.toId === toId)) return;
   const id = 'a' + (state.nextId++);
-  state.arrows.push({ id, fromId, toId, label: '' });
+  state.arrows.push({ id, fromId, toId, label: '', type: type || 'arrow' });
   save();
   render();
 }
@@ -678,14 +680,14 @@ canvas.addEventListener('pointerdown', e => {
     return;
   }
 
-  if (mode === 'arrow') {
+  if (mode === 'arrow' || mode === 'line') {
     if (boxId) {
       if (arrowStart === null) {
         arrowStart = boxId;
         render();
-        showToast('もう一つのボックスをタップ');
+        showToast(mode === 'arrow' ? 'もう一つのボックスをタップ（→ 矢印）' : 'もう一つのボックスをタップ（─ 線）');
       } else {
-        addArrow(arrowStart, boxId);
+        addConnection(arrowStart, boxId, mode);
         arrowStart = null;
         render();
       }
@@ -841,7 +843,11 @@ document.getElementById('btn-hint').addEventListener('click', () => {
       missing.push(`${c.from} → ${c.to}`);
       return;
     }
-    const arrow = state.arrows.find(a => a.fromId === fromId && a.toId === toId);
+    // Accept either direction (arrow or line counts)
+    const arrow = state.arrows.find(a =>
+      (a.fromId === fromId && a.toId === toId) ||
+      (a.fromId === toId && a.toId === fromId)
+    );
     if (arrow) {
       arrow._hintCorrect = true;
       foundCount++;
