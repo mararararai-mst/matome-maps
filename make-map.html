@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>まとめマップを自分でつくる｜練習ツール</title>
+<meta name="description" content="語句を動かして矢印でつなぐ、まとめマップ作成練習ツール。中1理科 生物2章 植物の分類。">
+<meta property="og:title" content="まとめマップを自分でつくる｜練習ツール">
+<meta property="og:description" content="語句を動かして矢印でつなぐ、まとめマップ作成練習ツール。">
+<meta property="og:type" content="website">
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #fffaf2;
+  --panel: #ffffff;
+  --border: #eadcc4;
+  --accent: #c8961e;
+  --accent-soft: #fff4c2;
+  --green: #2E7D32;
+  --green-soft: #d8f3dc;
+  --pink: #D63384;
+  --pink-soft: #ffe3ec;
+  --text: #2c1810;
+  --muted: #888;
+}
+html, body {
+  height: 100%;
+  overflow: hidden;
+  font-family: "UD デジタル 教科書体 NP-B", "Hiragino Maru Gothic ProN", "Meiryo", "Noto Sans JP", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  touch-action: manipulation;
+}
+
+/* ===== Layout ===== */
+.app {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+}
+
+/* ===== Top bar ===== */
+.topbar {
+  background: linear-gradient(135deg, #fff8e8 0%, #ffe9f0 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.topbar .title {
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--text);
+  margin-right: auto;
+}
+.topbar .title small {
+  font-size: 11px;
+  font-weight: normal;
+  color: var(--muted);
+  margin-left: 6px;
+}
+.tool-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--text);
+  white-space: nowrap;
+  transition: all .12s;
+}
+.tool-btn:hover { background: #fff8e8; border-color: var(--accent); }
+.tool-btn.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+.tool-btn.danger {
+  border-color: var(--pink);
+  color: var(--pink);
+}
+.tool-btn.danger:hover { background: var(--pink-soft); }
+.tool-btn.danger.active { background: var(--pink); color: white; }
+.tool-btn.primary {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+.tool-btn.primary:hover { background: #a87a18; }
+.divider { width: 1px; height: 22px; background: var(--border); margin: 0 4px; }
+
+/* ===== Main area ===== */
+.main {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  overflow: hidden;
+}
+
+/* ===== Left: words panel ===== */
+.words {
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+  padding: 12px 10px;
+  overflow-y: auto;
+}
+.words-title {
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.words-hint {
+  font-size: 10px;
+  color: var(--muted);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.word-chip {
+  display: block;
+  width: 100%;
+  padding: 6px 10px;
+  margin-bottom: 4px;
+  background: var(--accent-soft);
+  border: 1.5px solid var(--accent);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  transition: transform .1s;
+}
+.word-chip:hover { transform: translateX(2px); }
+.word-chip.used { opacity: 0.4; }
+.word-chip.cat-green {
+  background: var(--green-soft);
+  border-color: var(--green);
+  color: #1b5e20;
+}
+.add-word-row {
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+}
+.add-word-row input {
+  flex: 1;
+  padding: 5px 8px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 12px;
+}
+.add-word-row button {
+  padding: 5px 10px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* ===== Right: canvas ===== */
+.canvas-wrap {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle, #eadcc4 1px, transparent 1px) 0 0 / 24px 24px,
+    var(--bg);
+}
+#canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* SVG node/arrow styles */
+.node-rect {
+  fill: white;
+  stroke: var(--accent);
+  stroke-width: 2;
+  rx: 8;
+  cursor: move;
+}
+.node-rect.selected {
+  stroke: var(--pink);
+  stroke-width: 3;
+}
+.node-rect.cat-cat {
+  fill: var(--accent-soft);
+  stroke: var(--accent);
+}
+.node-rect.cat-criterion {
+  fill: var(--green-soft);
+  stroke: var(--green);
+}
+.node-text {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: bold;
+  fill: var(--text);
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+  user-select: none;
+}
+.arrow-path {
+  fill: none;
+  stroke: #444;
+  stroke-width: 1.8;
+  cursor: pointer;
+}
+.arrow-path.selected { stroke: var(--pink); stroke-width: 3; }
+.arrow-path.correct { stroke: var(--green); stroke-width: 2.5; }
+.arrow-path.wrong { stroke: var(--pink); stroke-width: 2.5; stroke-dasharray: 5 3; }
+.arrow-label {
+  font-family: inherit;
+  font-size: 11px;
+  fill: #555;
+  text-anchor: middle;
+  pointer-events: none;
+  font-style: italic;
+}
+.arrow-hit {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 16;
+  cursor: pointer;
+}
+
+/* Hint overlay */
+.hint-result {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: white;
+  border: 2px solid var(--accent);
+  border-radius: 12px;
+  padding: 12px 14px;
+  max-width: 320px;
+  font-size: 12px;
+  line-height: 1.7;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  display: none;
+}
+.hint-result.visible { display: block; }
+.hint-result h3 { font-size: 13px; margin-bottom: 6px; color: var(--accent); }
+.hint-result .score {
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+.hint-result ul { list-style: none; padding-left: 0; }
+.hint-result li { padding: 2px 0; }
+.hint-result li.missing::before { content: "○ "; color: var(--accent); }
+.hint-result li.found::before { content: "✓ "; color: var(--green); }
+.hint-result .close {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--muted);
+}
+
+/* Status toast */
+.toast {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2c1810;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity .2s;
+  pointer-events: none;
+}
+.toast.show { opacity: 1; }
+
+/* Responsive */
+@media (max-width: 760px) {
+  .main { grid-template-columns: 1fr; grid-template-rows: 140px 1fr; }
+  .words {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 8px;
+  }
+  .words-title, .words-hint { width: 100%; margin-bottom: 4px; }
+  .word-chip { width: auto; margin-bottom: 0; font-size: 11px; padding: 4px 8px; }
+  .add-word-row { width: 100%; }
+  .topbar { padding: 6px 8px; }
+  .topbar .title { font-size: 13px; width: 100%; margin-bottom: 4px; }
+  .tool-btn { padding: 5px 10px; font-size: 11px; }
+}
+
+/* Print: only canvas */
+@media print {
+  @page { size: A3 landscape; margin: 8mm; }
+  body { overflow: visible; }
+  .topbar, .words { display: none !important; }
+  .app { display: block; height: auto; }
+  .main { display: block; }
+  .canvas-wrap { background: white; height: auto; min-height: 90vh; }
+  #canvas { height: 90vh; }
+  .hint-result, .toast { display: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ===== Top bar ===== -->
+  <div class="topbar">
+    <div class="title">🗺️ まとめマップを自分でつくる <small>練習ツール ／ 中1理科 生物2章「植物の分類」</small></div>
+    <button class="tool-btn active" data-mode="move" title="ボックスを動かす">🤚 動かす</button>
+    <button class="tool-btn" data-mode="arrow" title="矢印で結ぶ：2つのボックスを順にタップ">↗ 矢印</button>
+    <button class="tool-btn danger" data-mode="delete" title="削除：消したいボックスや矢印をタップ">🗑 削除</button>
+    <div class="divider"></div>
+    <button class="tool-btn" id="btn-hint">💡 答え合わせ</button>
+    <button class="tool-btn" id="btn-pdf">🖨 PDF保存</button>
+    <button class="tool-btn" id="btn-reset">↺ リセット</button>
+    <a class="tool-btn" href="index.html" style="text-decoration:none;">📋 一覧へ</a>
+  </div>
+
+  <!-- ===== Main ===== -->
+  <div class="main">
+
+    <!-- Words panel -->
+    <div class="words">
+      <div class="words-title">📝 語句リスト</div>
+      <div class="words-hint">タップで右に追加。動かして矢印でつないでね。</div>
+      <div id="word-list"></div>
+      <div class="add-word-row">
+        <input id="custom-word" placeholder="自由追加..." maxlength="20">
+        <button id="btn-add">＋</button>
+      </div>
+    </div>
+
+    <!-- Canvas -->
+    <div class="canvas-wrap">
+      <svg id="canvas" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5"
+                  markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#444"/>
+          </marker>
+          <marker id="arrowhead-correct" viewBox="0 0 10 10" refX="9" refY="5"
+                  markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#2E7D32"/>
+          </marker>
+          <marker id="arrowhead-wrong" viewBox="0 0 10 10" refX="9" refY="5"
+                  markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#D63384"/>
+          </marker>
+        </defs>
+        <g id="arrows-layer"></g>
+        <g id="boxes-layer"></g>
+      </svg>
+
+      <div class="hint-result" id="hint-result">
+        <button class="close" onclick="document.getElementById('hint-result').classList.remove('visible')">×</button>
+        <h3>💡 答え合わせ</h3>
+        <div class="score" id="hint-score"></div>
+        <div id="hint-details"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============ Data ============
+const REQUIRED_WORDS = [
+  { word: '植物', cat: 'cat' },
+  { word: '種子植物', cat: 'cat' },
+  { word: '種子をつくらない植物', cat: 'cat' },
+  { word: '被子植物', cat: 'cat' },
+  { word: '裸子植物', cat: 'cat' },
+  { word: '双子葉類', cat: 'cat' },
+  { word: '単子葉類', cat: 'cat' },
+  { word: 'シダ植物', cat: 'cat' },
+  { word: 'コケ植物', cat: 'cat' },
+  { word: '子房', cat: 'criterion' },
+  { word: '胚珠', cat: 'criterion' },
+  { word: '種子', cat: 'criterion' },
+  { word: '胞子', cat: 'criterion' },
+  { word: '胞子のう', cat: 'criterion' },
+  { word: '葉脈', cat: 'criterion' },
+  { word: '網状脈', cat: 'criterion' },
+  { word: '平行脈', cat: 'criterion' },
+  { word: '子葉', cat: 'criterion' },
+  { word: '葉・茎・根', cat: 'criterion' },
+  { word: '主根', cat: 'criterion' },
+  { word: '側根', cat: 'criterion' },
+  { word: 'ひげ根', cat: 'criterion' },
+  { word: '仮根', cat: 'criterion' },
+  { word: '雄株', cat: 'criterion' },
+  { word: '雌株', cat: 'criterion' },
+];
+
+// 正解ツリー（P43-44の二分岐分類）
+const CORRECT_CONNECTIONS = [
+  { from: '植物', to: '種子植物' },
+  { from: '植物', to: '種子をつくらない植物' },
+  { from: '種子植物', to: '被子植物' },
+  { from: '種子植物', to: '裸子植物' },
+  { from: '被子植物', to: '双子葉類' },
+  { from: '被子植物', to: '単子葉類' },
+  { from: '種子をつくらない植物', to: 'シダ植物' },
+  { from: '種子をつくらない植物', to: 'コケ植物' },
+];
+
+// ============ State ============
+const STORAGE_KEY = 'make-map-v1';
+let state = loadState() || {
+  boxes: [],      // {id, word, x, y, w, h, cat}
+  arrows: [],     // {id, fromId, toId, label}
+  customWords: [],
+  nextId: 1,
+};
+let mode = 'move';                 // 'move' | 'arrow' | 'delete'
+let dragging = null;               // {id, dx, dy}
+let arrowStart = null;             // box id
+let selection = null;              // {type: 'box'|'arrow', id}
+let hintData = null;               // last hint result with correctness markings
+
+// ============ DOM ============
+const canvas = document.getElementById('canvas');
+const boxesLayer = document.getElementById('boxes-layer');
+const arrowsLayer = document.getElementById('arrows-layer');
+const wordListEl = document.getElementById('word-list');
+const toastEl = document.getElementById('toast');
+
+// ============ Render ============
+function render() {
+  // arrows
+  arrowsLayer.innerHTML = '';
+  state.arrows.forEach(a => renderArrow(a));
+  // boxes
+  boxesLayer.innerHTML = '';
+  state.boxes.forEach(b => renderBox(b));
+  // word list (mark used)
+  renderWordList();
+}
+
+function renderBox(b) {
+  const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  g.setAttribute('class', 'box-group');
+  g.setAttribute('data-id', b.id);
+  g.setAttribute('transform', `translate(${b.x},${b.y})`);
+
+  const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  rect.setAttribute('class', 'node-rect cat-' + (b.cat || 'criterion'));
+  rect.setAttribute('width', b.w);
+  rect.setAttribute('height', b.h);
+  rect.setAttribute('rx', 8);
+  if (selection && selection.type === 'box' && selection.id === b.id) {
+    rect.classList.add('selected');
+  }
+  if (mode === 'arrow' && arrowStart === b.id) {
+    rect.classList.add('selected');
+  }
+
+  const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  text.setAttribute('class', 'node-text');
+  text.setAttribute('x', b.w / 2);
+  text.setAttribute('y', b.h / 2);
+  text.textContent = b.word;
+  // Adjust font for long words
+  const fontSize = b.word.length > 6 ? 11 : 13;
+  text.setAttribute('style', `font-size:${fontSize}px;`);
+
+  g.appendChild(rect);
+  g.appendChild(text);
+  boxesLayer.appendChild(g);
+}
+
+function renderArrow(a) {
+  const from = getBox(a.fromId);
+  const to = getBox(a.toId);
+  if (!from || !to) return;
+  const p1 = boxEdge(from, to);
+  const p2 = boxEdge(to, from);
+  const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  g.setAttribute('data-id', a.id);
+
+  // Path (visual)
+  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  path.setAttribute('class', 'arrow-path');
+  path.setAttribute('d', `M${p1.x},${p1.y} L${p2.x},${p2.y}`);
+  if (hintData) {
+    if (a._hintCorrect) {
+      path.classList.add('correct');
+      path.setAttribute('marker-end', 'url(#arrowhead-correct)');
+    } else if (a._hintWrong) {
+      path.classList.add('wrong');
+      path.setAttribute('marker-end', 'url(#arrowhead-wrong)');
+    } else {
+      path.setAttribute('marker-end', 'url(#arrowhead)');
+    }
+  } else {
+    path.setAttribute('marker-end', 'url(#arrowhead)');
+  }
+  if (selection && selection.type === 'arrow' && selection.id === a.id) {
+    path.classList.add('selected');
+  }
+
+  // Hit area (wider, for easier clicking)
+  const hit = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  hit.setAttribute('class', 'arrow-hit');
+  hit.setAttribute('d', `M${p1.x},${p1.y} L${p2.x},${p2.y}`);
+  hit.setAttribute('data-id', a.id);
+
+  g.appendChild(path);
+  g.appendChild(hit);
+
+  // Label
+  if (a.label) {
+    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    text.setAttribute('class', 'arrow-label');
+    text.setAttribute('x', (p1.x + p2.x) / 2);
+    text.setAttribute('y', (p1.y + p2.y) / 2 - 6);
+    text.textContent = a.label;
+    g.appendChild(text);
+  }
+
+  arrowsLayer.appendChild(g);
+}
+
+function boxEdge(from, to) {
+  // 矢印の交点を箱の端に
+  const cx = from.x + from.w / 2;
+  const cy = from.y + from.h / 2;
+  const tcx = to.x + to.w / 2;
+  const tcy = to.y + to.h / 2;
+  const dx = tcx - cx;
+  const dy = tcy - cy;
+  const halfW = from.w / 2;
+  const halfH = from.h / 2;
+  if (dx === 0 && dy === 0) return { x: cx, y: cy };
+  const adx = Math.abs(dx), ady = Math.abs(dy);
+  let t;
+  if (adx / halfW > ady / halfH) {
+    t = halfW / adx;
+  } else {
+    t = halfH / ady;
+  }
+  return { x: cx + dx * t, y: cy + dy * t };
+}
+
+function renderWordList() {
+  const used = new Set(state.boxes.map(b => b.word));
+  const html = REQUIRED_WORDS.concat(
+    state.customWords.map(w => ({ word: w, cat: 'criterion', custom: true }))
+  ).map(w => {
+    const usedCls = used.has(w.word) ? ' used' : '';
+    const catCls = w.cat === 'cat' ? '' : ' cat-green';
+    return `<button class="word-chip${catCls}${usedCls}" data-word="${escapeHtml(w.word)}" data-cat="${w.cat}">${escapeHtml(w.word)}</button>`;
+  }).join('');
+  wordListEl.innerHTML = html;
+}
+
+function escapeHtml(s) {
+  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+// ============ Box helpers ============
+function getBox(id) { return state.boxes.find(b => b.id === id); }
+function getArrow(id) { return state.arrows.find(a => a.id === id); }
+
+function addBox(word, cat, x, y) {
+  const w = Math.max(80, word.length * 14 + 24);
+  const h = 36;
+  // Center if no position given
+  const rect = canvas.getBoundingClientRect();
+  if (x === undefined) {
+    x = (rect.width / 2) - w/2 + (Math.random() - 0.5) * 80;
+    y = (rect.height / 2) - h/2 + (Math.random() - 0.5) * 80;
+  }
+  const id = 'b' + (state.nextId++);
+  state.boxes.push({ id, word, x, y, w, h, cat });
+  save();
+  render();
+}
+
+function deleteBox(id) {
+  state.boxes = state.boxes.filter(b => b.id !== id);
+  state.arrows = state.arrows.filter(a => a.fromId !== id && a.toId !== id);
+  if (selection && selection.type === 'box' && selection.id === id) selection = null;
+  save();
+  render();
+}
+
+function addArrow(fromId, toId) {
+  if (fromId === toId) return;
+  // duplicate check (same direction)
+  if (state.arrows.some(a => a.fromId === fromId && a.toId === toId)) return;
+  const id = 'a' + (state.nextId++);
+  state.arrows.push({ id, fromId, toId, label: '' });
+  save();
+  render();
+}
+
+function deleteArrow(id) {
+  state.arrows = state.arrows.filter(a => a.id !== id);
+  if (selection && selection.type === 'arrow' && selection.id === id) selection = null;
+  save();
+  render();
+}
+
+// ============ Save / Load ============
+function save() {
+  // Strip hint markings before saving
+  const clean = JSON.parse(JSON.stringify(state));
+  clean.arrows.forEach(a => { delete a._hintCorrect; delete a._hintWrong; });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(clean));
+}
+function loadState() {
+  try {
+    const s = localStorage.getItem(STORAGE_KEY);
+    if (!s) return null;
+    const parsed = JSON.parse(s);
+    if (!parsed.boxes || !parsed.arrows) return null;
+    return parsed;
+  } catch (e) { return null; }
+}
+
+// ============ Mode ============
+function setMode(m) {
+  mode = m;
+  document.querySelectorAll('.tool-btn[data-mode]').forEach(b => {
+    b.classList.toggle('active', b.dataset.mode === m);
+  });
+  selection = null;
+  arrowStart = null;
+  render();
+}
+
+// ============ Pointer events ============
+let pointerDown = false;
+let pointerStart = null;
+
+canvas.addEventListener('pointerdown', e => {
+  pointerDown = true;
+  const pt = svgPoint(e);
+  pointerStart = { x: pt.x, y: pt.y, ex: e.clientX, ey: e.clientY };
+  const boxId = findBoxAt(pt.x, pt.y);
+  const arrowId = boxId ? null : findArrowAt(e.target);
+
+  if (mode === 'delete') {
+    if (boxId) deleteBox(boxId);
+    else if (arrowId) deleteArrow(arrowId);
+    return;
+  }
+
+  if (mode === 'arrow') {
+    if (boxId) {
+      if (arrowStart === null) {
+        arrowStart = boxId;
+        render();
+        showToast('もう一つのボックスをタップ');
+      } else {
+        addArrow(arrowStart, boxId);
+        arrowStart = null;
+        render();
+      }
+    } else {
+      arrowStart = null;
+      render();
+    }
+    return;
+  }
+
+  // move mode
+  if (boxId) {
+    const b = getBox(boxId);
+    dragging = { id: boxId, dx: pt.x - b.x, dy: pt.y - b.y, moved: false };
+    selection = { type: 'box', id: boxId };
+    canvas.setPointerCapture(e.pointerId);
+    render();
+  } else if (arrowId) {
+    selection = { type: 'arrow', id: arrowId };
+    render();
+    // Click arrow → edit label
+    const a = getArrow(arrowId);
+    setTimeout(() => {
+      const newLabel = prompt('矢印のラベル（例：子房は？）\n空欄でラベル削除', a.label || '');
+      if (newLabel !== null) {
+        a.label = newLabel.trim();
+        save();
+        render();
+      }
+    }, 0);
+  } else {
+    selection = null;
+    render();
+  }
+});
+
+canvas.addEventListener('pointermove', e => {
+  if (!dragging) return;
+  const pt = svgPoint(e);
+  const b = getBox(dragging.id);
+  if (!b) return;
+  b.x = pt.x - dragging.dx;
+  b.y = pt.y - dragging.dy;
+  dragging.moved = true;
+  render();
+});
+
+canvas.addEventListener('pointerup', e => {
+  if (dragging) {
+    if (dragging.moved) save();
+    dragging = null;
+  }
+  pointerDown = false;
+});
+
+function svgPoint(e) {
+  const rect = canvas.getBoundingClientRect();
+  return {
+    x: e.clientX - rect.left,
+    y: e.clientY - rect.top,
+  };
+}
+
+function findBoxAt(x, y) {
+  for (let i = state.boxes.length - 1; i >= 0; i--) {
+    const b = state.boxes[i];
+    if (x >= b.x && x <= b.x + b.w && y >= b.y && y <= b.y + b.h) return b.id;
+  }
+  return null;
+}
+
+function findArrowAt(target) {
+  if (!target) return null;
+  let el = target;
+  while (el && el !== canvas) {
+    if (el.classList && (el.classList.contains('arrow-hit') || el.classList.contains('arrow-path'))) {
+      return el.getAttribute('data-id');
+    }
+    el = el.parentElement;
+  }
+  return null;
+}
+
+// ============ Word list interaction ============
+wordListEl.addEventListener('click', e => {
+  const chip = e.target.closest('.word-chip');
+  if (!chip) return;
+  const word = chip.dataset.word;
+  const cat = chip.dataset.cat;
+  // Toggle: if already on canvas, do nothing (or could un-add)
+  const exists = state.boxes.some(b => b.word === word);
+  if (exists) {
+    showToast('もうマップに置いてあるよ');
+    return;
+  }
+  addBox(word, cat);
+});
+
+// ============ Custom word ============
+document.getElementById('btn-add').addEventListener('click', () => {
+  const input = document.getElementById('custom-word');
+  const w = input.value.trim();
+  if (!w) return;
+  if (state.customWords.includes(w)) {
+    showToast('もう追加されてるよ');
+    return;
+  }
+  state.customWords.push(w);
+  save();
+  render();
+  input.value = '';
+});
+document.getElementById('custom-word').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('btn-add').click();
+});
+
+// ============ Toolbar ============
+document.querySelectorAll('.tool-btn[data-mode]').forEach(b => {
+  b.addEventListener('click', () => setMode(b.dataset.mode));
+});
+
+document.getElementById('btn-reset').addEventListener('click', () => {
+  if (!confirm('マップを全部消してリセット。よろしいですか？')) return;
+  state = { boxes: [], arrows: [], customWords: [], nextId: 1 };
+  hintData = null;
+  document.getElementById('hint-result').classList.remove('visible');
+  save();
+  render();
+});
+
+document.getElementById('btn-pdf').addEventListener('click', () => {
+  showToast('印刷ダイアログで「PDFとして保存」を選んでね');
+  setTimeout(() => window.print(), 400);
+});
+
+// ============ Hint (answer check) ============
+document.getElementById('btn-hint').addEventListener('click', () => {
+  // Map word → boxId
+  const wordToId = {};
+  state.boxes.forEach(b => wordToId[b.word] = b.id);
+
+  let foundCount = 0;
+  const missing = [];
+  state.arrows.forEach(a => {
+    delete a._hintCorrect;
+    delete a._hintWrong;
+  });
+
+  CORRECT_CONNECTIONS.forEach(c => {
+    const fromId = wordToId[c.from];
+    const toId = wordToId[c.to];
+    if (!fromId || !toId) {
+      missing.push(`${c.from} → ${c.to}`);
+      return;
+    }
+    const arrow = state.arrows.find(a => a.fromId === fromId && a.toId === toId);
+    if (arrow) {
+      arrow._hintCorrect = true;
+      foundCount++;
+    } else {
+      missing.push(`${c.from} → ${c.to}`);
+    }
+  });
+
+  hintData = { foundCount, total: CORRECT_CONNECTIONS.length, missing };
+  render();
+  // Show result panel
+  document.getElementById('hint-score').textContent =
+    `${foundCount} / ${CORRECT_CONNECTIONS.length} できた！`;
+  const detail = document.getElementById('hint-details');
+  if (missing.length === 0) {
+    detail.innerHTML = '<p style="color:#2E7D32;font-weight:bold;">パーフェクト！🎉</p>';
+  } else {
+    detail.innerHTML = '<p style="margin-bottom:4px;">まだのつながり：</p><ul>' +
+      missing.map(m => `<li class="missing">${escapeHtml(m)}</li>`).join('') +
+      '</ul>';
+  }
+  document.getElementById('hint-result').classList.add('visible');
+});
+
+// ============ Toast ============
+let toastTimer;
+function showToast(msg) {
+  toastEl.textContent = msg;
+  toastEl.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toastEl.classList.remove('show'), 1800);
+}
+
+// ============ Init ============
+function resizeCanvas() {
+  // SVG has implicit size from CSS width:100%; height:100%
+  // No viewBox - using actual pixel coords
+}
+window.addEventListener('resize', () => render());
+render();
+
+// Show welcome toast if first time
+if (state.boxes.length === 0) {
+  setTimeout(() => showToast('左の語句リストをタップして、マップを作ろう！'), 600);
+}
+</script>
+
+</body>
+</html>
