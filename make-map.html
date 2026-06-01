@@ -343,6 +343,7 @@ html, body {
     <button class="tool-btn" id="btn-hint">💡 答え合わせ</button>
     <button class="tool-btn" id="btn-pdf">🖨 PDF保存</button>
     <button class="tool-btn" id="btn-reset">↺ リセット</button>
+    <button class="tool-btn primary" onclick="const b=parent&&parent!==window&&parent.document.querySelector('.practice-btn'); if(b){b.click();}else if(window.opener){window.close();}else{history.back();}" style="background:#2E7D32;border-color:#2E7D32;">← マップに戻る</button>
     <a class="tool-btn" href="index.html" style="text-decoration:none;">📋 一覧へ</a>
   </div>
 
@@ -724,6 +725,7 @@ canvas.addEventListener('pointerdown', e => {
   }
 });
 
+let _rafPending = false;
 canvas.addEventListener('pointermove', e => {
   if (!dragging) return;
   const pt = svgPoint(e);
@@ -732,7 +734,19 @@ canvas.addEventListener('pointermove', e => {
   b.x = pt.x - dragging.dx;
   b.y = pt.y - dragging.dy;
   dragging.moved = true;
-  render();
+  if (!_rafPending) {
+    _rafPending = true;
+    requestAnimationFrame(() => {
+      _rafPending = false;
+      if (!dragging) return;
+      // ボックスは transform だけ更新（全再生成しない）
+      const g = boxesLayer.querySelector(`[data-id="${dragging.id}"]`);
+      if (g) g.setAttribute('transform', `translate(${b.x},${b.y})`);
+      // 矢印は接続先の座標が変わるので再描画
+      arrowsLayer.innerHTML = '';
+      state.arrows.forEach(a => renderArrow(a));
+    });
+  }
 });
 
 canvas.addEventListener('pointerup', e => {

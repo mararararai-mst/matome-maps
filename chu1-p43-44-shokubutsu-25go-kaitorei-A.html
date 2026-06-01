@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>植物の分類 25語マップ 作成例【案A】｜まとめマップ</title>
+<style>
+@page { size: A4 landscape; margin: 8mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "UD デジタル 教科書体 NP-B", "Hiragino Maru Gothic ProN", "Meiryo", sans-serif;
+  background: white;
+  color: #222;
+  padding: 12px 16px;
+}
+.wrap { max-width: 1280px; margin: 0 auto; }
+h1 {
+  font-size: 18px;
+  text-align: center;
+  color: #222;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #222;
+  margin-bottom: 8px;
+  letter-spacing: 0.06em;
+}
+.variant {
+  display: inline-block;
+  background: #E91E63;
+  color: white;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 14px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+.meta { text-align: center; font-size: 12px; color: #888; margin-bottom: 8px; }
+.lead {
+  text-align: center;
+  font-size: 12px;
+  color: #444;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+.lead .tag {
+  display: inline-block;
+  background: #fff4c2;
+  color: #6b4a00;
+  border: 1.5px solid #e8c84a;
+  padding: 1px 8px;
+  border-radius: 8px;
+  font-weight: bold;
+  margin: 0 2px;
+  font-size: 11px;
+}
+svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1280px; }
+
+.node-main { fill: #fff9ec; stroke: #222; stroke-width: 2.5; }
+.node-yellow { fill: #fff4c2; stroke: #C8961E; stroke-width: 2; }
+.node-green { fill: #d8f3dc; stroke: #2E7D32; stroke-width: 2; }
+.node-feature { fill: #fdf5fc; stroke: #B36AA9; stroke-width: 1.6; }
+.node-common { fill: #fff3e0; stroke: #E65100; stroke-width: 1.8; }
+
+.label { font-family: inherit; fill: #222; text-anchor: middle; dominant-baseline: central; }
+.label-main { font-size: 17px; font-weight: bold; }
+.label-leaf { font-weight: bold; font-size: 15px; }
+.label-yellow { fill: #6b4a00; }
+.label-green { fill: #1b5e20; }
+.label-feature { fill: #7A3A6F; font-size: 12px; font-weight: bold; }
+.label-common { fill: #BF360C; font-size: 12px; font-weight: bold; }
+
+.criterion {
+  font-size: 12px;
+  fill: #555;
+  text-anchor: middle;
+  dominant-baseline: central;
+  font-style: italic;
+  font-weight: bold;
+}
+.answer {
+  font-size: 11px;
+  fill: #888;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+.link { stroke: #222; stroke-width: 1.4; fill: none; }
+.link-feature { stroke: #B36AA9; stroke-width: 1.2; stroke-dasharray: 4 3; fill: none; }
+.link-common { stroke: #E65100; stroke-width: 1.4; stroke-dasharray: 5 3; fill: none; }
+
+.summary {
+  margin-top: 14px;
+  padding: 12px 16px;
+  border: 1.5px solid #222;
+  font-size: 12.5px;
+  line-height: 1.85;
+}
+.summary strong { display: block; margin-bottom: 4px; font-size: 13px; }
+.back-btn {
+  display: inline-block;
+  padding: 4px 14px;
+  background: #74c69d;
+  color: white;
+  border-radius: 14px;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.back-btn:hover { background: #57b387; }
+.print-btn {
+  display: inline-block;
+  padding: 4px 14px;
+  background: #D63384;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.compare-btn {
+  display: inline-block;
+  padding: 4px 14px;
+  background: #1976D2;
+  color: white;
+  border-radius: 14px;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.legend-box {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  margin-top: 8px;
+  font-size: 11px;
+  color: #555;
+  flex-wrap: wrap;
+}
+.legend-box .sw {
+  display: inline-block; width: 14px; height: 10px;
+  vertical-align: middle; margin-right: 4px; border-radius: 2px;
+}
+.sw-yellow { background: #fff4c2; border: 1.5px solid #C8961E; }
+.sw-green { background: #d8f3dc; border: 1.5px solid #2E7D32; }
+.sw-feature { background: #fdf5fc; border: 1.5px solid #B36AA9; }
+.sw-common { background: #fff3e0; border: 1.5px solid #E65100; }
+@media print {
+  .print-btn, .back-btn, .compare-btn, .variant { display: none; }
+  body { padding: 0; }
+}
+.svg-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  margin: 0 auto;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1><span class="variant">案A</span>植物の分類 25語マップ 作成例
+  <a href="chu1-p43-44-shokubutsu-25go-kaitorei-B.html" class="compare-btn">⇄ 案Bと比較</a>
+  <a href="index.html" class="back-btn">📋 一覧へ</a>
+  <button class="print-btn" onclick="window.print()">🖨 印刷</button>
+</h1>
+<div class="meta">中1理科 生物2章「植物の分類」P.43-44 ／ パフォーマンステスト25語の解答例</div>
+<div class="lead">
+  <b>案Aの考え方：</b>「共通特徴」と「独自特徴」を分離する。<br>
+  <span class="tag">種子・胚珠</span> は被子・裸子の両方が持つ共通特徴として <b>種子植物</b> にまとめてぶら下げる。
+  <span class="tag">子房</span> だけが <b>被子植物</b> の独自特徴。<b>裸子植物</b> は「子房がなく胚珠がむき出し」と表現する。
+</div>
+
+<div class="svg-scroll"><svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- ============ Level 0: 植物 ============ -->
+  <rect class="node-main" x="560" y="20" width="160" height="44" rx="10"/>
+  <text class="label label-main" x="640" y="42">植物</text>
+
+  <!-- 植物 → Level 1 -->
+  <line class="link" x1="640" y1="64" x2="640" y2="86"/>
+  <text class="criterion" x="640" y="78">種子をつくる？</text>
+
+  <line class="link" x1="320" y1="86" x2="960" y2="86"/>
+  <line class="link" x1="320" y1="86" x2="320" y2="118"/>
+  <line class="link" x1="960" y1="86" x2="960" y2="118"/>
+
+  <text class="answer" x="320" y="103">○ つくる</text>
+  <text class="answer" x="960" y="103">✕ つくらない</text>
+
+  <!-- ============ Level 1: 種子植物 / 種子をつくらない植物 ============ -->
+  <rect class="node-yellow" x="250" y="118" width="140" height="44" rx="8"/>
+  <text class="label label-leaf label-yellow" x="320" y="140">種子植物</text>
+
+  <rect class="node-green" x="850" y="118" width="220" height="44" rx="8"/>
+  <text class="label label-leaf label-green" x="960" y="140">種子をつくらない植物</text>
+
+  <!-- ★案A：種子植物の共通特徴「種子・胚珠」 -->
+  <line class="link-common" x1="390" y1="140" x2="430" y2="140"/>
+  <rect class="node-common" x="430" y="108" width="80" height="28" rx="6"/>
+  <text class="label label-common" x="470" y="122">種子</text>
+  <rect class="node-common" x="430" y="144" width="80" height="28" rx="6"/>
+  <text class="label label-common" x="470" y="158">胚珠</text>
+  <text class="answer" x="470" y="184" style="font-size:10px;fill:#BF360C;">（共通）</text>
+
+  <!-- ★案A：種子をつくらない植物の共通特徴「胞子・胞子のう」 -->
+  <line class="link-common" x1="1070" y1="140" x2="1110" y2="140"/>
+  <rect class="node-common" x="1110" y="108" width="100" height="28" rx="6"/>
+  <text class="label label-common" x="1160" y="122">胞子</text>
+  <rect class="node-common" x="1110" y="144" width="100" height="28" rx="6"/>
+  <text class="label label-common" x="1160" y="158">胞子のう</text>
+  <text class="answer" x="1160" y="184" style="font-size:10px;fill:#BF360C;">（共通）</text>
+
+  <!-- ============ 種子植物 → Level 2 (被子・裸子) ============ -->
+  <line class="link" x1="320" y1="162" x2="320" y2="210"/>
+  <text class="criterion" x="320" y="200">子房は？</text>
+
+  <line class="link" x1="170" y1="210" x2="470" y2="210"/>
+  <line class="link" x1="170" y1="210" x2="170" y2="236"/>
+  <line class="link" x1="470" y1="210" x2="470" y2="236"/>
+
+  <text class="answer" x="170" y="226">○ ある</text>
+  <text class="answer" x="470" y="226">✕ ない</text>
+
+  <!-- 被子植物 -->
+  <rect class="node-yellow" x="100" y="236" width="140" height="44" rx="8"/>
+  <text class="label label-leaf label-yellow" x="170" y="258">被子植物</text>
+
+  <!-- 裸子植物 -->
+  <rect class="node-yellow" x="400" y="236" width="140" height="44" rx="8"/>
+  <text class="label label-leaf label-yellow" x="470" y="258">裸子植物</text>
+
+  <!-- ★案A：被子植物の独自特徴「子房（中に胚珠）」 -->
+  <line class="link-feature" x1="170" y1="280" x2="170" y2="300"/>
+  <rect class="node-feature" x="105" y="300" width="130" height="28" rx="6"/>
+  <text class="label label-feature" x="170" y="314">子房（中に胚珠）</text>
+
+  <!-- ★案A：裸子植物の独自特徴「胚珠むき出し（子房なし）」 -->
+  <line class="link-feature" x1="470" y1="280" x2="470" y2="300"/>
+  <rect class="node-feature" x="385" y="300" width="170" height="28" rx="6"/>
+  <text class="label label-feature" x="470" y="314">胚珠むき出し（子房なし）</text>
+
+  <!-- ============ 種子をつくらない植物 → Level 2 (シダ・コケ) ============ -->
+  <line class="link" x1="960" y1="162" x2="960" y2="210"/>
+  <text class="criterion" x="960" y="200">葉・茎・根の区別は？</text>
+
+  <line class="link" x1="830" y1="210" x2="1090" y2="210"/>
+  <line class="link" x1="830" y1="210" x2="830" y2="236"/>
+  <line class="link" x1="1090" y1="210" x2="1090" y2="236"/>
+
+  <text class="answer" x="830" y="226">○ ある</text>
+  <text class="answer" x="1090" y="226">✕ ない</text>
+
+  <!-- シダ植物 -->
+  <rect class="node-green" x="760" y="236" width="140" height="44" rx="8"/>
+  <text class="label label-leaf label-green" x="830" y="258">シダ植物</text>
+
+  <!-- コケ植物 -->
+  <rect class="node-green" x="1020" y="236" width="140" height="44" rx="8"/>
+  <text class="label label-leaf label-green" x="1090" y="258">コケ植物</text>
+
+  <!-- シダの特徴 -->
+  <line class="link-feature" x1="830" y1="280" x2="830" y2="300"/>
+  <rect class="node-feature" x="745" y="300" width="170" height="28" rx="6"/>
+  <text class="label label-feature" x="830" y="314">葉・茎・根の区別あり</text>
+
+  <!-- コケの特徴 -->
+  <line class="link-feature" x1="1090" y1="280" x2="1090" y2="300"/>
+  <rect class="node-feature" x="1010" y="300" width="70" height="28" rx="6"/>
+  <text class="label label-feature" x="1045" y="314">仮根</text>
+  <line class="link-feature" x1="1080" y1="314" x2="1100" y2="314"/>
+  <rect class="node-feature" x="1100" y="300" width="70" height="28" rx="6"/>
+  <text class="label label-feature" x="1135" y="314">雄株</text>
+  <line class="link-feature" x1="1170" y1="314" x2="1185" y2="314"/>
+  <rect class="node-feature" x="1185" y="300" width="70" height="28" rx="6"/>
+  <text class="label label-feature" x="1220" y="314">雌株</text>
+
+  <!-- ============ 被子植物 → Level 3 (双子葉・単子葉) ============ -->
+  <line class="link" x1="170" y1="328" x2="170" y2="380"/>
+  <text class="criterion" x="170" y="368">葉脈は？／子葉は？／根は？</text>
+
+  <line class="link" x1="80" y1="380" x2="260" y2="380"/>
+  <line class="link" x1="80" y1="380" x2="80" y2="415"/>
+  <line class="link" x1="260" y1="380" x2="260" y2="415"/>
+
+  <text class="answer" x="80" y="397">網状脈／子葉2枚</text>
+  <text class="answer" x="260" y="397">平行脈／子葉1枚</text>
+
+  <!-- 双子葉類 -->
+  <rect class="node-yellow" x="10" y="415" width="140" height="44" rx="8"/>
+  <text class="label label-leaf label-yellow" x="80" y="437">双子葉類</text>
+
+  <!-- 単子葉類 -->
+  <rect class="node-yellow" x="190" y="415" width="140" height="44" rx="8"/>
+  <text class="label label-leaf label-yellow" x="260" y="437">単子葉類</text>
+
+  <!-- 双子葉類の特徴 -->
+  <line class="link-feature" x1="80" y1="459" x2="80" y2="478"/>
+  <rect class="node-feature" x="0" y="478" width="80" height="26" rx="6"/>
+  <text class="label label-feature" x="40" y="491">網状脈</text>
+  <rect class="node-feature" x="85" y="478" width="80" height="26" rx="6"/>
+  <text class="label label-feature" x="125" y="491">子葉2枚</text>
+  <line class="link-feature" x1="40" y1="504" x2="40" y2="516"/>
+  <rect class="node-feature" x="0" y="516" width="80" height="26" rx="6"/>
+  <text class="label label-feature" x="40" y="529">主根</text>
+  <line class="link-feature" x1="125" y1="504" x2="125" y2="516"/>
+  <rect class="node-feature" x="85" y="516" width="80" height="26" rx="6"/>
+  <text class="label label-feature" x="125" y="529">側根</text>
+  <text class="answer" x="80" y="558" style="font-size:10px;">（太い主根から細い側根が出る）</text>
+
+  <!-- 単子葉類の特徴 -->
+  <line class="link-feature" x1="260" y1="459" x2="260" y2="478"/>
+  <rect class="node-feature" x="180" y="478" width="80" height="26" rx="6"/>
+  <text class="label label-feature" x="220" y="491">平行脈</text>
+  <rect class="node-feature" x="265" y="478" width="80" height="26" rx="6"/>
+  <text class="label label-feature" x="305" y="491">子葉1枚</text>
+  <line class="link-feature" x1="260" y1="504" x2="260" y2="520"/>
+  <rect class="node-feature" x="210" y="520" width="100" height="26" rx="6"/>
+  <text class="label label-feature" x="260" y="533">ひげ根</text>
+  <text class="answer" x="260" y="560" style="font-size:10px;">（細い根が多数）</text>
+
+  <!-- ============ Legend ============ -->
+  <rect x="380" y="395" width="320" height="100" rx="8" style="fill:#fafafa;stroke:#ccc;stroke-width:1;"/>
+  <text x="540" y="415" style="font-size:13px;fill:#444;text-anchor:middle;font-weight:bold;">凡例</text>
+  <rect class="node-yellow" x="400" y="430" width="18" height="12" rx="3"/>
+  <text x="424" y="439" style="font-size:11px;fill:#6b4a00;text-anchor:start;">種子植物の仲間</text>
+  <rect class="node-green" x="540" y="430" width="18" height="12" rx="3"/>
+  <text x="564" y="439" style="font-size:11px;fill:#1b5e20;text-anchor:start;">種子をつくらない仲間</text>
+  <rect class="node-common" x="400" y="452" width="18" height="12" rx="3"/>
+  <text x="424" y="461" style="font-size:11px;fill:#BF360C;text-anchor:start;">共通特徴（橙）</text>
+  <rect class="node-feature" x="540" y="452" width="18" height="12" rx="3"/>
+  <text x="564" y="461" style="font-size:11px;fill:#7A3A6F;text-anchor:start;">独自特徴（紫）</text>
+  <line class="link" x1="400" y1="478" x2="424" y2="478"/>
+  <text x="430" y="481" style="font-size:11px;fill:#555;text-anchor:start;">分類の関係</text>
+  <line class="link-feature" x1="540" y1="478" x2="564" y2="478"/>
+  <text x="570" y="481" style="font-size:11px;fill:#555;text-anchor:start;">特徴の関係</text>
+
+  <!-- 全25語のチェック表示 -->
+  <text x="640" y="620" style="font-size:13px;fill:#222;text-anchor:middle;font-weight:bold;">📋 25語すべて使用：</text>
+  <text x="640" y="645" style="font-size:12px;fill:#444;text-anchor:middle;">植物／種子植物／種子をつくらない植物／被子植物／裸子植物／双子葉類／単子葉類／シダ植物／コケ植物</text>
+  <text x="640" y="665" style="font-size:12px;fill:#444;text-anchor:middle;">子房／胚珠／種子／胞子／胞子のう／葉脈／網状脈／平行脈／子葉／葉・茎・根</text>
+  <text x="640" y="685" style="font-size:12px;fill:#444;text-anchor:middle;">主根／側根／ひげ根／仮根／雄株／雌株</text>
+  <text x="640" y="708" style="font-size:11px;fill:#888;text-anchor:middle;font-style:italic;">※「葉脈」「葉・茎・根」は分岐基準ラベルに含めて使用</text>
+
+</svg></div>
+
+<div class="summary">
+  <strong>📝 説明文（マップを矢印・点線の順になぞって書こう）</strong>
+  植物は、<b>種子</b>をつくるかどうかで <b>種子植物</b> と <b>種子をつくらない植物</b> に分けられる。<br>
+  <b>種子植物</b> は共通して <b>種子</b> と <b>胚珠</b> をもつ。<b>子房</b> があるかどうかで、<b>子房</b>の中に <b>胚珠</b> が入っているのが <b>被子植物</b>、<b>子房</b> がなく <b>胚珠</b> がむき出しなのが <b>裸子植物</b>。<br>
+  <b>被子植物</b> は <b>葉脈</b>・<b>子葉</b>・根のつくりで分けられ、<b>網状脈</b>・<b>子葉</b>2枚・<b>主根</b>と<b>側根</b>をもつのが <b>双子葉類</b>、<b>平行脈</b>・<b>子葉</b>1枚・<b>ひげ根</b>をもつのが <b>単子葉類</b>。<br>
+  <b>種子をつくらない植物</b> は共通して <b>胞子</b> を <b>胞子のう</b> でつくる。<b>葉・茎・根</b>の区別があるのが <b>シダ植物</b>。区別がなく、<b>仮根</b>でからだを支え、<b>雄株</b>と<b>雌株</b>に分かれるのが <b>コケ植物</b>。
+</div>
+
+<div class="legend-box">
+  <span><span class="sw sw-yellow"></span>種子植物の仲間</span>
+  <span><span class="sw sw-green"></span>種子をつくらない仲間</span>
+  <span><span class="sw sw-common"></span>共通特徴（橙）</span>
+  <span><span class="sw sw-feature"></span>独自特徴（紫）</span>
+</div>
+
+</div>
+</body>
+</html>

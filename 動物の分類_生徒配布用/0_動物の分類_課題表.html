@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>動物の分類 課題表｜まとめマップ</title>
+<style>
+@page { size: A4 portrait; margin: 12mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "UD デジタル 教科書体 NP-B", "Hiragino Maru Gothic ProN", "Meiryo", sans-serif;
+  background: white;
+  color: #222;
+  padding: 16px;
+  line-height: 1.6;
+}
+.wrap { max-width: 900px; margin: 0 auto; }
+h1 {
+  font-size: 22px;
+  text-align: center;
+  color: #0D47A1;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #0D47A1;
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+}
+.meta {
+  text-align: center;
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 6px;
+}
+.name-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+  gap: 20px;
+  font-size: 13px;
+  margin-bottom: 20px;
+  padding-right: 8px;
+}
+.nf-item { display: inline-flex; align-items: baseline; gap: 2px; }
+.nf-blank {
+  display: inline-block;
+  width: 28px;
+  border-bottom: 1.5px solid #222;
+  vertical-align: bottom;
+  margin-bottom: 1px;
+}
+.nf-name {
+  display: inline-block;
+  width: 110px;
+  border-bottom: 1.5px solid #222;
+  vertical-align: bottom;
+  margin-bottom: 1px;
+  margin-left: 4px;
+}
+
+.flow {
+  background: #eaf4fb;
+  border: 2px solid #5BA3D9;
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-bottom: 22px;
+  font-size: 13px;
+}
+.flow h2 { font-size: 15px; color: #0D47A1; margin-bottom: 8px; }
+.flow ol { padding-left: 22px; }
+.flow li { margin: 4px 0; line-height: 1.7; }
+.flow li b { color: #0D47A1; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 22px;
+  font-size: 12.5px;
+}
+th, td {
+  border: 1.5px solid #555;
+  padding: 8px 10px;
+  vertical-align: middle;
+}
+thead th {
+  background: #0D47A1;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  padding: 10px 6px;
+}
+th.col-no { width: 36px; }
+th.col-title { width: 17%; }
+th.col-page { width: 80px; }
+th.col-content { width: auto; }
+th.col-check { width: 130px; }
+
+td.no { text-align: center; font-weight: bold; font-size: 16px; color: #0D47A1; background: #eaf4fb; }
+td.title { font-weight: bold; }
+td.title a { color: #0D47A1; text-decoration: underline; }
+td.page { text-align: center; font-size: 11px; }
+td.content { font-size: 11.5px; line-height: 1.5; }
+td.check {
+  text-align: center;
+  font-size: 11px;
+}
+td.check .chk {
+  display: inline-block;
+  width: 14px; height: 14px;
+  border: 1.5px solid #555;
+  vertical-align: middle;
+  margin: 0 3px 2px 0;
+}
+td.check .lbl { font-size: 10.5px; color: #444; }
+td.check .row { display: flex; align-items: center; gap: 2px; margin: 3px 0; }
+
+.legend {
+  margin-top: 4px;
+  padding: 12px 16px;
+  background: #fff8e1;
+  border: 1.5px solid #FFA000;
+  border-radius: 10px;
+  font-size: 12px;
+}
+.legend h2 { font-size: 14px; color: #BF360C; margin-bottom: 6px; }
+.legend ul { padding-left: 20px; margin: 0; }
+.legend li { margin: 3px 0; }
+
+.tip {
+  margin-top: 14px;
+  padding: 12px 16px;
+  background: #f3e5f5;
+  border: 1.5px solid #BA68C8;
+  border-radius: 10px;
+  font-size: 12px;
+}
+.tip h2 { font-size: 14px; color: #4A148C; margin-bottom: 6px; }
+
+.print-btn {
+  display: inline-block;
+  padding: 6px 18px;
+  background: #D63384;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: bold;
+  margin-left: 12px;
+  vertical-align: middle;
+}
+.back-btn {
+  display: inline-block;
+  padding: 6px 18px;
+  background: #74c69d;
+  color: white;
+  border-radius: 14px;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: bold;
+  vertical-align: middle;
+}
+@media print {
+  /* ===== 白黒印刷用 ===== */
+  .print-btn, .back-btn, .top-buttons { display: none; }
+  body { padding: 0; font-size: 11px; color: #000; background: white; }
+
+  /* タイトル */
+  h1 { font-size: 18px; padding-bottom: 6px; margin-bottom: 4px; color: #000; border-bottom-color: #000; }
+  .meta { font-size: 11px; margin-bottom: 4px; color: #000; }
+  .name-row { font-size: 11px; margin-bottom: 10px; color: #000; }
+  .nf-blank { border-bottom-color: #000; width: 24px; }
+  .nf-name  { border-bottom-color: #000; width: 100px; }
+
+  /* 学び方フロー */
+  .flow {
+    padding: 8px 12px; font-size: 11px; margin-bottom: 10px;
+    page-break-after: always;
+    background: white; border: 2px solid #000; border-radius: 8px;
+  }
+  .flow h2 { font-size: 13px; margin-bottom: 5px; color: #000 !important; }
+  .flow b, .flow b[style], .flow span[style] { color: #000 !important; }
+  .flow p { margin-bottom: 4px; }
+  .flow ul { margin-bottom: 6px; }
+  .flow li { margin: 2px 0; }
+  .flow svg { max-height: 172mm; display: block; margin: 0 auto; }
+
+  /* ===== SVGをベクターのままグレースケール化（filter禁止＝ラスタ化防止） ===== */
+  /* テキスト全般 */
+  .flow svg text, .flow svg tspan { fill: #222 !important; }
+  /* ボックス背景（薄色） */
+  .flow svg [fill="#fff4c2"] { fill: #f0f0f0 !important; }
+  .flow svg [fill="#d8ecf7"] { fill: #e4e4e4 !important; }
+  .flow svg [fill="#fff8e1"] { fill: #f5f5f5 !important; }
+  .flow svg [fill="#fce4ec"] { fill: #e8e8e8 !important; }
+  .flow svg [fill="#eaf4fb"] { fill: #dcdcdc !important; }
+  .flow svg [fill="#f3e5f5"] { fill: #d8d8d8 !important; }
+  /* 矢印・ポリゴン */
+  .flow svg polygon           { fill: #555 !important; }
+  .flow svg line              { stroke: #666 !important; }
+  .flow svg path[fill="none"] { stroke: #666 !important; }
+  /* ボックス枠線（カラー→グレー） */
+  .flow svg [stroke="#C8961E"],
+  .flow svg [stroke="#1565C0"],
+  .flow svg [stroke="#C2185B"],
+  .flow svg [stroke="#FFA000"],
+  .flow svg [stroke="#5BA3D9"],
+  .flow svg [stroke="#7B1FA2"] { stroke: #777 !important; }
+
+  /* テーブル */
+  table { font-size: 10.5px; margin-bottom: 8px; }
+  thead { display: table-header-group; }
+  tr { page-break-inside: avoid; }
+  th, td { padding: 4px 5px; border-color: #555; }
+  thead th {
+    padding: 5px 4px; font-size: 10.5px;
+    background: #333 !important; color: white !important;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  td.no {
+    font-size: 13px; color: #000;
+    background: #e8e8e8 !important;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  /* ⑤の黄色行 */
+  tr[style*="background:#fff8e1"] { background: #f0f0f0 !important; }
+  td.no[style*="background:#FFE082"] {
+    background: #ccc !important;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  td.title a,
+  td.title a:link,
+  td.title a:visited { color: #000 !important; text-decoration: underline; }
+  td.content { font-size: 10px; line-height: 1.35; color: #000; }
+  td.content b { color: #000 !important; }
+  /* リンク色を全体で黒に上書き */
+  a, a:link, a:visited { color: #000 !important; }
+
+  /* チェックボックス：折り返し禁止 + 詰め詰め */
+  td.check { font-size: 9px; padding: 2px 4px; color: #000; }
+  td.check .row {
+    display: flex;
+    align-items: center;
+    margin: 1px 0;
+    white-space: nowrap;
+  }
+  td.check .lbl { font-size: 9px; color: #000; white-space: nowrap; }
+  td.check .chk { width: 10px; height: 10px; min-width: 10px; margin-right: 3px; border-color: #000; }
+
+  /* 凡例・Tip */
+  .legend {
+    padding: 7px 10px; font-size: 10px; page-break-inside: avoid; margin-top: 4px;
+    background: white; border: 1.5px solid #555; border-radius: 6px;
+  }
+  .legend h2 { font-size: 11px; margin-bottom: 3px; color: #000; }
+  .legend li { margin: 2px 0; color: #000; }
+  .tip {
+    padding: 7px 10px; font-size: 10px; page-break-inside: avoid; margin-top: 6px;
+    background: white; border: 1.5px solid #555; border-radius: 6px;
+  }
+  .tip h2 { font-size: 11px; margin-bottom: 3px; color: #000; }
+  .tip li { margin: 2px 0; color: #000; }
+}
+.top-buttons { text-align: center; margin-bottom: 12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="top-buttons">
+  <a href="0_教材一覧.html" class="back-btn">📋 一覧へ</a>
+  <button class="print-btn" onclick="window.print()">🖨 印刷</button>
+</div>
+
+<h1>🐾 動物の分類 課題表 🐾</h1>
+<div class="meta">中1理科 生物3章「動物の分類」 P.46〜57 ／ まとめマップ全5枚</div>
+<div class="name-row">
+  <span class="nf-item"><span class="nf-blank"></span>年　<span class="nf-blank"></span>組　<span class="nf-blank"></span>番</span>
+  <span class="nf-item">名前<span class="nf-name"></span></span>
+</div>
+
+<div class="flow">
+  <h2>🗺️ 学び方の流れ</h2>
+  <p style="margin-bottom:8px;"><b style="color:#0D47A1;">計画</b>：今日どこまで進めるか、どこを重点的に進めるかを決める。下の表を見ながら、以下の3つを大体決めておく。</p>
+  <ul style="margin:0 0 14px 8px;padding-left:18px;">
+    <li><b>やることの決定</b>：下の表から、今日取り組む内容を決める</li>
+    <li><b>ペースと取り組み方</b>：どのくらいのペースで進めるか、どのように頑張るかを決める</li>
+    <li><b>学び方の選択</b>：どのようなステップで進めるかを、なんとなく決めておく（下の図を参照）</li>
+  </ul>
+
+  <div style="margin-top:14px;text-align:center;">
+    <svg viewBox="0 0 900 950" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+
+      <!-- レベル1：スタート（2択） -->
+      <rect x="40" y="20" width="340" height="56" rx="10" fill="#fff4c2" stroke="#C8961E" stroke-width="2"/>
+      <text x="210" y="44" text-anchor="middle" font-size="14" font-weight="bold" fill="#6b4a00">教科書から</text>
+      <text x="210" y="62" text-anchor="middle" font-size="14" font-weight="bold" fill="#6b4a00">読み始める</text>
+
+      <text x="450" y="50" text-anchor="middle" font-size="14" fill="#888" font-style="italic">または</text>
+
+      <rect x="520" y="20" width="340" height="56" rx="10" fill="#fff4c2" stroke="#C8961E" stroke-width="2"/>
+      <text x="690" y="44" text-anchor="middle" font-size="14" font-weight="bold" fill="#6b4a00">動画を見てから</text>
+      <text x="690" y="62" text-anchor="middle" font-size="14" font-weight="bold" fill="#6b4a00">教科書を読み始める</text>
+
+      <!-- 合流（→マップ作成） -->
+      <path d="M 210 76 L 210 100 L 450 100 L 450 120" stroke="#1976D2" stroke-width="2" fill="none"/>
+      <path d="M 690 76 L 690 100 L 450 100" stroke="#1976D2" stroke-width="2" fill="none"/>
+      <polygon points="444,118 456,118 450,130" fill="#1976D2"/>
+
+      <!-- レベル2：マップの作成 -->
+      <rect x="320" y="130" width="260" height="60" rx="10" fill="#d8ecf7" stroke="#1565C0" stroke-width="2.5"/>
+      <text x="450" y="158" text-anchor="middle" font-size="17" font-weight="bold" fill="#0D47A1">マップの作成</text>
+      <text x="450" y="178" text-anchor="middle" font-size="11" fill="#0D47A1" font-style="italic">どちらの入り方でも、ここに合流</text>
+
+      <!-- 縦線 -->
+      <line x1="450" y1="190" x2="450" y2="218" stroke="#1976D2" stroke-width="2"/>
+      <polygon points="444,216 456,216 450,228" fill="#1976D2"/>
+
+      <!-- レベル3：①マップの確認 -->
+      <rect x="40" y="230" width="820" height="130" rx="10" fill="#fff8e1" stroke="#FFA000" stroke-width="2"/>
+      <text x="450" y="252" text-anchor="middle" font-size="14" font-weight="bold" fill="#BF360C">①マップの確認 （いずれかの方法で）</text>
+
+      <rect x="70" y="270" width="240" height="76" rx="8" fill="white" stroke="#FFA000" stroke-width="1.6"/>
+      <text x="190" y="296" text-anchor="middle" font-size="13" font-weight="bold" fill="#BF360C">先生に聞く</text>
+      <text x="190" y="316" text-anchor="middle" font-size="10.5" fill="#555">わからない箇所を</text>
+      <text x="190" y="332" text-anchor="middle" font-size="10.5" fill="#555">直接質問</text>
+
+      <rect x="330" y="270" width="240" height="76" rx="8" fill="white" stroke="#FFA000" stroke-width="1.6"/>
+      <text x="450" y="296" text-anchor="middle" font-size="13" font-weight="bold" fill="#BF360C">見本を見る</text>
+      <text x="450" y="316" text-anchor="middle" font-size="10.5" fill="#555">完成マップと</text>
+      <text x="450" y="332" text-anchor="middle" font-size="10.5" fill="#555">比べてみる</text>
+
+      <rect x="590" y="270" width="240" height="76" rx="8" fill="white" stroke="#FFA000" stroke-width="1.6"/>
+      <text x="710" y="300" text-anchor="middle" font-size="13" font-weight="bold" fill="#BF360C">見やすい子のマップを見る</text>
+      <text x="710" y="324" text-anchor="middle" font-size="10.5" fill="#555">マネする・参考にする</text>
+
+      <!-- 縦線 -->
+      <line x1="450" y1="360" x2="450" y2="388" stroke="#1976D2" stroke-width="2"/>
+      <polygon points="444,386 456,386 450,398" fill="#1976D2"/>
+
+      <!-- レベル4：②修正（必要に応じて） -->
+      <rect x="260" y="400" width="380" height="60" rx="10" fill="#fce4ec" stroke="#C2185B" stroke-width="2"/>
+      <text x="450" y="424" text-anchor="middle" font-size="15" font-weight="bold" fill="#880E4F">②修正 <tspan font-size="11" font-weight="normal" fill="#777">（必要に応じて）</tspan></text>
+      <text x="450" y="444" text-anchor="middle" font-size="11" fill="#444">マップに足りない部分・直したい部分を書き直す</text>
+
+      <!-- 縦線 -->
+      <line x1="450" y1="460" x2="450" y2="488" stroke="#1976D2" stroke-width="2"/>
+      <polygon points="444,486 456,486 450,498" fill="#1976D2"/>
+
+      <!-- レベル5：③自己テスト -->
+      <rect x="40" y="500" width="820" height="110" rx="10" fill="#eaf4fb" stroke="#5BA3D9" stroke-width="2"/>
+      <text x="450" y="522" text-anchor="middle" font-size="14" font-weight="bold" fill="#0D47A1">③自己テスト （内容を理解できているか確認・いずれかの方法で）</text>
+
+      <rect x="70" y="540" width="240" height="56" rx="8" fill="white" stroke="#1565C0" stroke-width="1.6"/>
+      <text x="190" y="572" text-anchor="middle" font-size="14" font-weight="bold" fill="#0D47A1">(a) 確認テスト</text>
+
+      <rect x="330" y="540" width="240" height="56" rx="8" fill="white" stroke="#1565C0" stroke-width="1.6"/>
+      <text x="450" y="572" text-anchor="middle" font-size="14" font-weight="bold" fill="#0D47A1">(b) ワーク</text>
+
+      <rect x="590" y="540" width="240" height="56" rx="8" fill="white" stroke="#1565C0" stroke-width="1.6"/>
+      <text x="710" y="565" text-anchor="middle" font-size="13" font-weight="bold" fill="#0D47A1">(c) 文章化して</text>
+      <text x="710" y="583" text-anchor="middle" font-size="13" font-weight="bold" fill="#0D47A1">確かめる</text>
+
+      <!-- 縦線 -->
+      <line x1="450" y1="610" x2="450" y2="638" stroke="#1976D2" stroke-width="2"/>
+      <polygon points="444,636 456,636 450,648" fill="#1976D2"/>
+
+      <!-- レベル6：④マップの肉付け -->
+      <rect x="260" y="650" width="380" height="70" rx="10" fill="#fce4ec" stroke="#C2185B" stroke-width="2"/>
+      <text x="450" y="674" text-anchor="middle" font-size="15" font-weight="bold" fill="#880E4F">④マップの肉付け</text>
+      <text x="450" y="694" text-anchor="middle" font-size="11" fill="#444">丸バツや、テストで引っかかった部分を</text>
+      <text x="450" y="709" text-anchor="middle" font-size="11" fill="#444">マップに付け足して、内容を肉付けしていく</text>
+
+      <!-- 縦線 -->
+      <line x1="450" y1="720" x2="450" y2="748" stroke="#1976D2" stroke-width="2"/>
+      <polygon points="444,746 456,746 450,758" fill="#1976D2"/>
+
+      <!-- レベル7：⑤再テスト -->
+      <rect x="40" y="760" width="820" height="180" rx="10" fill="#f3e5f5" stroke="#7B1FA2" stroke-width="2"/>
+      <text x="450" y="782" text-anchor="middle" font-size="14" font-weight="bold" fill="#4A148C">⑤再テスト <tspan font-size="11" font-weight="normal" fill="#777">（不安がある／余裕がある場合）</tspan></text>
+      <text x="450" y="802" text-anchor="middle" font-size="11.5" fill="#444">③で選んでいないテスト方法で、もう一度確認する</text>
+
+      <rect x="70" y="818" width="240" height="56" rx="8" fill="white" stroke="#7B1FA2" stroke-width="1.6"/>
+      <text x="190" y="850" text-anchor="middle" font-size="14" font-weight="bold" fill="#4A148C">(a) 確認テスト</text>
+
+      <rect x="330" y="818" width="240" height="56" rx="8" fill="white" stroke="#7B1FA2" stroke-width="1.6"/>
+      <text x="450" y="850" text-anchor="middle" font-size="14" font-weight="bold" fill="#4A148C">(b) ワーク</text>
+
+      <rect x="590" y="818" width="240" height="56" rx="8" fill="white" stroke="#7B1FA2" stroke-width="1.6"/>
+      <text x="710" y="843" text-anchor="middle" font-size="13" font-weight="bold" fill="#4A148C">(c) 文章化して</text>
+      <text x="710" y="861" text-anchor="middle" font-size="13" font-weight="bold" fill="#4A148C">確かめる</text>
+
+      <text x="450" y="908" text-anchor="middle" font-size="10.5" fill="#777" font-style="italic">※「さっき自己テストでワークを選んだ」なら、再テストでは確認テストか文章化を試す</text>
+      <text x="450" y="924" text-anchor="middle" font-size="10.5" fill="#777" font-style="italic">　別の角度から見ることで、本当に理解できているかが確かめられる</text>
+
+    </svg>
+  </div>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th class="col-no">No.</th>
+      <th class="col-title">まとめマップ</th>
+      <th class="col-page">教科書</th>
+      <th class="col-content">学ぶ内容（キーワード）</th>
+      <th class="col-check">進捗チェック</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="no">①</td>
+      <td class="title"><a href="1_動物の分類_身近な動物の分類.html">身近な動物の分類</a></td>
+      <td class="page">P.46〜50</td>
+      <td class="content">
+        <b>背骨</b>の有無で <b>脊椎動物</b> ⇄ <b>無脊椎動物</b> に分かれる／種類数の違い
+      </td>
+      <td class="check">
+        <div class="row"><span class="chk"></span><span class="lbl">さらっと読む</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">ラベリング</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">語句を抜き出す</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">マップをつくる</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">文章化</span></div>
+      </td>
+    </tr>
+    <tr>
+      <td class="no">②</td>
+      <td class="title"><a href="2_動物の分類_からだのつくり.html">からだのつくり</a></td>
+      <td class="page">P.52</td>
+      <td class="content">
+        <b>生活場所</b>（水中⇄陸上）／ 水中＝泳ぐ体形／陸上＝<b>あし</b>・<b>うろこ・羽毛・毛</b>・乾燥に強い
+      </td>
+      <td class="check">
+        <div class="row"><span class="chk"></span><span class="lbl">さらっと読む</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">ラベリング</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">語句を抜き出す</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">マップをつくる</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">文章化</span></div>
+      </td>
+    </tr>
+    <tr>
+      <td class="no">③</td>
+      <td class="title"><a href="3_動物の分類_呼吸のしかた.html">呼吸のしかた</a></td>
+      <td class="page">P.52</td>
+      <td class="content">
+        <b>えら</b>（水中）⇄ <b>肺</b>（陸上）／ 両生類だけ特別：<b>幼生＝えら+皮膚 → 成体＝肺+皮膚</b>
+      </td>
+      <td class="check">
+        <div class="row"><span class="chk"></span><span class="lbl">さらっと読む</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">ラベリング</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">語句を抜き出す</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">マップをつくる</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">文章化</span></div>
+      </td>
+    </tr>
+    <tr>
+      <td class="no">④</td>
+      <td class="title"><a href="4_動物の分類_子のうまれ方.html">子のうまれ方</a></td>
+      <td class="page">P.52</td>
+      <td class="content">
+        <b>卵生</b>（殻なし／弾力のある殻／かたい殻）⇄ <b>胎生</b>（母親の体内で育つ）／<br>
+        水中にうむ卵には殻なし／陸上にうむ卵には殻あり
+      </td>
+      <td class="check">
+        <div class="row"><span class="chk"></span><span class="lbl">さらっと読む</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">ラベリング</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">語句を抜き出す</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">マップをつくる</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">文章化</span></div>
+      </td>
+    </tr>
+    <tr style="background:#fff8e1;">
+      <td class="no" style="background:#FFE082;">⑤</td>
+      <td class="title"><a href="5_動物の分類_脊椎動物の分類.html">脊椎動物の分類<br>（5グループ比較表）</a></td>
+      <td class="page">P.52〜53</td>
+      <td class="content">
+        <b>魚類／両生類／ハチュウ類／鳥類／哺乳類</b>の5グループ／<br>
+        体表（うろこ・羽毛・毛）／呼吸（えら・肺・皮膚）／うまれ方（卵生・胎生）／<br>
+        <b>★ ②〜④の3観点を全部学んだあとの「まとめ」</b>
+      </td>
+      <td class="check">
+        <div class="row"><span class="chk"></span><span class="lbl">さらっと読む</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">ラベリング</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">語句を抜き出す</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">マップをつくる</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">文章化</span></div>
+      </td>
+    </tr>
+    <tr>
+      <td class="no">⑥</td>
+      <td class="title"><a href="6_動物の分類_節足動物.html">節足動物</a></td>
+      <td class="page">P.55</td>
+      <td class="content">
+        <b>外骨格・節・関節</b>／4グループ（<b>甲殻類／昆虫類／クモ・サソリ／ムカデ</b>のなかま）／<br>
+        甲殻類と昆虫類の からだのつくりの違い
+      </td>
+      <td class="check">
+        <div class="row"><span class="chk"></span><span class="lbl">さらっと読む</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">ラベリング</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">語句を抜き出す</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">マップをつくる</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">文章化</span></div>
+      </td>
+    </tr>
+    <tr>
+      <td class="no">⑦</td>
+      <td class="title"><a href="7_動物の分類_軟体動物.html">軟体動物</a></td>
+      <td class="page">P.55</td>
+      <td class="content">
+        節がない／<b>外とう膜</b>（筋肉でできた膜）が内臓を包む／<br>
+        貝殻なし（イカ・タコ）と 貝殻あり（アサリ・サザエ）／各部位の名前
+      </td>
+      <td class="check">
+        <div class="row"><span class="chk"></span><span class="lbl">さらっと読む</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">ラベリング</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">語句を抜き出す</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">マップをつくる</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">文章化</span></div>
+      </td>
+    </tr>
+    <tr>
+      <td class="no">⑧</td>
+      <td class="title"><a href="8_動物の分類_その他の無脊椎動物.html">その他の無脊椎動物</a></td>
+      <td class="page">P.56〜57</td>
+      <td class="content">
+        外骨格も外とう膜もない無脊椎動物／3グループ（<b>放射状／針でさす／円柱状の節</b>）／<br>
+        代表動物（ウニ・ヒトデ／クラゲ・イソギンチャク／ミミズ）
+      </td>
+      <td class="check">
+        <div class="row"><span class="chk"></span><span class="lbl">さらっと読む</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">ラベリング</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">語句を抜き出す</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">マップをつくる</span></div>
+        <div class="row"><span class="chk"></span><span class="lbl">文章化</span></div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="legend">
+  <h2>💡 進捗チェックの意味</h2>
+  <ul>
+    <li><b>① さらっと読む</b>：教科書のページを一通り読んで、大体の内容を把握する</li>
+    <li><b>② ラベリング</b>：「この段落は何の話？」を一言で書き込んで、文章の構造の見通しを立てる</li>
+    <li><b>③ 語句を抜き出す</b>：重要だと思う語句をノートに書き出して、構造の見通しをさらに具体的にする</li>
+    <li><b>④ マップをつくる</b>：語句を <b>関係（縦＝中に含む／横＝対比／真ん中＝親カテゴリ）</b> で並べてマップを描く ── <b>ここまで作れたら大体わかったということ</b></li>
+    <li><b>⑤ 文章化</b>：マップをもとに、自分の言葉で文章にして書く ── <b>自分で内容を理解できているかを確かめる</b>（人に説明できればベスト）</li>
+  </ul>
+</div>
+
+<div class="tip">
+  <h2>🌱 もっと深めたい人へ（発展）</h2>
+  <ul>
+    <li><b>恒温動物・変温動物</b>：体温を一定に保つ動物（鳥類・哺乳類）と、環境で体温が変わる動物（魚類・両生類・ハチュウ類）── ②マップに参考カコミあり。</li>
+    <li><b>植物の分類と比べてみよう</b>：単元1-2「植物の分類」（P.30〜44）でやった「種子をつくる／つくらない」「子房／胚珠」と同じように、動物も「背骨をもつ／もたない」「外骨格／外とう膜」で考えていける。</li>
+  </ul>
+</div>
+
+</div>
+</body>
+</html>
