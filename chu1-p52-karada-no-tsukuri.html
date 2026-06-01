@@ -157,31 +157,35 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1100
   <rect class="node-word" x="130" y="184" width="240" height="32" rx="6"/>
   <text class="label label-word" x="250" y="200">泳ぐのに適した体形・体表</text>
 
-  <!-- 陸上側の特徴 -->
-  <line class="link-vertical" x1="850" y1="164" x2="850" y2="184"/>
-  <rect class="node-word" x="730" y="184" width="240" height="32" rx="6"/>
-  <text class="label label-word" x="850" y="200">からだを支えるあし／乾燥に強い</text>
+  <!-- 陸上側：2観点に分岐（あし ／ 体表） -->
+  <line class="link-vertical" x1="850" y1="164" x2="850" y2="192"/>
+  <line class="link" x1="775" y1="192" x2="930" y2="192"/>
+  <line class="link" x1="775" y1="192" x2="775" y2="212"/>
+  <line class="link" x1="930" y1="192" x2="930" y2="212"/>
 
-  <!-- 体表（カテゴリ） -->
-  <line class="link-vertical" x1="850" y1="216" x2="850" y2="246"/>
-  <rect class="node-category" x="800" y="246" width="100" height="32" rx="6"/>
-  <text class="label label-category" x="850" y="262">体表</text>
+  <!-- あし -->
+  <rect class="node-word" x="695" y="212" width="160" height="32" rx="6"/>
+  <text class="label label-word" x="775" y="228">あし（からだを支える）</text>
 
-  <!-- 体表のバリエーション（陸上） -->
-  <line class="link-vertical" x1="850" y1="278" x2="850" y2="300"/>
-  <line class="link" x1="750" y1="300" x2="950" y2="300"/>
-  <line class="link" x1="750" y1="300" x2="750" y2="320"/>
-  <line class="link" x1="850" y1="300" x2="850" y2="320"/>
-  <line class="link" x1="950" y1="300" x2="950" y2="320"/>
+  <!-- 体表（乾燥に強い） -->
+  <rect class="node-category" x="862" y="212" width="136" height="32" rx="6"/>
+  <text class="label label-category" x="930" y="228">体表（乾燥に強い）</text>
 
-  <rect class="node-word" x="710" y="320" width="80" height="30" rx="6"/>
-  <text class="label label-word" x="750" y="335">うろこ</text>
+  <!-- 体表から3分岐 -->
+  <line class="link-vertical" x1="930" y1="244" x2="930" y2="272"/>
+  <line class="link" x1="830" y1="272" x2="1030" y2="272"/>
+  <line class="link" x1="830" y1="272" x2="830" y2="292"/>
+  <line class="link" x1="930" y1="272" x2="930" y2="292"/>
+  <line class="link" x1="1030" y1="272" x2="1030" y2="292"/>
 
-  <rect class="node-word" x="810" y="320" width="80" height="30" rx="6"/>
-  <text class="label label-word" x="850" y="335">羽毛</text>
+  <rect class="node-word" x="790" y="292" width="80" height="30" rx="6"/>
+  <text class="label label-word" x="830" y="307">うろこ</text>
 
-  <rect class="node-word" x="910" y="320" width="80" height="30" rx="6"/>
-  <text class="label label-word" x="950" y="335">毛</text>
+  <rect class="node-word" x="890" y="292" width="80" height="30" rx="6"/>
+  <text class="label label-word" x="930" y="307">羽毛</text>
+
+  <rect class="node-word" x="990" y="292" width="80" height="30" rx="6"/>
+  <text class="label label-word" x="1030" y="307">毛</text>
 
   <!-- 5グループとの対応 -->
   <rect x="60" y="380" width="980" height="140" rx="8" style="fill:#fafafa;stroke:#5BA3D9;stroke-width:1.5;stroke-dasharray:4 3;"/>
