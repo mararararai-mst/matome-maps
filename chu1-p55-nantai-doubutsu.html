@@ -126,24 +126,44 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1100
 </h1>
 <div class="meta">中1理科 生物3章「動物の分類」P.55（軟体動物）</div>
 
-<div class="svg-scroll"><svg viewBox="0 0 1100 600" xmlns="http://www.w3.org/2000/svg">
+<div class="svg-scroll"><svg viewBox="0 0 1100 450" xmlns="http://www.w3.org/2000/svg">
 
   <!-- Level 0: 軟体動物 -->
-  <rect class="node-main" x="470" y="20" width="160" height="44" rx="10"/>
-  <text class="label label-main" x="550" y="42">軟体動物</text>
+  <rect class="node-main" x="470" y="16" width="160" height="42" rx="10"/>
+  <text class="label label-main" x="550" y="37">軟体動物</text>
+  <line class="link" x1="550" y1="58" x2="550" y2="68"/>
 
-  <!-- 共通特徴（縦・上） -->
-  <line class="link-vertical" x1="550" y1="64" x2="550" y2="84"/>
-  <rect class="node-feature" x="380" y="84" width="340" height="30" rx="6"/>
-  <text class="label label-feature" x="550" y="99">からだに節がない</text>
+  <!-- ===== 共通する特徴（①②③ 並列） ===== -->
+  <text class="label" x="550" y="78" style="font-size:12px;font-weight:bold;fill:#4A148C;">すべての軟体動物に共通する特徴</text>
+  <line class="link" x1="550" y1="84" x2="550" y2="90"/>
+  <line class="link" x1="230" y1="90" x2="870" y2="90"/>
+  <line class="link" x1="230" y1="90" x2="230" y2="98"/>
+  <line class="link" x1="550" y1="90" x2="550" y2="98"/>
+  <line class="link" x1="870" y1="90" x2="870" y2="98"/>
 
-  <line class="link-feature" x1="550" y1="114" x2="550" y2="124"/>
-  <rect class="node-feature" x="380" y="124" width="340" height="46" rx="6"/>
-  <text class="label label-feature" x="550" y="139">外とう膜（筋肉でできた膜）</text>
-  <text class="label label-feature" x="550" y="157" style="font-size:11px;">が内臓を包んでいる</text>
+  <!-- ① からだに節がない -->
+  <rect class="node-feature" x="90" y="98" width="280" height="54" rx="8"/>
+  <text class="label label-feature" x="230" y="118" style="font-size:12px;">からだに節がない</text>
+  <text class="label label-feature" x="230" y="137" style="font-size:11px;">（骨格をもたない）</text>
 
-  <!-- 貝殻あり/なし の対比 -->
-  <line class="link" x1="550" y1="170" x2="550" y2="195"/>
+  <!-- ② 外とう膜が内臓を包む -->
+  <rect class="node-feature" x="410" y="98" width="280" height="54" rx="8"/>
+  <text class="label label-feature" x="550" y="118" style="font-size:11.5px;">内臓は外とう膜に包まれる</text>
+  <text class="label label-feature" x="550" y="137" style="font-size:10.5px;">（筋肉でできた膜・骨格はない）</text>
+
+  <!-- ③ 水中・えら呼吸 -->
+  <rect class="node-feature" x="730" y="98" width="280" height="54" rx="8"/>
+  <text class="label label-feature" x="870" y="118" style="font-size:12px;">水中の生活が多い</text>
+  <text class="label label-feature" x="870" y="137" style="font-size:11px;">えら（一部は肺）で呼吸</text>
+
+  <!-- 共通特徴 → 貝殻で分類 -->
+  <line class="link" x1="230" y1="152" x2="230" y2="162"/>
+  <line class="link" x1="550" y1="152" x2="550" y2="162"/>
+  <line class="link" x1="870" y1="152" x2="870" y2="162"/>
+  <line class="link" x1="230" y1="162" x2="870" y2="162"/>
+  <line class="link" x1="550" y1="162" x2="550" y2="172"/>
+  <text class="label" x="550" y="181" style="font-size:11px;fill:#555;">貝殻があるか・ないかで分けられる</text>
+  <line class="link" x1="550" y1="187" x2="550" y2="195"/>
   <line class="link" x1="250" y1="195" x2="850" y2="195"/>
   <line class="link" x1="250" y1="195" x2="250" y2="220"/>
   <line class="link" x1="850" y1="195" x2="850" y2="220"/>
@@ -194,17 +214,11 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1100
   <rect class="node-word" x="770" y="402" width="160" height="30" rx="6"/>
   <text class="label label-word" x="850" y="417">入水管</text>
 
-  <!-- 補足 -->
-  <rect x="60" y="460" width="980" height="60" rx="8" style="fill:#fafafa;stroke:#ccc;stroke-width:1;"/>
-  <text x="550" y="478" style="font-size:13px;fill:#444;text-anchor:middle;font-weight:bold;">💡 軟体動物のからだのつくり 補足</text>
-  <text x="550" y="498" style="font-size:11.5px;fill:#555;text-anchor:middle;">節足動物の「外骨格」と違って、軟体動物は内臓を <tspan font-weight="bold">外とう膜</tspan>（やわらかい筋肉の膜）が包む。</text>
-  <text x="550" y="513" style="font-size:11.5px;fill:#555;text-anchor:middle;">水中で生活するものが多く、えらや肺で呼吸する。</text>
-
 </svg></div>
 
 <div class="summary">
   <strong>📝 まとめ文</strong>
-  <b>軟体動物</b> はからだに <span class="blank">節がない</span> 。内臓は <span class="blank">外とう膜</span> （筋肉でできた膜）に包まれている。<br>
+  <b>軟体動物</b> はからだに <span class="blank">節がない</span> 。内臓は <span class="blank">外とう膜</span> （筋肉でできた膜）に包まれている。水中で生活するものが多く、 <span class="blank">えら</span> （一部は肺）で呼吸する。<br>
   軟体動物には、 <span class="blank">イカ</span> ・ <span class="blank">タコ</span> のように貝殻をもたないものと、 <span class="blank">アサリ</span> ・ <span class="blank">サザエ</span> のように <span class="blank">貝殻</span> で外とう膜をおおうものがある。<br>
   <b>ケンサキイカ</b> のからだ：眼・口・ <span class="blank">外とう膜</span> ・ <span class="blank">ろうと</span> など。<br>
   <b>アサリ</b> のからだ： <span class="blank">外とう膜</span> ・ <span class="blank">えら</span> ・ <span class="blank">出水管</span> ・ <span class="blank">入水管</span> など。
