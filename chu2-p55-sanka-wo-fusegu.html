@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>酸化を防ぐくふう｜まとめマップ</title>
+<meta property="og:title" content="酸化を防ぐくふう｜まとめマップ">
+<meta property="og:description" content="金属のさび止めと食品の酸化防止を「酸素にふれさせない」でつなぐ中2理科まとめマップ">
+<meta property="og:type" content="article">
+<style>
+@page { size: A4 landscape; margin: 8mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "UD デジタル 教科書体 NP-B", "Hiragino Maru Gothic ProN", "Meiryo", sans-serif;
+  background: white;
+  color: #222;
+  padding: 12px 16px;
+}
+.wrap { max-width: 1280px; margin: 0 auto; }
+h1 {
+  font-size: 18px;
+  text-align: center;
+  color: #222;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #222;
+  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+}
+.meta { text-align: center; font-size: 12px; color: #888; margin-bottom: 12px; }
+
+svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1280px; }
+
+.node { fill: white; stroke: #222; stroke-width: 1.6; }
+.node-main { fill: #fff9ec; stroke: #222; stroke-width: 2.5; }
+.node-yellow { fill: #fff4c2; stroke: #C8961E; stroke-width: 2; }
+.node-green { fill: #d8f3dc; stroke: #2E7D32; stroke-width: 2; }
+.node-pink { fill: #ffe3ec; stroke: #D63384; stroke-width: 2; }
+.node-info { fill: #f7f7f0; stroke: #888; stroke-width: 1.2; }
+.label { font-family: inherit; font-size: 14px; fill: #222; text-anchor: middle; dominant-baseline: central; }
+.label-main { font-size: 17px; font-weight: bold; }
+.label-leaf { font-weight: bold; font-size: 15px; }
+.label-yellow { fill: #6b4a00; }
+.label-green { fill: #1b5e20; }
+.label-pink { fill: #b03856; }
+.label-ex { font-size: 12px; fill: #555; font-style: italic; }
+.label-head { font-weight: bold; font-size: 15px; }
+.criterion {
+  font-size: 12px; fill: #555; text-anchor: middle; dominant-baseline: central;
+  font-style: italic; font-weight: bold;
+}
+.answer { font-size: 11px; fill: #888; text-anchor: middle; dominant-baseline: central; }
+.note-small { font-size: 11.5px; fill: #444; text-anchor: middle; dominant-baseline: central; }
+.link { stroke: #222; stroke-width: 1.4; fill: none; }
+
+.point-box { margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.point-card {
+  padding: 10px 14px; background: #fff8e8; border: 2px dashed #c8961e;
+  border-radius: 10px; font-size: 12.5px; line-height: 1.7; color: #5a4030;
+}
+.point-card strong { color: #946800; }
+
+.summary {
+  margin-top: 16px; padding: 12px 16px; background: #f7f7f0; border: 1px solid #ccc;
+  border-radius: 10px; font-size: 13px; line-height: 1.9; color: #333;
+}
+.summary strong { font-size: 14px; }
+.blank {
+  display: inline-block; min-width: 72px; border-bottom: 2px solid #D63384;
+  text-align: center; color: #D63384; font-weight: bold;
+}
+
+.btns { text-align: center; margin: 14px 0 4px; }
+.btns button, .btns a {
+  font-family: inherit; font-size: 13px; padding: 7px 18px; margin: 0 5px;
+  border: none; border-radius: 20px; color: white; cursor: pointer;
+  text-decoration: none; display: inline-block;
+}
+.btn-list { background: #2E7D32; }
+.btn-words { background: #f4a261; }
+.btn-print { background: #D63384; }
+
+.words-grid { display: none; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 10px; }
+.words-grid span {
+  background: #fff4c2; border: 1px solid #C8961E; border-radius: 8px;
+  padding: 8px 10px; font-size: 13px; text-align: center; color: #333;
+}
+.words-only .words-grid { display: grid; }
+.words-only svg { display: none; }
+.words-only .point-box,
+.words-only .summary { display: none; }
+
+@media print {
+  .btns { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>酸化を防ぐくふう｜まとめマップ</h1>
+<div class="meta">中2理科　化学1章「化学変化と原子・分子」／ 酸素がかかわる化学変化（発展）　※教科書ページは要確認</div>
+
+<div class="btns">
+  <a href="index.html" class="btn-list">📋 一覧へ</a>
+  <button class="btn-words" onclick="toggleWords(this)">📝 語句のみ</button>
+  <button class="btn-print" onclick="window.print()">🖨 印刷</button>
+</div>
+
+<svg viewBox="0 0 1180 500" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- ===== 中心 ===== -->
+  <rect class="node-main" x="490" y="22" width="200" height="44" rx="10"/>
+  <text class="label label-main" x="590" y="44">酸化を防ぐくふう</text>
+
+  <line class="link" x1="590" y1="66" x2="590" y2="92"/>
+  <text class="criterion" x="590" y="84">共通の考え方は？</text>
+
+  <rect class="node-green" x="420" y="100" width="340" height="42" rx="8"/>
+  <text class="label label-leaf label-green" x="590" y="121">酸素にふれさせない（酸素を断つ）</text>
+
+  <!-- ===== 2分岐 ===== -->
+  <line class="link" x1="590" y1="142" x2="590" y2="166"/>
+  <line class="link" x1="300" y1="166" x2="880" y2="166"/>
+  <line class="link" x1="300" y1="166" x2="300" y2="192"/>
+  <line class="link" x1="880" y1="166" x2="880" y2="192"/>
+  <text class="answer" x="300" y="182">金属のさび</text>
+  <text class="answer" x="880" y="182">食品の劣化</text>
+
+  <!-- ============ 左：金属のさびを防ぐ ============ -->
+  <rect class="node" x="180" y="196" width="240" height="38" rx="8"/>
+  <text class="label label-head" x="300" y="215">🔧 金属のさびを防ぐ</text>
+
+  <line class="link" x1="300" y1="234" x2="300" y2="252"/>
+  <rect class="node-info" x="172" y="252" width="256" height="42" rx="8"/>
+  <text class="note-small" x="300" y="268">さび＝金属が酸素・水で酸化された</text>
+  <text class="note-small" x="300" y="284">もの（例：鉄 → 赤さび）</text>
+
+  <line class="link" x1="300" y1="294" x2="300" y2="316"/>
+  <text class="criterion" x="300" y="308">防ぐ＝表面を酸素・水から守る</text>
+
+  <rect class="node-yellow" x="190" y="316" width="220" height="32" rx="8"/>
+  <text class="label label-leaf label-yellow" x="300" y="333">塗装する</text>
+
+  <line class="link" x1="300" y1="348" x2="300" y2="356"/>
+  <rect class="node-yellow" x="190" y="356" width="220" height="32" rx="8"/>
+  <text class="label label-leaf label-yellow" x="300" y="373">めっき（金属でおおう）</text>
+  <line class="link" x1="410" y1="372" x2="468" y2="372"/>
+  <text class="label-ex" x="545" y="372">トタン=亜鉛 ／ ブリキ=スズ</text>
+
+  <line class="link" x1="300" y1="388" x2="300" y2="396"/>
+  <rect class="node-yellow" x="190" y="396" width="220" height="32" rx="8"/>
+  <text class="label label-leaf label-yellow" x="300" y="413">油をぬる</text>
+
+  <line class="link" x1="300" y1="428" x2="300" y2="436"/>
+  <rect class="node-yellow" x="190" y="436" width="220" height="32" rx="8"/>
+  <text class="label label-leaf label-yellow" x="300" y="453">さびにくい金属を使う</text>
+  <line class="link" x1="410" y1="452" x2="468" y2="452"/>
+  <text class="label-ex" x="540" y="452">ステンレス・アルミ</text>
+
+  <!-- ============ 右：食品の酸化を防ぐ ============ -->
+  <rect class="node" x="760" y="196" width="240" height="38" rx="8"/>
+  <text class="label label-head" x="880" y="215">🍱 食品の酸化を防ぐ</text>
+
+  <line class="link" x1="880" y1="234" x2="880" y2="252"/>
+  <rect class="node-info" x="752" y="252" width="256" height="42" rx="8"/>
+  <text class="note-small" x="880" y="268">食品も酸素で酸化して劣化する</text>
+  <text class="note-small" x="880" y="284">（油の酸化・変色・風味おち）</text>
+
+  <line class="link" x1="880" y1="294" x2="880" y2="316"/>
+  <text class="criterion" x="880" y="308">防ぐ＝酸素を減らす・断つ</text>
+
+  <rect class="node-yellow" x="770" y="316" width="220" height="32" rx="8"/>
+  <text class="label label-leaf label-yellow" x="880" y="333">脱酸素剤</text>
+  <line class="link" x1="990" y1="332" x2="1048" y2="332"/>
+  <text class="label-ex" x="1108" y="332">袋の酸素を吸収</text>
+
+  <line class="link" x1="880" y1="348" x2="880" y2="356"/>
+  <rect class="node-yellow" x="770" y="356" width="220" height="32" rx="8"/>
+  <text class="label label-leaf label-yellow" x="880" y="373">酸化防止剤</text>
+  <line class="link" x1="990" y1="372" x2="1048" y2="372"/>
+  <text class="label-ex" x="1104" y="372">ビタミンC など</text>
+
+  <line class="link" x1="880" y1="388" x2="880" y2="396"/>
+  <rect class="node-yellow" x="770" y="396" width="220" height="32" rx="8"/>
+  <text class="label label-leaf label-yellow" x="880" y="413">真空パック・窒素充填</text>
+  <line class="link" x1="990" y1="412" x2="1048" y2="412"/>
+  <text class="label-ex" x="1106" y="412">酸素を追い出す</text>
+
+</svg>
+
+<!-- ===== 語句のみ ===== -->
+<div class="words-grid">
+  <span>酸化</span><span>さび</span><span>赤さび</span><span>酸素</span>
+  <span>水</span><span>塗装</span><span>めっき</span><span>トタン（亜鉛）</span>
+  <span>ブリキ（スズ）</span><span>油</span><span>ステンレス</span><span>アルミニウム</span>
+  <span>脱酸素剤</span><span>酸化防止剤</span><span>ビタミンC</span><span>真空パック</span>
+  <span>窒素充填</span><span>酸素にふれさせない</span>
+</div>
+
+<!-- ===== ポイント ===== -->
+<div class="point-box">
+  <div class="point-card">
+    <strong>📌 金属のさび止め</strong><br>
+    さびは金属が<strong>酸素・水</strong>で酸化されたもの。表面を<strong>塗装・めっき・油</strong>でおおって酸素・水にふれさせない。さびにくい<strong>ステンレス</strong>を使う方法もある。
+  </div>
+  <div class="point-card">
+    <strong>📌 食品の酸化防止</strong><br>
+    食品も酸素で酸化して劣化する。袋の中の酸素を減らす・断つために、<strong>脱酸素剤・酸化防止剤</strong>、<strong>真空パックや窒素充填</strong>を使う。
+  </div>
+</div>
+
+<!-- ===== まとめ（穴埋め） ===== -->
+<div class="summary">
+  <strong>📝 まとめ</strong><br>
+  金属のさびは、金属が空気中の<span class="blank">酸素</span>や水で<span class="blank">酸化</span>されてできる。これを防ぐには、表面を<span class="blank">塗装</span>したり、別の金属でおおう<span class="blank">めっき</span>をする（鉄に亜鉛をめっきしたものが<span class="blank">トタン</span>）。食品の酸化を防ぐには、袋の酸素を吸う<span class="blank">脱酸素剤</span>や<span class="blank">酸化防止剤</span>を使う。どれも「<span class="blank">酸素</span>にふれさせない」のが共通の考え方である。
+</div>
+
+</div><!-- /wrap -->
+
+<script>
+function toggleWords(btn){
+  var wrap = document.querySelector('.wrap');
+  wrap.classList.toggle('words-only');
+  if(wrap.classList.contains('words-only')){
+    btn.textContent = '🗺️ マップへ戻る';
+  } else {
+    btn.textContent = '📝 語句のみ';
+  }
+}
+</script>
+</body>
+</html>
