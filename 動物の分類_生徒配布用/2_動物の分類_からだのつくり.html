@@ -117,10 +117,42 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1100
 .practice-only { margin-top: 12px; }
 #practice-iframe { width: 100%; height: 80vh; border: 2px dashed #2E7D32; border-radius: 12px; background: #f8fbf9; display: block; }
 @media print { .practice-btn, .practice-only { display: none; } }
+.start-choice{position:fixed;inset:0;background:linear-gradient(160deg,#fffaf2 0%,#fff5e9 100%);z-index:9999;display:flex;align-items:center;justify-content:center;padding:40px 28px;overflow:auto;}
+.sc-inner{text-align:center;max-width:1180px;width:100%;}
+.sc-inner h2{font-size:35px;color:#BF360C;margin-bottom:14px;letter-spacing:.04em;}
+.sc-inner .sc-lead{font-size:17.5px;color:#8a7a6a;margin-bottom:44px;line-height:2;}
+.sc-btns{display:flex;gap:34px;flex-wrap:wrap;justify-content:center;align-items:stretch;}
+.sc-btns button{flex:1 1 300px;max-width:352px;border:3px solid #FFA000;background:#fff;border-radius:24px;padding:44px 32px 38px;cursor:pointer;font-family:inherit;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;transition:.16s;box-shadow:0 3px 10px rgba(230,81,0,.06);}
+.sc-btns button:hover{background:#fffdf8;transform:translateY(-5px);box-shadow:0 12px 26px rgba(230,81,0,.16);}
+.sc-btns button .em{font-size:58px;line-height:1;}
+.sc-btns button b{font-size:24px;color:#BF360C;letter-spacing:.03em;}
+.sc-btns button small{font-size:15px;color:#7a7066;line-height:1.95;}
+.sc-btns button .tag{margin-top:8px;font-size:13.5px;font-weight:bold;color:#E65100;background:#fff3e0;border-radius:12px;padding:8px 14px;line-height:1.7;width:100%;box-sizing:border-box;}
+.sc-btns button .tag.warn{color:#9a6a00;background:#fff8e1;}
+.sc-btns button .tag.steps{text-align:left;line-height:2;padding:10px 16px;}
+.sc-btns button.mihon{border-color:#74c69d;}
+.sc-btns button.mihon b{color:#2E7D32;}
+.sc-btns button.mihon .tag{color:#2E7D32;background:#e6f4ea;}
+.sc-btns button.mihon .tag.steps{color:#2E7D32;}
+.sc-foot{margin-top:34px;font-size:13px;color:#bbb;}
+@media print{.start-choice{display:none!important;}}
 </style>
 </head>
 <body>
 <div class="wrap">
+<div id="startChoice" class="start-choice">
+  <div class="sc-inner">
+    <h2>脊椎動物のからだのつくりマップ — どうやって学ぶ？</h2>
+    <p class="sc-lead">いきなり答えを見ないで、まず自分で組み立ててみよう！<br>（自分で試してから、見本で答え合わせ）</p>
+    <div class="sc-btns">
+      <button onclick="chooseMode('words')"><span class="em">📝</span><b>語句のみ</b><small>使う語句を確認して、<br>自分のノートに組み立てる</small><span class="tag">💪 いちばん考えて、いちばん残る</span></button>
+      <button onclick="chooseMode('practice')"><span class="em">🗺️</span><b>練習ツール（下書き）</b><small>画面で下書きしてから、<br>ノートに清書したい人に</small><span class="tag warn">⚠ タブレットで他のことを<br>しちゃう人には向かない</span></button>
+      <button class="mihon" onclick="chooseMode('mihon')"><span class="em">👁️</span><b>見本を見る</b><small>見て書く・ヒントにする・<br>答え合わせ、どれもOK</small><span class="tag warn steps">⚠ 写すだけでは頭に残らない。<br>① 教科書を読み返す<br>② わからないところを質問する<br>③ ノートに肉付けする</span></button>
+    </div>
+    <div class="sc-foot">あとで上のボタンでいつでも切りかえできます</div>
+  </div>
+</div>
+
 
 <h1>脊椎動物の からだのつくり｜まとめマップ
   <a href="5_動物の分類_脊椎動物の分類.html" class="related-btn">📊 5グループ比較表</a>
@@ -323,6 +355,11 @@ function toggleWords(btn) {
     words.hidden = true;
     btn.textContent = '📝 語句のみ';
   }
+}
+function chooseMode(m){
+  var sc=document.getElementById('startChoice'); if(sc) sc.style.display='none';
+  if(m==='words'){ var b=document.querySelector('.words-btn'); if(b) toggleWords(b); }
+  else if(m==='practice'){ var b=document.querySelector('.practice-btn'); if(b) togglePractice(b); }
 }
 </script>
 
