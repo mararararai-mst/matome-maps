@@ -143,6 +143,7 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1280
   <rect class="node-main" x="510" y="10" width="220" height="42" rx="10"/>
   <text class="label label-main" x="620" y="31">酸化を防ぐくふう</text>
   <line class="link" x1="620" y1="52" x2="620" y2="78"/>
+  <line class="link" x1="620" y1="78" x2="620" y2="82"/>
   <text class="criterion" x="620" y="67">さび＝金属が酸素と結びつくこと</text>
 
   <!-- ===== 2分岐（金属／食品） ===== -->
@@ -184,16 +185,14 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1280
   <line class="link" x1="400" y1="194" x2="400" y2="199"/>
   <line class="link" x1="300" y1="199" x2="400" y2="199"/>
   <line class="link" x1="300" y1="199" x2="300" y2="256"/>
-  <line class="link" x1="300" y1="219" x2="308" y2="219"/>
+  <line class="link" x1="300" y1="219" x2="335" y2="219"/>
   <line class="link" x1="300" y1="256" x2="315" y2="256"/>
-  <rect class="node-green" x="308" y="205" width="90" height="28" rx="8"/>
-  <text class="label label-leaf label-green" x="353" y="219">黒さび</text>
-  <text class="label" x="405" y="219" style="font-size:16px;font-weight:bold;">⇔</text>
-  <rect class="node-pink" x="412" y="205" width="90" height="28" rx="8"/>
-  <text class="label label-leaf label-pink" x="457" y="219">赤さび</text>
+  <rect class="node-green" x="335" y="205" width="130" height="28" rx="8"/>
+  <text class="label label-leaf label-green" x="400" y="219">黒さび（鉄）</text>
   <rect class="node-yellow" x="315" y="242" width="170" height="28" rx="8"/>
   <text class="label label-leaf label-yellow" x="400" y="256">酸化アルミの膜</text>
-  <text class="note-small" x="400" y="284">黒さび＝内部を守る ／ 赤さび＝内部まで進む</text>
+  <text class="note-small" x="400" y="278">黒さびは内部を守る酸化物</text>
+  <text class="note-small" x="400" y="295" fill="#b03856">⇔ 赤さびは内部まで進む（防げない）</text>
 
   <!-- 列③ 合金にする -->
   <rect class="node-info" x="560" y="164" width="160" height="30" rx="8"/>
