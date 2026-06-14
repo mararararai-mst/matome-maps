@@ -16,7 +16,7 @@ body {
   color: #222;
   padding: 12px 16px;
 }
-.wrap { max-width: 1280px; margin: 0 auto; }
+.wrap { max-width: 1320px; margin: 0 auto; }
 h1 {
   font-size: 18px;
   text-align: center;
@@ -28,7 +28,7 @@ h1 {
 }
 .meta { text-align: center; font-size: 12px; color: #888; margin-bottom: 12px; }
 
-svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1280px; }
+svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1320px; }
 
 .node { fill: white; stroke: #222; stroke-width: 1.6; }
 .node-main { fill: #fff9ec; stroke: #222; stroke-width: 2.5; }
@@ -38,7 +38,7 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1280
 .node-info { fill: #f7f7f0; stroke: #888; stroke-width: 1.2; }
 .label { font-family: inherit; font-size: 14px; fill: #222; text-anchor: middle; dominant-baseline: central; }
 .label-main { font-size: 17px; font-weight: bold; }
-.label-leaf { font-weight: bold; font-size: 15px; }
+.label-leaf { font-weight: bold; font-size: 14.5px; }
 .label-yellow { fill: #6b4a00; }
 .label-green { fill: #1b5e20; }
 .label-pink { fill: #b03856; }
@@ -137,88 +137,86 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1280
   <button class="btn-print" onclick="window.print()">🖨 印刷</button>
 </div>
 
-<svg viewBox="0 0 1240 340" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 1320 296" xmlns="http://www.w3.org/2000/svg">
 
   <!-- ===== 中心 ===== -->
-  <rect class="node-main" x="510" y="10" width="220" height="42" rx="10"/>
-  <text class="label label-main" x="620" y="31">酸化を防ぐくふう</text>
-  <line class="link" x1="620" y1="52" x2="620" y2="78"/>
-  <line class="link" x1="620" y1="78" x2="620" y2="82"/>
-  <text class="criterion" x="620" y="67">さび＝金属が酸素と結びつくこと</text>
+  <rect class="node-main" x="600" y="12" width="180" height="40" rx="10"/>
+  <text class="label label-main" x="690" y="32">酸化を防ぐくふう</text>
+  <line class="link" x1="690" y1="52" x2="690" y2="84"/>
+  <text class="criterion" x="690" y="68">さび＝金属が酸素と結びつくこと</text>
 
-  <!-- ===== 2分岐（金属／食品） ===== -->
-  <line class="link" x1="400" y1="82" x2="950" y2="82"/>
-  <line class="link" x1="400" y1="82" x2="400" y2="104"/>
-  <line class="link" x1="950" y1="82" x2="950" y2="104"/>
-  <text class="answer" x="400" y="95">金属のさび</text>
-  <text class="answer" x="950" y="95">食品の劣化</text>
+  <!-- ===== 2分岐（金属／食品）＝並列・横 ===== -->
+  <line class="link" x1="460" y1="84" x2="1140" y2="84"/>
+  <line class="link" x1="460" y1="84" x2="460" y2="106"/>
+  <line class="link" x1="1140" y1="84" x2="1140" y2="106"/>
+  <text class="answer" x="460" y="98">金属のさび</text>
+  <text class="answer" x="1140" y="98">食品の劣化</text>
 
-  <!-- ============ 金属：3つの方法を横並び ============ -->
-  <rect class="node" x="260" y="106" width="280" height="32" rx="8"/>
-  <text class="label label-head" x="400" y="123">🔧 金属のさびを防ぐ</text>
-  <!-- 見出し → ①②③へ分岐 -->
-  <line class="link" x1="400" y1="138" x2="400" y2="150"/>
-  <line class="link" x1="160" y1="150" x2="640" y2="150"/>
-  <line class="link" x1="160" y1="150" x2="160" y2="164"/>
-  <line class="link" x1="400" y1="150" x2="400" y2="164"/>
-  <line class="link" x1="640" y1="150" x2="640" y2="164"/>
+  <!-- ============ 金属 ============ -->
+  <rect class="node" x="320" y="108" width="280" height="32" rx="8"/>
+  <text class="label label-head" x="460" y="125">🔧 金属のさびを防ぐ</text>
+  <!-- 金属見出し → ①②③（並列・横） -->
+  <line class="link" x1="460" y1="140" x2="460" y2="152"/>
+  <line class="link" x1="190" y1="152" x2="850" y2="152"/>
+  <line class="link" x1="190" y1="152" x2="190" y2="166"/>
+  <line class="link" x1="560" y1="152" x2="560" y2="166"/>
+  <line class="link" x1="850" y1="152" x2="850" y2="166"/>
 
-  <!-- 列① 酸素を断つ（①から3手段へ櫛形分岐＝並列） -->
-  <rect class="node-info" x="75" y="164" width="170" height="30" rx="8"/>
-  <text class="criterion" x="160" y="179">① 酸素を断つ</text>
-  <line class="link" x1="160" y1="194" x2="160" y2="199"/>
-  <line class="link" x1="78" y1="199" x2="160" y2="199"/>
-  <line class="link" x1="78" y1="199" x2="78" y2="291"/>
-  <line class="link" x1="78" y1="219" x2="90" y2="219"/>
-  <line class="link" x1="78" y1="255" x2="90" y2="255"/>
-  <line class="link" x1="78" y1="291" x2="90" y2="291"/>
-  <rect class="node-yellow" x="90" y="205" width="140" height="28" rx="8"/>
-  <text class="label label-leaf label-yellow" x="160" y="219">塗装</text>
-  <rect class="node-yellow" x="90" y="241" width="140" height="28" rx="8"/>
-  <text class="label label-leaf label-yellow" x="160" y="255">めっき</text>
-  <rect class="node-yellow" x="90" y="277" width="140" height="28" rx="8"/>
-  <text class="label label-leaf label-yellow" x="160" y="291">うすい被膜</text>
+  <!-- ① 酸素を断つ → 手段を横（並列） -->
+  <rect class="node-info" x="90" y="166" width="200" height="28" rx="8"/>
+  <text class="criterion" x="190" y="180">① 酸素を断つ</text>
+  <line class="link" x1="190" y1="194" x2="190" y2="202"/>
+  <line class="link" x1="95" y1="202" x2="315" y2="202"/>
+  <line class="link" x1="95" y1="202" x2="95" y2="214"/>
+  <line class="link" x1="205" y1="202" x2="205" y2="214"/>
+  <line class="link" x1="315" y1="202" x2="315" y2="214"/>
+  <rect class="node-yellow" x="45" y="214" width="100" height="28" rx="8"/>
+  <text class="label label-leaf label-yellow" x="95" y="228">塗装</text>
+  <rect class="node-yellow" x="155" y="214" width="100" height="28" rx="8"/>
+  <text class="label label-leaf label-yellow" x="205" y="228">めっき</text>
+  <rect class="node-yellow" x="265" y="214" width="100" height="28" rx="8"/>
+  <text class="label label-leaf label-yellow" x="315" y="228">うすい被膜</text>
 
-  <!-- 列② 酸化物の膜で守る（②から櫛形分岐：黒さび⇔赤さび／酸化アルミの膜） -->
-  <rect class="node-info" x="295" y="164" width="210" height="30" rx="8"/>
-  <text class="criterion" x="400" y="179">② 酸化物の膜で守る</text>
-  <line class="link" x1="400" y1="194" x2="400" y2="199"/>
-  <line class="link" x1="300" y1="199" x2="400" y2="199"/>
-  <line class="link" x1="300" y1="199" x2="300" y2="256"/>
-  <line class="link" x1="300" y1="219" x2="335" y2="219"/>
-  <line class="link" x1="300" y1="256" x2="315" y2="256"/>
-  <rect class="node-green" x="335" y="205" width="130" height="28" rx="8"/>
-  <text class="label label-leaf label-green" x="400" y="219">黒さび（鉄）</text>
-  <rect class="node-yellow" x="315" y="242" width="170" height="28" rx="8"/>
-  <text class="label label-leaf label-yellow" x="400" y="256">酸化アルミの膜</text>
-  <text class="note-small" x="400" y="278">黒さびは内部を守る酸化物</text>
-  <text class="note-small" x="400" y="295" fill="#b03856">⇔ 赤さびは内部まで進む（防げない）</text>
+  <!-- ② 酸化物の膜で守る → 例を横（並列）。赤さびは対比注記 -->
+  <rect class="node-info" x="445" y="166" width="230" height="28" rx="8"/>
+  <text class="criterion" x="560" y="180">② 酸化物の膜で守る</text>
+  <line class="link" x1="560" y1="194" x2="560" y2="202"/>
+  <line class="link" x1="515" y1="202" x2="670" y2="202"/>
+  <line class="link" x1="515" y1="202" x2="515" y2="214"/>
+  <line class="link" x1="670" y1="202" x2="670" y2="214"/>
+  <rect class="node-green" x="450" y="214" width="130" height="28" rx="8"/>
+  <text class="label label-leaf label-green" x="515" y="228">黒さび（鉄）</text>
+  <rect class="node-yellow" x="595" y="214" width="150" height="28" rx="8"/>
+  <text class="label label-leaf label-yellow" x="670" y="228">酸化アルミの膜</text>
+  <text class="note-small" x="560" y="258">黒さびは内部を守る酸化物</text>
+  <text class="note-small" x="560" y="274" fill="#b03856">⇔ 赤さびは内部まで進む（防げない）</text>
 
-  <!-- 列③ 合金にする -->
-  <rect class="node-info" x="560" y="164" width="160" height="30" rx="8"/>
-  <text class="criterion" x="640" y="179">③ 合金にする</text>
-  <line class="link" x1="640" y1="194" x2="640" y2="204"/>
-  <rect class="node-yellow" x="545" y="204" width="190" height="28" rx="8"/>
-  <text class="label label-leaf label-yellow" x="640" y="218">ステンレス（鉄＋クロム）</text>
-  <text class="label-ex" x="640" y="246" text-anchor="middle">クロムの酸化被膜でさびない</text>
+  <!-- ③ 合金にする -->
+  <rect class="node-info" x="760" y="166" width="180" height="28" rx="8"/>
+  <text class="criterion" x="850" y="180">③ 合金にする</text>
+  <line class="link" x1="850" y1="194" x2="850" y2="214"/>
+  <rect class="node-yellow" x="755" y="214" width="190" height="28" rx="8"/>
+  <text class="label label-leaf label-yellow" x="850" y="228">ステンレス（鉄＋クロム）</text>
+  <text class="label-ex" x="850" y="258" text-anchor="middle">クロムの酸化被膜でさびない</text>
 
-  <!-- ============ 食品：酸素を断つ ============ -->
-  <rect class="node" x="810" y="106" width="280" height="32" rx="8"/>
-  <text class="label label-head" x="950" y="123">🍱 食品の酸化を防ぐ</text>
-  <line class="link" x1="950" y1="138" x2="950" y2="154"/>
-  <rect class="node-info" x="800" y="154" width="300" height="28" rx="8"/>
-  <text class="note-small" x="950" y="168">食品も酸素で酸化して劣化する</text>
-  <line class="link" x1="950" y1="182" x2="950" y2="200"/>
-  <text class="criterion" x="950" y="212">酸素とふれ合わせない</text>
-  <line class="link" x1="950" y1="222" x2="950" y2="230"/>
-  <line class="link" x1="870" y1="230" x2="1030" y2="230"/>
-  <line class="link" x1="870" y1="230" x2="870" y2="240"/>
-  <line class="link" x1="1030" y1="230" x2="1030" y2="240"/>
-  <rect class="node-yellow" x="800" y="240" width="140" height="28" rx="8"/>
-  <text class="label label-leaf label-yellow" x="870" y="254">脱酸素剤</text>
-  <rect class="node-yellow" x="960" y="240" width="140" height="28" rx="8"/>
-  <text class="label label-leaf label-yellow" x="1030" y="254">窒素を入れる</text>
-  <text class="note-small" x="950" y="286">ふくろの中の酸素を断つ</text>
+  <!-- ============ 食品 ============ -->
+  <rect class="node" x="1000" y="108" width="280" height="32" rx="8"/>
+  <text class="label label-head" x="1140" y="125">🍱 食品の酸化を防ぐ</text>
+  <line class="link" x1="1140" y1="140" x2="1140" y2="154"/>
+  <rect class="node-info" x="1000" y="154" width="280" height="28" rx="8"/>
+  <text class="note-small" x="1140" y="168">食品も酸素で酸化して劣化する</text>
+  <line class="link" x1="1140" y1="182" x2="1140" y2="200"/>
+  <text class="criterion" x="1140" y="206">酸素とふれ合わせない</text>
+  <!-- → 手段を横（並列） -->
+  <line class="link" x1="1140" y1="212" x2="1140" y2="222"/>
+  <line class="link" x1="1075" y1="222" x2="1205" y2="222"/>
+  <line class="link" x1="1075" y1="222" x2="1075" y2="232"/>
+  <line class="link" x1="1205" y1="222" x2="1205" y2="232"/>
+  <rect class="node-yellow" x="1010" y="232" width="130" height="28" rx="8"/>
+  <text class="label label-leaf label-yellow" x="1075" y="246">脱酸素剤</text>
+  <rect class="node-yellow" x="1145" y="232" width="130" height="28" rx="8"/>
+  <text class="label label-leaf label-yellow" x="1210" y="246">窒素を入れる</text>
+  <text class="note-small" x="1140" y="276">ふくろの中の酸素を断つ</text>
 
 </svg>
 
