@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>現在の製鉄方法｜まとめマップ</title>
-<meta property="og:title" content="現在の製鉄方法｜まとめマップ">
-<meta property="og:description" content="たたら製鉄と現在の製鉄を「酸化鉄を炭素で還元する（酸化と還元は同時）」でつなぐ中2理科まとめマップ（教科書P61）">
+<title>製鉄の方法｜まとめマップ</title>
+<meta property="og:title" content="製鉄の方法｜まとめマップ">
+<meta property="og:description" content="古来（たたら）と現在の製鉄を「酸素の移動＝還元」でつなぐ中2理科まとめマップ（教科書P61）">
 <meta property="og:type" content="article">
 <style>
 @page { size: A4 landscape; margin: 8mm; }
@@ -16,7 +16,7 @@ body {
   color: #222;
   padding: 12px 16px;
 }
-.wrap { max-width: 1240px; margin: 0 auto; }
+.wrap { max-width: 1300px; margin: 0 auto; }
 h1 {
   font-size: 18px;
   text-align: center;
@@ -28,7 +28,7 @@ h1 {
 }
 .meta { text-align: center; font-size: 12px; color: #888; margin-bottom: 12px; }
 
-svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1240px; }
+svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1300px; }
 
 .node { fill: white; stroke: #222; stroke-width: 1.6; }
 .node-main { fill: #fff9ec; stroke: #222; stroke-width: 2.5; }
@@ -53,7 +53,7 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1240
 .link { stroke: #222; stroke-width: 1.4; fill: none; }
 .flow { stroke: #444; stroke-width: 1.5; fill: none; }
 .act { stroke: #1565C0; stroke-width: 2.2; fill: none; }
-.act-label { font-size: 12px; font-weight: bold; fill: #1565C0; text-anchor: middle; dominant-baseline: central; }
+.act-label { font-size: 12.5px; font-weight: bold; fill: #1565C0; text-anchor: middle; dominant-baseline: central; }
 .chg-label { font-size: 11px; fill: #888; text-anchor: middle; dominant-baseline: central; }
 
 .point-box { margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -122,7 +122,7 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1240
 
 <div id="startChoice" class="start-choice">
   <div class="sc-inner">
-    <h2>現在の製鉄方法マップ — どうやって学ぶ？</h2>
+    <h2>製鉄の方法マップ — どうやって学ぶ？</h2>
     <p class="sc-lead">いきなり答えを見ないで、まず自分で組み立ててみよう！<br>（自分で試してから、見本で答え合わせ）</p>
     <div class="sc-btns">
       <button onclick="chooseMode('words')"><span class="em">📝</span><b>語句のみ</b><small>使う語句を確認して、<br>自分のノートに組み立てる</small><span class="tag">💪 いちばん考えて、いちばん残る</span></button>
@@ -132,7 +132,7 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1240
   </div>
 </div>
 
-<h1>現在の製鉄方法｜まとめマップ</h1>
+<h1>製鉄の方法｜まとめマップ</h1>
 <div class="meta">中2理科　化学1章「化学変化と原子・分子」第3章 酸素がかかわる化学変化／ P.61【歴史にアクセス】</div>
 
 <div class="btns">
@@ -141,121 +141,108 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1240
   <button class="btn-print" onclick="window.print()">🖨 印刷</button>
 </div>
 
-<svg viewBox="0 0 1240 540" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 1300 500" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <marker id="aarrow" markerWidth="9" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#1565C0"/></marker>
     <marker id="farrow" markerWidth="8" markerHeight="7" refX="6.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#444"/></marker>
   </defs>
 
   <!-- ===== 中心 ===== -->
-  <rect class="node-main" x="500" y="12" width="240" height="40" rx="10"/>
-  <text class="label label-main" x="620" y="32">現在の製鉄方法</text>
-  <line class="link" x1="620" y1="52" x2="620" y2="84"/>
-  <text class="criterion" x="620" y="70">鉄は「酸化鉄を炭素で還元」してとり出す</text>
+  <rect class="node-main" x="500" y="14" width="240" height="40" rx="10"/>
+  <text class="label label-main" x="620" y="34">製鉄の方法</text>
+  <line class="link" x1="620" y1="54" x2="620" y2="84"/>
+  <!-- 凡例 -->
+  <line class="act" x1="770" y1="34" x2="810" y2="34" marker-end="url(#aarrow)"/>
+  <text class="chg-label" x="872" y="34" style="fill:#1565C0;">酸素の移動(作用)</text>
+  <line class="flow" x1="985" y1="28" x2="985" y2="40" marker-end="url(#farrow)"/>
+  <text class="chg-label" x="1030" y="34">物質の変化</text>
 
-  <!-- ===== 凡例 ===== -->
-  <line class="act" x1="660" y1="92" x2="700" y2="92" marker-end="url(#aarrow)"/>
-  <text class="chg-label" x="755" y="92" style="fill:#1565C0;">作用(還元/酸化)</text>
-  <line class="flow" x1="850" y1="92" x2="850" y2="102" marker-end="url(#farrow)"/>
-  <text class="chg-label" x="905" y="97">変化</text>
+  <!-- ===== 2分岐（古来／現在）＝並列・横 ===== -->
+  <line class="link" x1="330" y1="84" x2="1000" y2="84"/>
+  <line class="link" x1="330" y1="84" x2="330" y2="106"/>
+  <line class="link" x1="1000" y1="84" x2="1000" y2="106"/>
+  <rect class="node" x="255" y="106" width="150" height="32" rx="8"/>
+  <text class="label label-head" x="330" y="123">古来（たたら）</text>
+  <rect class="node" x="925" y="106" width="150" height="32" rx="8"/>
+  <text class="label label-head" x="1000" y="123">現在</text>
 
-  <!-- ===== 2分岐（たたら／現在）＝並列・横 ===== -->
-  <line class="link" x1="310" y1="84" x2="930" y2="84"/>
-  <line class="link" x1="310" y1="84" x2="310" y2="108"/>
-  <line class="link" x1="930" y1="84" x2="930" y2="108"/>
-  <text class="answer" x="310" y="100">古来の方法</text>
-  <text class="answer" x="930" y="100">今の方法</text>
+  <!-- ============ 古来（左）：酸素の移動で還元 ============ -->
+  <line class="link" x1="330" y1="138" x2="330" y2="150"/>
+  <line class="link" x1="255" y1="150" x2="512" y2="150"/>
+  <line class="link" x1="255" y1="150" x2="255" y2="160"/>
+  <line class="link" x1="512" y1="150" x2="512" y2="160"/>
+  <rect class="node-yellow" x="180" y="160" width="150" height="32" rx="8"/>
+  <text class="label label-leaf label-yellow" x="255" y="176">砂鉄（酸化鉄）</text>
+  <rect class="node-yellow" x="432" y="160" width="160" height="32" rx="8"/>
+  <text class="label label-leaf label-yellow" x="512" y="176">木炭（炭素）</text>
+  <!-- 酸素の移動（曲線）：砂鉄→木炭 -->
+  <path class="act" d="M 255 194 Q 383 276 512 196" marker-end="url(#aarrow)"/>
+  <text class="act-label" x="383" y="258">酸素が移動（還元）</text>
+  <!-- 変化：砂鉄→鉄 -->
+  <line class="flow" x1="255" y1="194" x2="255" y2="250" marker-end="url(#farrow)"/>
+  <text class="chg-label" x="226" y="222">還元</text>
+  <rect class="node-main" x="190" y="252" width="130" height="32" rx="8"/>
+  <text class="label label-leaf" x="255" y="268">鉄</text>
 
-  <!-- ============ たたら製鉄（左）：酸化還元ペア ============ -->
-  <rect class="node" x="195" y="110" width="230" height="32" rx="8"/>
-  <text class="label label-head" x="310" y="127">⛩ たたら製鉄（古来）</text>
+  <!-- ============ 現在（右）：還元 → 鉄(+炭素) → 酸素で炭素を除く ============ -->
+  <line class="link" x1="1000" y1="138" x2="1000" y2="150"/>
+  <line class="link" x1="880" y1="150" x2="1160" y2="150"/>
+  <line class="link" x1="880" y1="150" x2="880" y2="160"/>
+  <line class="link" x1="1160" y1="150" x2="1160" y2="160"/>
+  <rect class="node-yellow" x="775" y="160" width="210" height="32" rx="8"/>
+  <text class="label label-leaf label-yellow" x="880" y="176">鉄鉱石（磁鉄鉱・赤鉄鉱）</text>
+  <rect class="node-yellow" x="1080" y="160" width="160" height="32" rx="8"/>
+  <text class="label label-leaf label-yellow" x="1160" y="176">コークス（炭素）</text>
+  <!-- 酸素の移動（曲線）：鉄鉱石→コークス（浅い弧で下と分離） -->
+  <path class="act" d="M 900 192 Q 1020 232 1140 192" marker-end="url(#aarrow)"/>
+  <text class="act-label" x="1020" y="214">酸素が移動（還元）</text>
+  <!-- 変化：鉄鉱石→鉄(+炭素) -->
+  <line class="flow" x1="880" y1="194" x2="880" y2="252" marker-end="url(#farrow)"/>
+  <text class="chg-label" x="851" y="224">還元</text>
+  <rect class="node" x="785" y="254" width="190" height="32" rx="8"/>
+  <text class="label label-leaf" x="880" y="270">鉄（＋炭素）</text>
 
-  <rect class="node-yellow" x="110" y="166" width="150" height="32" rx="8"/>
-  <text class="label label-leaf label-yellow" x="185" y="182">木炭（炭素）</text>
-  <rect class="node-yellow" x="380" y="166" width="160" height="32" rx="8"/>
-  <text class="label label-leaf label-yellow" x="460" y="182">砂鉄（酸化鉄）</text>
-  <!-- 作用：炭素が酸化鉄を還元 -->
-  <line class="act" x1="262" y1="182" x2="378" y2="182" marker-end="url(#aarrow)"/>
-  <text class="act-label" x="320" y="172">還元する</text>
-  <!-- 変化（縦） -->
-  <line class="flow" x1="185" y1="198" x2="185" y2="234" marker-end="url(#farrow)"/>
-  <text class="chg-label" x="156" y="216">酸化</text>
-  <line class="flow" x1="460" y1="198" x2="460" y2="234" marker-end="url(#farrow)"/>
-  <text class="chg-label" x="489" y="216">還元</text>
-  <rect class="node" x="110" y="236" width="150" height="30" rx="8"/>
-  <text class="label label-leaf" x="185" y="251">二酸化炭素</text>
-  <rect class="node-main" x="395" y="236" width="130" height="30" rx="8"/>
-  <text class="label label-leaf" x="460" y="251">鉄</text>
-  <text class="note-small" x="318" y="288">炭素が酸化鉄から酸素をうばう</text>
-  <text class="note-small" x="318" y="304">＝ 酸化と還元は同時に起こる</text>
-
-  <!-- ============ 現在の製鉄（右）：還元ペア＋炭素除去ペア ============ -->
-  <rect class="node" x="815" y="110" width="230" height="32" rx="8"/>
-  <text class="label label-head" x="930" y="127">🏭 現在の製鉄</text>
-
-  <!-- コークス → 一酸化炭素（変化） -->
-  <rect class="node-yellow" x="665" y="158" width="150" height="30" rx="8"/>
-  <text class="label label-leaf label-yellow" x="740" y="173">コークス（炭素）</text>
-  <line class="flow" x1="740" y1="188" x2="740" y2="204" marker-end="url(#farrow)"/>
-  <rect class="node-yellow" x="665" y="206" width="150" height="30" rx="8"/>
-  <text class="label label-leaf label-yellow" x="740" y="221">一酸化炭素</text>
-  <!-- 作用：一酸化炭素が酸化鉄を還元 -->
-  <line class="act" x1="817" y1="221" x2="963" y2="221" marker-end="url(#aarrow)"/>
-  <text class="act-label" x="890" y="211">還元する</text>
-  <rect class="node-yellow" x="965" y="206" width="180" height="30" rx="8"/>
-  <text class="label label-leaf label-yellow" x="1055" y="221">鉄鉱石（酸化鉄）</text>
-  <!-- 変化（縦） -->
-  <line class="flow" x1="740" y1="236" x2="740" y2="272" marker-end="url(#farrow)"/>
-  <text class="chg-label" x="711" y="254">酸化</text>
-  <line class="flow" x1="1055" y1="236" x2="1055" y2="272" marker-end="url(#farrow)"/>
-  <text class="chg-label" x="1084" y="254">還元</text>
-  <rect class="node" x="665" y="274" width="150" height="30" rx="8"/>
-  <text class="label label-leaf" x="740" y="289">二酸化炭素</text>
-  <rect class="node-main" x="985" y="274" width="140" height="30" rx="8"/>
-  <text class="label label-leaf" x="1055" y="289">鉄（もろい）</text>
-
-  <!-- 炭素除去ペア -->
-  <line class="flow" x1="1055" y1="304" x2="1055" y2="342" marker-end="url(#farrow)"/>
-  <text class="note-small" x="1055" y="324">よぶんな炭素を除く</text>
-  <rect class="node-yellow" x="665" y="344" width="150" height="30" rx="8"/>
-  <text class="label label-leaf label-yellow" x="740" y="359">酸素</text>
-  <line class="act" x1="817" y1="359" x2="963" y2="359" marker-end="url(#aarrow)"/>
-  <text class="act-label" x="890" y="349">酸化する</text>
-  <rect class="node-yellow" x="965" y="344" width="180" height="30" rx="8"/>
-  <text class="label label-leaf label-yellow" x="1055" y="359">よぶんな炭素</text>
-  <line class="flow" x1="1055" y1="374" x2="1055" y2="410" marker-end="url(#farrow)"/>
-  <text class="chg-label" x="1086" y="392">酸化</text>
-  <rect class="node" x="985" y="412" width="140" height="30" rx="8"/>
-  <text class="label label-leaf" x="1055" y="427">二酸化炭素</text>
-  <text class="note-small" x="1055" y="456">→ 炭素の量を調整して</text>
-  <text class="note-small" x="1055" y="471">かたさ・ねばりけを決める</text>
+  <!-- 鉄(+炭素) → 炭素がCO2で抜ける／酸素で酸化 → 鉄（縦に分離） -->
+  <rect class="node" x="1055" y="300" width="120" height="30" rx="8"/>
+  <text class="label label-leaf" x="1115" y="315">二酸化炭素</text>
+  <path class="act" d="M 975 282 Q 1028 298 1053 309" marker-end="url(#aarrow)"/>
+  <rect class="node-yellow" x="1055" y="374" width="120" height="30" rx="8"/>
+  <text class="label label-leaf label-yellow" x="1115" y="389">酸素</text>
+  <path class="act" d="M 1055 387 Q 962 360 884 290" marker-end="url(#aarrow)"/>
+  <text class="act-label" x="1010" y="352">酸素が結びつく（酸化）</text>
+  <!-- 変化：鉄(+炭素)→鉄 -->
+  <line class="flow" x1="880" y1="286" x2="880" y2="426" marker-end="url(#farrow)"/>
+  <text class="chg-label" x="838" y="362">炭素がぬける</text>
+  <rect class="node-main" x="815" y="428" width="130" height="32" rx="8"/>
+  <text class="label label-leaf" x="880" y="444">鉄（純粋）</text>
+  <text class="note-small" x="880" y="478">炭素の量を調整 → かたさ・ねばりけが決まる</text>
 
 </svg>
 
 <!-- ===== 語句のみ ===== -->
 <div class="words-grid">
-  <span>酸化鉄</span><span>還元</span><span>酸化</span><span>炭素</span>
-  <span>鉄</span><span>二酸化炭素</span><span>たたら製鉄</span><span>砂鉄</span>
-  <span>木炭</span><span>鉄鉱石</span><span>コークス</span><span>一酸化炭素</span>
-  <span>酸素</span><span>もろい</span><span>よぶんな炭素</span><span>かたさ・ねばりけ</span>
+  <span>製鉄</span><span>酸化鉄</span><span>還元</span><span>酸化</span>
+  <span>酸素</span><span>炭素</span><span>鉄</span><span>二酸化炭素</span>
+  <span>砂鉄</span><span>木炭</span><span>鉄鉱石</span><span>磁鉄鉱</span>
+  <span>赤鉄鉱</span><span>コークス</span><span>たたら製鉄</span><span>かたさ・ねばりけ</span>
 </div>
 
 <!-- ===== ポイント ===== -->
 <div class="point-box">
   <div class="point-card">
-    <strong>📌 酸化と還元は同時（製鉄の原理）</strong><br>
-    <strong>炭素</strong>が<strong>酸化鉄</strong>から酸素をうばう＝酸化鉄は<strong>還元</strong>されて<strong>鉄</strong>に、炭素は<strong>酸化</strong>されて<strong>二酸化炭素</strong>に。たたら製鉄では木炭（炭素）が砂鉄（酸化鉄）を還元する。
+    <strong>📌 製鉄の原理＝酸素の受け渡し</strong><br>
+    <strong>酸化鉄</strong>の<strong>酸素</strong>が<strong>炭素</strong>に移ると、酸化鉄は<strong>還元</strong>されて<strong>鉄</strong>に、炭素は<strong>酸化</strong>されて<strong>二酸化炭素</strong>に。酸化と還元は同時に起こる。古来のたたら製鉄では砂鉄（酸化鉄）を木炭（炭素）で還元した。
   </div>
   <div class="point-card">
     <strong>📌 現在の製鉄</strong><br>
-    コークスからできた<strong>一酸化炭素</strong>が<strong>鉄鉱石（酸化鉄）</strong>を還元して<strong>鉄</strong>に。この鉄はもろいので、<strong>酸素</strong>が<strong>よぶんな炭素</strong>を酸化して<strong>二酸化炭素</strong>にして除き、炭素の量を調整する。
+    <strong>鉄鉱石（磁鉄鉱・赤鉄鉱）</strong>を<strong>コークス（炭素）</strong>で還元すると<strong>鉄（＋炭素）</strong>ができる。これに<strong>酸素</strong>を加え、よぶんな炭素を酸化して<strong>二酸化炭素</strong>として除き、炭素の量を調整して用途に合う鉄にする。
   </div>
 </div>
 
 <!-- ===== まとめ（穴埋め） ===== -->
 <div class="summary">
   <strong>📝 まとめ</strong><br>
-  鉄は、<span class="blank">酸化鉄</span>を<span class="blank">炭素</span>で<span class="blank">還元</span>してとり出す。たたら製鉄では、<span class="blank">木炭</span>（炭素）が<span class="blank">砂鉄</span>（酸化鉄）から酸素をうばって還元し、鉄ができる。このとき炭素は<span class="blank">酸化</span>されて<span class="blank">二酸化炭素</span>になる（酸化と還元は同時）。現在の製鉄では、コークスからできた<span class="blank">一酸化炭素</span>が酸化鉄を還元して鉄ができる。この鉄はもろいので、<span class="blank">酸素</span>がよぶんな炭素を酸化して除き、炭素の量を調整していろいろな<span class="blank">かたさ・ねばりけ</span>の鉄をつくる。
+  製鉄は、<span class="blank">酸化鉄</span>を<span class="blank">炭素</span>で<span class="blank">還元</span>して鉄をとり出す。古来のたたら製鉄では、<span class="blank">砂鉄</span>（酸化鉄）の<span class="blank">酸素</span>が<span class="blank">木炭</span>（炭素）に移って還元され、鉄ができる。現在の製鉄では、<span class="blank">鉄鉱石</span>の酸素が<span class="blank">コークス</span>に移って還元され、鉄（＋炭素）ができる。この鉄に酸素を加えると、よぶんな炭素が<span class="blank">酸化</span>されて<span class="blank">二酸化炭素</span>として出ていき、炭素の量を調整して<span class="blank">かたさ・ねばりけ</span>を決める。
 </div>
 
 </div><!-- /wrap -->
