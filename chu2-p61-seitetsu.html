@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>現在の製鉄方法｜まとめマップ</title>
+<meta property="og:title" content="現在の製鉄方法｜まとめマップ">
+<meta property="og:description" content="たたら製鉄と現在の製鉄を「酸化鉄を炭素で還元する」でつなぐ中2理科まとめマップ（教科書P61）">
+<meta property="og:type" content="article">
+<style>
+@page { size: A4 landscape; margin: 8mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "UD デジタル 教科書体 NP-B", "Hiragino Maru Gothic ProN", "Meiryo", sans-serif;
+  background: white;
+  color: #222;
+  padding: 12px 16px;
+}
+.wrap { max-width: 1200px; margin: 0 auto; }
+h1 {
+  font-size: 18px;
+  text-align: center;
+  color: #222;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #222;
+  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+}
+.meta { text-align: center; font-size: 12px; color: #888; margin-bottom: 12px; }
+
+svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1200px; }
+
+.node { fill: white; stroke: #222; stroke-width: 1.6; }
+.node-main { fill: #fff9ec; stroke: #222; stroke-width: 2.5; }
+.node-yellow { fill: #fff4c2; stroke: #C8961E; stroke-width: 2; }
+.node-green { fill: #d8f3dc; stroke: #2E7D32; stroke-width: 2; }
+.node-pink { fill: #ffe3ec; stroke: #D63384; stroke-width: 2; }
+.node-info { fill: #f7f7f0; stroke: #888; stroke-width: 1.2; }
+.label { font-family: inherit; font-size: 14px; fill: #222; text-anchor: middle; dominant-baseline: central; }
+.label-main { font-size: 17px; font-weight: bold; }
+.label-leaf { font-weight: bold; font-size: 14.5px; }
+.label-yellow { fill: #6b4a00; }
+.label-green { fill: #1b5e20; }
+.label-pink { fill: #b03856; }
+.label-ex { font-size: 12px; fill: #555; font-style: italic; }
+.label-head { font-weight: bold; font-size: 15px; }
+.criterion {
+  font-size: 12px; fill: #555; text-anchor: middle; dominant-baseline: central;
+  font-style: italic; font-weight: bold;
+}
+.answer { font-size: 11px; fill: #888; text-anchor: middle; dominant-baseline: central; }
+.note-small { font-size: 11.5px; fill: #444; text-anchor: middle; dominant-baseline: central; }
+.link { stroke: #222; stroke-width: 1.4; fill: none; }
+.flow { stroke: #222; stroke-width: 1.8; fill: none; }
+
+.point-box { margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.point-card {
+  padding: 10px 14px; background: #fff8e8; border: 2px dashed #c8961e;
+  border-radius: 10px; font-size: 12.5px; line-height: 1.7; color: #5a4030;
+}
+.point-card strong { color: #946800; }
+
+.summary {
+  margin-top: 16px; padding: 12px 16px; background: #f7f7f0; border: 1px solid #ccc;
+  border-radius: 10px; font-size: 13px; line-height: 1.9; color: #333;
+}
+.summary strong { font-size: 14px; }
+.blank {
+  display: inline-block; min-width: 72px; border-bottom: 2px solid #D63384;
+  text-align: center; color: #D63384; font-weight: bold;
+}
+
+.btns { text-align: center; margin: 14px 0 4px; }
+.btns button, .btns a {
+  font-family: inherit; font-size: 13px; padding: 7px 18px; margin: 0 5px;
+  border: none; border-radius: 20px; color: white; cursor: pointer;
+  text-decoration: none; display: inline-block;
+}
+.btn-list { background: #2E7D32; }
+.btn-words { background: #f4a261; }
+.btn-print { background: #D63384; }
+
+.words-grid { display: none; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 10px; }
+.words-grid span {
+  background: #fff4c2; border: 1px solid #C8961E; border-radius: 8px;
+  padding: 8px 10px; font-size: 13px; text-align: center; color: #333;
+}
+.words-only .words-grid { display: grid; }
+.words-only svg { display: none; }
+.words-only .point-box,
+.words-only .summary { display: none; }
+
+@media print {
+  .btns { display: none; }
+}
+.start-choice{position:fixed;inset:0;background:linear-gradient(160deg,#fffaf2 0%,#fff5e9 100%);z-index:9999;display:flex;align-items:center;justify-content:center;padding:40px 28px;overflow:auto;}
+.sc-inner{text-align:center;max-width:1180px;width:100%;}
+.sc-inner h2{font-size:35px;color:#BF360C;margin-bottom:14px;letter-spacing:.04em;}
+.sc-inner .sc-lead{font-size:17.5px;color:#8a7a6a;margin-bottom:44px;line-height:2;}
+.sc-btns{display:flex;gap:34px;flex-wrap:wrap;justify-content:center;align-items:stretch;}
+.sc-btns button{flex:1 1 300px;max-width:352px;border:3px solid #FFA000;background:#fff;border-radius:24px;padding:44px 32px 38px;cursor:pointer;font-family:inherit;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;transition:.16s;box-shadow:0 3px 10px rgba(230,81,0,.06);}
+.sc-btns button:hover{background:#fffdf8;transform:translateY(-5px);box-shadow:0 12px 26px rgba(230,81,0,.16);}
+.sc-btns button .em{font-size:58px;line-height:1;}
+.sc-btns button b{font-size:24px;color:#BF360C;letter-spacing:.03em;}
+.sc-btns button small{font-size:15px;color:#7a7066;line-height:1.95;}
+.sc-btns button .tag{margin-top:8px;font-size:13.5px;font-weight:bold;color:#E65100;background:#fff3e0;border-radius:12px;padding:8px 14px;line-height:1.7;width:100%;box-sizing:border-box;}
+.sc-btns button .tag.warn{color:#9a6a00;background:#fff8e1;}
+.sc-btns button .tag.steps{text-align:left;line-height:2;padding:10px 16px;}
+.sc-btns button.mihon{border-color:#74c69d;}
+.sc-btns button.mihon b{color:#2E7D32;}
+.sc-btns button.mihon .tag{color:#2E7D32;background:#e6f4ea;}
+.sc-btns button.mihon .tag.steps{color:#2E7D32;}
+.sc-foot{margin-top:34px;font-size:13px;color:#bbb;}
+@media print{.start-choice{display:none!important;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div id="startChoice" class="start-choice">
+  <div class="sc-inner">
+    <h2>現在の製鉄方法マップ — どうやって学ぶ？</h2>
+    <p class="sc-lead">いきなり答えを見ないで、まず自分で組み立ててみよう！<br>（自分で試してから、見本で答え合わせ）</p>
+    <div class="sc-btns">
+      <button onclick="chooseMode('words')"><span class="em">📝</span><b>語句のみ</b><small>使う語句を確認して、<br>自分のノートに組み立てる</small><span class="tag">💪 いちばん考えて、いちばん残る</span></button>
+      <button class="mihon" onclick="chooseMode('mihon')"><span class="em">👁️</span><b>見本を見る</b><small>見て書く・ヒントにする・<br>答え合わせ、どれもOK</small><span class="tag warn steps">⚠ 写すだけでは頭に残らない。<br>① 教科書を読み返す<br>② わからないところを質問する<br>③ ノートに肉付けする</span></button>
+    </div>
+    <div class="sc-foot">あとで上のボタンでいつでも切りかえできます</div>
+  </div>
+</div>
+
+<h1>現在の製鉄方法｜まとめマップ</h1>
+<div class="meta">中2理科　化学1章「化学変化と原子・分子」第3章 酸素がかかわる化学変化／ P.61【歴史にアクセス】</div>
+
+<div class="btns">
+  <a href="index.html" class="btn-list">📋 一覧へ</a>
+  <button class="btn-words" onclick="toggleWords(this)">📝 語句のみ</button>
+  <button class="btn-print" onclick="window.print()">🖨 印刷</button>
+</div>
+
+<svg viewBox="0 0 1200 420" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#222"/>
+    </marker>
+  </defs>
+
+  <!-- ===== 中心 ===== -->
+  <rect class="node-main" x="470" y="12" width="260" height="42" rx="10"/>
+  <text class="label label-main" x="600" y="33">現在の製鉄方法</text>
+  <line class="link" x1="600" y1="54" x2="600" y2="82"/>
+  <text class="criterion" x="600" y="70">鉄は「酸化鉄を炭素で還元」してとり出す</text>
+
+  <!-- ===== 2分岐（たたら／現在）＝並列・横 ===== -->
+  <line class="link" x1="330" y1="82" x2="870" y2="82"/>
+  <line class="link" x1="330" y1="82" x2="330" y2="106"/>
+  <line class="link" x1="870" y1="82" x2="870" y2="106"/>
+  <text class="answer" x="330" y="96">古来の方法</text>
+  <text class="answer" x="870" y="96">今の方法</text>
+
+  <!-- ============ たたら製鉄（左） ============ -->
+  <rect class="node" x="205" y="108" width="250" height="34" rx="8"/>
+  <text class="label label-head" x="330" y="126">⛩ たたら製鉄（古来）</text>
+  <!-- 材料（並列・横） -->
+  <line class="link" x1="330" y1="142" x2="330" y2="152"/>
+  <line class="link" x1="248" y1="152" x2="412" y2="152"/>
+  <line class="link" x1="248" y1="152" x2="248" y2="162"/>
+  <line class="link" x1="412" y1="152" x2="412" y2="162"/>
+  <rect class="node-yellow" x="175" y="162" width="146" height="30" rx="8"/>
+  <text class="label label-leaf label-yellow" x="248" y="177">砂鉄（酸化鉄）</text>
+  <rect class="node-yellow" x="339" y="162" width="146" height="30" rx="8"/>
+  <text class="label label-leaf label-yellow" x="412" y="177">木炭（炭素）</text>
+  <!-- 還元（直列・矢印） -->
+  <line class="flow" x1="330" y1="192" x2="330" y2="212" marker-end="url(#arrow)"/>
+  <rect class="node-green" x="195" y="214" width="270" height="34" rx="8"/>
+  <text class="label label-leaf label-green" x="330" y="231">木炭で酸化鉄を還元</text>
+  <line class="flow" x1="330" y1="248" x2="330" y2="268" marker-end="url(#arrow)"/>
+  <rect class="node-main" x="265" y="270" width="130" height="34" rx="8"/>
+  <text class="label label-leaf" x="330" y="287">鉄</text>
+
+  <!-- ============ 現在の製鉄（右） ============ -->
+  <rect class="node" x="745" y="108" width="250" height="34" rx="8"/>
+  <text class="label label-head" x="870" y="126">🏭 現在の製鉄</text>
+  <!-- 材料（並列・横） -->
+  <line class="link" x1="870" y1="142" x2="870" y2="152"/>
+  <line class="link" x1="790" y1="152" x2="995" y2="152"/>
+  <line class="link" x1="790" y1="152" x2="790" y2="162"/>
+  <line class="link" x1="995" y1="152" x2="995" y2="162"/>
+  <rect class="node-yellow" x="680" y="162" width="220" height="30" rx="8"/>
+  <text class="label label-leaf label-yellow" x="790" y="177">鉄鉱石（磁鉄鉱・赤鉄鉱）</text>
+  <rect class="node-yellow" x="915" y="162" width="160" height="30" rx="8"/>
+  <text class="label label-leaf label-yellow" x="995" y="177">コークス（炭素）</text>
+  <!-- 手順（直列・矢印） -->
+  <line class="flow" x1="887" y1="192" x2="887" y2="210" marker-end="url(#arrow)"/>
+  <rect class="node-green" x="710" y="212" width="354" height="34" rx="8"/>
+  <text class="label label-leaf label-green" x="887" y="229">① 一酸化炭素が酸化鉄を還元 → 鉄</text>
+  <line class="flow" x1="887" y1="246" x2="887" y2="262" marker-end="url(#arrow)"/>
+  <rect class="node" x="710" y="264" width="354" height="40" rx="8"/>
+  <text class="note-small" x="887" y="278">② 鉄は炭素が多くもろい →</text>
+  <text class="note-small" x="887" y="293">酸素をふきこみ炭素を二酸化炭素にして除く</text>
+  <line class="flow" x1="887" y1="304" x2="887" y2="320" marker-end="url(#arrow)"/>
+  <rect class="node-yellow" x="710" y="322" width="354" height="34" rx="8"/>
+  <text class="label label-leaf label-yellow" x="887" y="339">③ 炭素の量を調整 → かたさ・ねばりけ</text>
+
+</svg>
+
+<!-- ===== 語句のみ ===== -->
+<div class="words-grid">
+  <span>製鉄</span><span>酸化鉄</span><span>還元</span><span>炭素</span>
+  <span>鉄</span><span>鉄鉱石</span><span>磁鉄鉱</span><span>赤鉄鉱</span>
+  <span>コークス</span><span>一酸化炭素</span><span>酸素</span><span>二酸化炭素</span>
+  <span>たたら製鉄</span><span>砂鉄</span><span>木炭</span><span>かたさ・ねばりけ</span>
+</div>
+
+<!-- ===== ポイント ===== -->
+<div class="point-box">
+  <div class="point-card">
+    <strong>📌 たたら製鉄（古来）</strong><br>
+    日本古来の製鉄。<strong>砂鉄（酸化鉄）</strong>を<strong>木炭（炭素）</strong>で<strong>還元</strong>して鉄をとり出す。原理は現在と同じ「酸化鉄を炭素で還元」。
+  </div>
+  <div class="point-card">
+    <strong>📌 現在の製鉄</strong><br>
+    <strong>鉄鉱石（磁鉄鉱・赤鉄鉱）</strong>に<strong>コークス</strong>を混ぜ、できた<strong>一酸化炭素</strong>が酸化鉄を還元して鉄ができる。この鉄は炭素が多くもろいので、<strong>酸素</strong>をふきこみ炭素を<strong>二酸化炭素</strong>にして除き、炭素の量を調整して用途に合う鉄にする。
+  </div>
+</div>
+
+<!-- ===== まとめ（穴埋め） ===== -->
+<div class="summary">
+  <strong>📝 まとめ</strong><br>
+  鉄は、酸化鉄をふくむ<span class="blank">鉄鉱石</span>（磁鉄鉱・赤鉄鉱）を<span class="blank">炭素</span>で<span class="blank">還元</span>してとり出す。古来の<span class="blank">たたら製鉄</span>では<span class="blank">砂鉄</span>を<span class="blank">木炭</span>で還元した。現在の製鉄では、鉄鉱石に<span class="blank">コークス</span>を混ぜ、できた<span class="blank">一酸化炭素</span>が酸化鉄を還元して鉄ができる。この鉄は炭素が多くもろいので、<span class="blank">酸素</span>をふきこんで炭素を<span class="blank">二酸化炭素</span>に変えて除き、炭素の量を調整していろいろなかたさ・ねばりけの鉄をつくる。
+</div>
+
+</div><!-- /wrap -->
+
+<script>
+function toggleWords(btn){
+  var wrap = document.querySelector('.wrap');
+  wrap.classList.toggle('words-only');
+  if(wrap.classList.contains('words-only')){
+    btn.textContent = '🗺️ マップへ戻る';
+  } else {
+    btn.textContent = '📝 語句のみ';
+  }
+}
+function chooseMode(m){
+  var sc = document.getElementById('startChoice');
+  if(sc) sc.style.display = 'none';
+  if(m === 'words'){
+    var b = document.querySelector('.btn-words');
+    if(b) toggleWords(b);
+  }
+}
+</script>
+</body>
+</html>
