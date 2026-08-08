@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Q・N帯｜中2 生物と細胞（P92〜103）</title>
+<meta property="og:title" content="Q・N帯｜中2 生物と細胞（P92〜103）">
+<meta property="og:description" content="B5ノートの上部に貼る「問い（Q）と語句（N）」だけの帯。組み立て（K）と整理（S）はノート本体で子どもが行う。中2理科 単元2-1。">
+<meta property="og:type" content="article">
+<style>
+@page { size: B5 portrait; margin: 8mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "UD デジタル 教科書体 NP-B", "UD Digi Kyokasho NK-R", "Hiragino Maru Gothic ProN", "Meiryo", sans-serif;
+  background: #f4f2ec;
+  color: #222;
+  padding: 20px 12px 60px;
+}
+
+/* ===== 画面用ツールバー（印刷では消える） ===== */
+.bar { text-align: center; margin-bottom: 18px; }
+.bar h1 {
+  font-family: "Zen Maru Gothic", "UD デジタル 教科書体 NP-B", sans-serif;
+  font-size: 19px; letter-spacing: .06em; margin-bottom: 4px;
+}
+.bar .lead { font-size: 12.5px; color: #7a736a; line-height: 1.9; margin-bottom: 12px; }
+.bar button {
+  font-family: inherit; font-size: 13px; font-weight: bold; padding: 7px 20px; margin: 0 4px;
+  border: none; border-radius: 20px; color: #fff; cursor: pointer;
+}
+.btn-print { background: #D63384; }
+.btn-color { background: #E08A00; }
+
+/* ===== B5用紙 ===== */
+.sheet {
+  width: 182mm; min-height: 257mm; margin: 0 auto; padding: 8mm;
+  background: #fff; box-shadow: 0 4px 18px rgba(0,0,0,.14);
+}
+
+/* ===== 帯（1本＝1つの問い） ===== */
+.obi {
+  border: 2.2px solid #222; border-radius: 10px;
+  padding: 9px 13px 10px; margin-bottom: 5mm;
+  page-break-inside: avoid; position: relative;
+}
+
+.obi-head {
+  display: flex; align-items: baseline; gap: 9px;
+  border-bottom: 1.4px dashed #999; padding-bottom: 5px; margin-bottom: 8px;
+}
+.no {
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-size: 20px; font-weight: bold; line-height: 1;
+}
+.title {
+  font-family: "Zen Maru Gothic", "UD デジタル 教科書体 NP-B", sans-serif;
+  font-size: 15.5px; font-weight: bold; letter-spacing: .04em;
+}
+.page-no { font-size: 11.5px; color: #666; margin-left: auto; letter-spacing: .04em; }
+
+.row { display: flex; align-items: flex-start; gap: 8px; }
+.row + .row { margin-top: 9px; }
+.badge {
+  flex: 0 0 auto; width: 21px; height: 21px; border: 2px solid #222; border-radius: 50%;
+  font-family: "Zen Maru Gothic", sans-serif; font-size: 12.5px; font-weight: bold;
+  display: flex; align-items: center; justify-content: center; margin-top: 1px;
+}
+
+.q { font-size: 14px; line-height: 1.75; font-weight: bold; padding-top: 1px; }
+
+.words { display: flex; flex-wrap: wrap; gap: 6px 7px; }
+.w {
+  border: 1.8px solid #333; border-radius: 8px;
+  padding: 4px 9px; font-size: 13.5px; font-weight: bold; line-height: 1.4;
+  background: #fff;
+}
+
+.hint {
+  text-align: right; font-size: 10.5px; color: #666; margin-top: 7px; letter-spacing: .03em;
+}
+
+/* 切り取り線 */
+.cut {
+  border-top: 1.4px dashed #aaa; margin: 0 0 5mm; position: relative; height: 0;
+}
+.cut::before {
+  content: "✂"; position: absolute; left: 0; top: -9px;
+  background: #fff; padding-right: 5px; font-size: 12px; color: #aaa;
+}
+
+/* ===== カラー版 ===== */
+body.color .obi:nth-of-type(1) { background: #f2fbf3; border-color: #2E7D32; }
+body.color .obi:nth-of-type(2) { background: #fff4f8; border-color: #D63384; }
+body.color .obi:nth-of-type(3) { background: #fffbe9; border-color: #C8961E; }
+body.color .obi:nth-of-type(4) { background: #fff3e8; border-color: #E65100; }
+body.color .obi:nth-of-type(1) .no, body.color .obi:nth-of-type(1) .title { color: #1b5e20; }
+body.color .obi:nth-of-type(2) .no, body.color .obi:nth-of-type(2) .title { color: #b03856; }
+body.color .obi:nth-of-type(3) .no, body.color .obi:nth-of-type(3) .title { color: #8a6100; }
+body.color .obi:nth-of-type(4) .no, body.color .obi:nth-of-type(4) .title { color: #b34700; }
+body.color .obi:nth-of-type(1) .badge { border-color: #2E7D32; color: #1b5e20; }
+body.color .obi:nth-of-type(2) .badge { border-color: #D63384; color: #b03856; }
+body.color .obi:nth-of-type(3) .badge { border-color: #C8961E; color: #8a6100; }
+body.color .obi:nth-of-type(4) .badge { border-color: #E65100; color: #b34700; }
+body.color .obi:nth-of-type(1) .w { background: #d8f3dc; border-color: #2E7D32; color: #1b5e20; }
+body.color .obi:nth-of-type(2) .w { background: #ffe3ec; border-color: #D63384; color: #b03856; }
+body.color .obi:nth-of-type(3) .w { background: #fff4c2; border-color: #C8961E; color: #6b4a00; }
+body.color .obi:nth-of-type(4) .w { background: #ffe8d0; border-color: #E65100; color: #8c3d00; }
+
+@media print {
+  body { background: #fff; padding: 0; }
+  .bar { display: none; }
+  .sheet { width: auto; min-height: 0; margin: 0; padding: 0; box-shadow: none; }
+  .obi { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <h1>Q・N帯　中2理科／生物と細胞（P92〜103）</h1>
+  <p class="lead">
+    切り取って <b>B5ノートの上部に貼る</b>。問い（Q）と語句（N）だけ書いてある。<br>
+    ノート本体で、語句を線でつないで <b>自分のマップ（K）</b> をつくり、その下に <b>まとめ文（S）</b> を書く。
+  </p>
+  <button class="btn-print" onclick="window.print()">🖨 印刷する</button>
+  <button class="btn-color" onclick="toggleColor(this)">🎨 カラーで見る</button>
+</div>
+
+<div class="sheet">
+
+  <div class="obi">
+    <div class="obi-head">
+      <span class="no">①</span>
+      <span class="title">植物の細胞</span>
+      <span class="page-no">教科書 P92〜95</span>
+    </div>
+    <div class="row">
+      <span class="badge">Q</span>
+      <span class="q">植物のからだを顕微鏡で観察すると、どのようなつくりが見えるだろうか。</span>
+    </div>
+    <div class="row">
+      <span class="badge">N</span>
+      <div class="words">
+        <span class="w">細胞</span>
+        <span class="w">孔辺細胞</span>
+        <span class="w">葉緑体</span>
+        <span class="w">液胞</span>
+        <span class="w">核</span>
+        <span class="w">細胞壁</span>
+        <span class="w">細胞膜</span>
+      </div>
+    </div>
+    <p class="hint">↓ この下に、自分のマップ（K）とまとめ文（S）をかこう</p>
+  </div>
+
+  <div class="cut"></div>
+
+  <div class="obi">
+    <div class="obi-head">
+      <span class="no">②</span>
+      <span class="title">動物の細胞</span>
+      <span class="page-no">教科書 P96〜99</span>
+    </div>
+    <div class="row">
+      <span class="badge">Q</span>
+      <span class="q">動物のからだを顕微鏡で観察すると、どのような特徴が見られるだろうか。</span>
+    </div>
+    <div class="row">
+      <span class="badge">N</span>
+      <div class="words">
+        <span class="w">動物の細胞</span>
+        <span class="w">植物の細胞</span>
+        <span class="w">核</span>
+        <span class="w">細胞壁</span>
+        <span class="w">葉緑体</span>
+        <span class="w">液胞</span>
+        <span class="w">細胞質</span>
+        <span class="w">細胞膜</span>
+      </div>
+    </div>
+    <p class="hint">↓ この下に、自分のマップ（K）とまとめ文（S）をかこう</p>
+  </div>
+
+  <div class="cut"></div>
+
+  <div class="obi">
+    <div class="obi-head">
+      <span class="no">③</span>
+      <span class="title">生物のからだと細胞</span>
+      <span class="page-no">教科書 P100〜102</span>
+    </div>
+    <div class="row">
+      <span class="badge">Q</span>
+      <span class="q">生物のからだは、どのようにつくられているだろうか。</span>
+    </div>
+    <div class="row">
+      <span class="badge">N</span>
+      <div class="words">
+        <span class="w">プランクトン</span>
+        <span class="w">単細胞生物</span>
+        <span class="w">多細胞生物</span>
+        <span class="w">細胞</span>
+        <span class="w">組織</span>
+        <span class="w">器官</span>
+        <span class="w">個体</span>
+      </div>
+    </div>
+    <p class="hint">↓ この下に、自分のマップ（K）とまとめ文（S）をかこう</p>
+  </div>
+
+  <div class="cut"></div>
+
+  <div class="obi">
+    <div class="obi-head">
+      <span class="no">④</span>
+      <span class="title">細胞が活動するためのエネルギー</span>
+      <span class="page-no">教科書 P103</span>
+    </div>
+    <div class="row">
+      <span class="badge">Q</span>
+      <span class="q">細胞は、どのようにして活動するためのエネルギーをとり出しているだろうか。</span>
+    </div>
+    <div class="row">
+      <span class="badge">N</span>
+      <div class="words">
+        <span class="w">酸素</span>
+        <span class="w">養分（有機物）</span>
+        <span class="w">分解</span>
+        <span class="w">エネルギー</span>
+        <span class="w">細胞の呼吸</span>
+      </div>
+    </div>
+    <p class="hint">↓ この下に、自分のマップ（K）とまとめ文（S）をかこう</p>
+  </div>
+
+</div>
+
+<script>
+function toggleColor(btn) {
+  const on = document.body.classList.toggle('color');
+  btn.textContent = on ? '🖨 白黒にもどす' : '🎨 カラーで見る';
+}
+</script>
+
+</body>
+</html>
