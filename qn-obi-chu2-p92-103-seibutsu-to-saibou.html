@@ -3,16 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Q・N帯｜中2 生物と細胞（P92〜103）</title>
-<meta property="og:title" content="Q・N帯｜中2 生物と細胞（P92〜103）">
+<title>Q・N帯｜中2 生物と細胞（P94〜103）</title>
+<meta property="og:title" content="Q・N帯｜中2 生物と細胞（P94〜103）">
 <meta property="og:description" content="B5ノートの上部に貼る「問い（Q）と語句（N）」だけの帯。組み立て（K）と整理（S）はノート本体で子どもが行う。中2理科 単元2-1。">
 <meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
 <style>
-@page { size: 182mm 257mm; margin: 8mm; }  /* JIS B5 縦 */
+@page { size: A4 portrait; margin: 10mm; }  /* 印刷はA4。帯は150mm幅に切って B5ノートへ貼る */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: "UD デジタル 教科書体 NP-B", "UD Digi Kyokasho NK-R", "Hiragino Maru Gothic ProN", "Meiryo", sans-serif;
+  font-family: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "BIZ UDPGothic", "Meiryo", sans-serif;
   background: #f4f2ec;
   color: #222;
   padding: 20px 12px 60px;
@@ -34,66 +37,83 @@ body {
 
 /* ===== B5用紙 ===== */
 .sheet {
-  width: 182mm; min-height: 257mm; margin: 0 auto; padding: 8mm;
+  width: 210mm; min-height: 297mm; margin: 0 auto; padding: 10mm;
   background: #fff; box-shadow: 0 4px 18px rgba(0,0,0,.14);
+  position: relative;
 }
+/* 帯の幅 ＝ 150mm。B5ノート(182mm)に貼って左右に16mmずつ余る＝ずれても はみ出さない */
+.strip { width: 150mm; margin: 6mm auto 0; padding: 0 5mm; position: relative; }
+/* 左右の切り取り線（縦） */
+.strip::before, .strip::after{
+  content: ""; position: absolute; top: 0; bottom: 0; width: 0;
+  border-left: 3px dashed #222;
+}
+.strip::before{ left: 0; }
+.strip::after { right: 0; }
+.vcut-label{
+  position: absolute; top: -7mm; font-size: 10.5px; font-weight: bold; color: #222; letter-spacing: .06em;
+}
+.vcut-label.l{ left: 0; transform: translateX(-50%); }
+.vcut-label.r{ right: 0; transform: translateX(50%); }
 
-/* ===== 帯（1本＝1つの問い） ===== */
+/* ===== 帯（1本＝1つの問い） =====
+   紙の上で「切っていい線」は、太い黒の破線1種類だけにする。
+   帯を四角い枠で囲むと、中学生は枠線をたどって切ってしまうので枠は置かない。 */
 .obi {
-  border: 2.2px solid #222; border-radius: 10px;
-  padding: 9px 13px 10px; margin-bottom: 5mm;
+  padding: 3px 4px 5px; margin-bottom: 4mm;
   page-break-inside: avoid; position: relative;
 }
 
 .obi-head {
   display: flex; align-items: baseline; gap: 9px;
-  border-bottom: 1.4px dashed #999; padding-bottom: 5px; margin-bottom: 8px;
+  border-bottom: 1px solid #e0ddd6; padding-bottom: 3px; margin-bottom: 5px;
 }
 .no {
   font-family: "Zen Maru Gothic", sans-serif;
-  font-size: 20px; font-weight: bold; line-height: 1;
+  font-size: 18px; font-weight: bold; line-height: 1;
 }
 .title {
   font-family: "Zen Maru Gothic", "UD デジタル 教科書体 NP-B", sans-serif;
-  font-size: 15.5px; font-weight: bold; letter-spacing: .04em;
+  font-size: 14.5px; font-weight: bold; letter-spacing: .04em;
 }
 .page-no { font-size: 11.5px; color: #666; margin-left: auto; letter-spacing: .04em; }
 
 .row { display: flex; align-items: flex-start; gap: 8px; }
-.row + .row { margin-top: 9px; }
+.row + .row { margin-top: 5px; }
 .badge {
-  flex: 0 0 auto; width: 21px; height: 21px; border: 2px solid #222; border-radius: 50%;
+  flex: 0 0 auto; width: 19px; height: 19px; border: 2px solid #6b665e; border-radius: 50%;
   font-family: "Zen Maru Gothic", sans-serif; font-size: 12.5px; font-weight: bold;
   display: flex; align-items: center; justify-content: center; margin-top: 1px;
 }
 
-.q { font-size: 14px; line-height: 1.75; font-weight: bold; padding-top: 1px; }
+.q { font-size: 13.5px; line-height: 1.55; font-weight: bold; padding-top: 1px; }
 
-.words { display: flex; flex-wrap: wrap; gap: 6px 5px; }
+.words { display: flex; flex-wrap: wrap; gap: 4px 5px; }
 .w {
-  border: 1.8px solid #333; border-radius: 8px;
-  padding: 4px 8px; font-size: 13px; font-weight: bold; line-height: 1.4;
+  border: 1.5px solid #9c968c; border-radius: 8px;
+  padding: 2px 7px; font-size: 12.5px; font-weight: bold; line-height: 1.35;
   background: #fff; white-space: nowrap;
 }
 
 .hint {
-  text-align: right; font-size: 10.5px; color: #666; margin-top: 7px; letter-spacing: .03em;
+  text-align: right; font-size: 10px; color: #666; margin-top: 4px; letter-spacing: .03em;
 }
 
-/* 切り取り線 */
+/* 切り取り線 — 紙の上で唯一「切っていい線」。太い黒の破線で左右いっぱいに貫通させる */
 .cut {
-  border-top: 1.4px dashed #aaa; margin: 0 0 5mm; position: relative; height: 0;
+  border-top: 3px dashed #222; margin: 0 -15mm 4mm; position: relative; height: 0;
 }
 .cut::before {
-  content: "✂"; position: absolute; left: 0; top: -9px;
-  background: #fff; padding-right: 5px; font-size: 12px; color: #aaa;
+  content: "✂"; position: absolute; left: 0; top: -10px;
+  background: #fff; padding-right: 6px; font-size: 14px; color: #222;
 }
+.sheet > .cut:first-child { margin-top: 7mm; }
 
 /* ===== カラー版 ===== */
-body.color .obi:nth-of-type(1) { background: #f2fbf3; border-color: #2E7D32; }
-body.color .obi:nth-of-type(2) { background: #fff4f8; border-color: #D63384; }
-body.color .obi:nth-of-type(3) { background: #fffbe9; border-color: #C8961E; }
-body.color .obi:nth-of-type(4) { background: #fff3e8; border-color: #E65100; }
+body.color .obi:nth-of-type(1) { background: #f2fbf3; }
+body.color .obi:nth-of-type(2) { background: #fff4f8; }
+body.color .obi:nth-of-type(3) { background: #fffbe9; }
+body.color .obi:nth-of-type(4) { background: #fff3e8; }
 body.color .obi:nth-of-type(1) .no, body.color .obi:nth-of-type(1) .title { color: #1b5e20; }
 body.color .obi:nth-of-type(2) .no, body.color .obi:nth-of-type(2) .title { color: #b03856; }
 body.color .obi:nth-of-type(3) .no, body.color .obi:nth-of-type(3) .title { color: #8a6100; }
@@ -118,10 +138,10 @@ body.color .obi:nth-of-type(4) .w { background: #ffe8d0; border-color: #E65100; 
 <body>
 
 <div class="bar">
-  <h1>Q・N帯　中2理科／生物と細胞（P92〜103）</h1>
+  <h1>Q・N帯　中2理科／生物と細胞（P94〜103）</h1>
   <p class="lead">
-    切り取って <b>B5ノートの上部に貼る</b>。問い（Q）と語句（N）だけ書いてある。<br>
-    ノート本体で、語句を線でつないで <b>自分のマップ（K）</b> をつくり、その下に <b>まとめ文（S）</b> を書く。
+    A4で印刷 → <b>太い破線（✂）で切る</b>（たて2本・よこ4本）→ <b>B5ノートの上部に貼る</b>。帯の幅は150mmなので、多少ずれてもノートからはみ出さない。<br>
+    ノート本体で、語句を線でつないで <b>まとめマップ（K）</b> をつくり、その下に <b>まとめ文（S）</b> を書く。
   </p>
   <button class="btn-print" onclick="window.print()">🖨 印刷する</button>
   <button class="btn-color" onclick="toggleColor(this)">🎨 カラーで見る</button>
@@ -129,11 +149,16 @@ body.color .obi:nth-of-type(4) .w { background: #ffe8d0; border-color: #E65100; 
 
 <div class="sheet">
 
+<div class="strip">
+  <span class="vcut-label l">✂</span><span class="vcut-label r">✂</span>
+
+  <div class="cut"></div>
+
   <div class="obi">
     <div class="obi-head">
       <span class="no">①</span>
       <span class="title">植物の細胞</span>
-      <span class="page-no">教科書 P92〜95</span>
+      <span class="page-no">教科書 P94〜95</span>
     </div>
     <div class="row">
       <span class="badge">Q</span>
@@ -147,11 +172,12 @@ body.color .obi:nth-of-type(4) .w { background: #ffe8d0; border-color: #E65100; 
         <span class="w">葉緑体</span>
         <span class="w">液胞</span>
         <span class="w">核</span>
+        <span class="w">基本的なつくり</span>
         <span class="w">細胞壁</span>
         <span class="w">細胞膜</span>
       </div>
     </div>
-    <p class="hint">↓ この下に、自分のマップ（K）とまとめ文（S）をかこう</p>
+    <p class="hint">↓ この下に、まとめマップ（K）とまとめ文（S）を書こう</p>
   </div>
 
   <div class="cut"></div>
@@ -160,7 +186,7 @@ body.color .obi:nth-of-type(4) .w { background: #ffe8d0; border-color: #E65100; 
     <div class="obi-head">
       <span class="no">②</span>
       <span class="title">動物の細胞</span>
-      <span class="page-no">教科書 P96〜99</span>
+      <span class="page-no">教科書 P98〜99</span>
     </div>
     <div class="row">
       <span class="badge">Q</span>
@@ -169,17 +195,19 @@ body.color .obi:nth-of-type(4) .w { background: #ffe8d0; border-color: #E65100; 
     <div class="row">
       <span class="badge">N</span>
       <div class="words">
-        <span class="w">動物の細胞</span>
-        <span class="w">植物の細胞</span>
         <span class="w">核</span>
+        <span class="w">植物の細胞</span>
+        <span class="w">共通点</span>
         <span class="w">細胞壁</span>
         <span class="w">葉緑体</span>
         <span class="w">液胞</span>
-        <span class="w">細胞質</span>
+        <span class="w">動物の細胞</span>
+        <span class="w">相違点</span>
         <span class="w">細胞膜</span>
+        <span class="w">細胞質</span>
       </div>
     </div>
-    <p class="hint">↓ この下に、自分のマップ（K）とまとめ文（S）をかこう</p>
+    <p class="hint">↓ この下に、まとめマップ（K）とまとめ文（S）を書こう</p>
   </div>
 
   <div class="cut"></div>
@@ -188,7 +216,7 @@ body.color .obi:nth-of-type(4) .w { background: #ffe8d0; border-color: #E65100; 
     <div class="obi-head">
       <span class="no">③</span>
       <span class="title">生物のからだと細胞</span>
-      <span class="page-no">教科書 P100〜102</span>
+      <span class="page-no">教科書 P100〜103</span>
     </div>
     <div class="row">
       <span class="badge">Q</span>
@@ -197,42 +225,27 @@ body.color .obi:nth-of-type(4) .w { background: #ffe8d0; border-color: #E65100; 
     <div class="row">
       <span class="badge">N</span>
       <div class="words">
+        <span class="w">細胞</span>
         <span class="w">プランクトン</span>
         <span class="w">単細胞生物</span>
         <span class="w">多細胞生物</span>
-        <span class="w">細胞</span>
+        <span class="w">細胞膜</span>
+        <span class="w">核</span>
+        <span class="w">養分</span>
+        <span class="w">生命活動</span>
         <span class="w">組織</span>
         <span class="w">器官</span>
         <span class="w">個体</span>
-      </div>
-    </div>
-    <p class="hint">↓ この下に、自分のマップ（K）とまとめ文（S）をかこう</p>
-  </div>
-
-  <div class="cut"></div>
-
-  <div class="obi">
-    <div class="obi-head">
-      <span class="no">④</span>
-      <span class="title">細胞が活動するためのエネルギー</span>
-      <span class="page-no">教科書 P103</span>
-    </div>
-    <div class="row">
-      <span class="badge">Q</span>
-      <span class="q">細胞は、どのようにして活動するためのエネルギーをとり出しているだろうか。</span>
-    </div>
-    <div class="row">
-      <span class="badge">N</span>
-      <div class="words">
-        <span class="w">酸素</span>
-        <span class="w">養分（有機物）</span>
-        <span class="w">分解</span>
+        <span class="w">役割分担</span>
         <span class="w">エネルギー</span>
+        <span class="w">酸素</span>
         <span class="w">細胞の呼吸</span>
       </div>
     </div>
-    <p class="hint">↓ この下に、自分のマップ（K）とまとめ文（S）をかこう</p>
-  </div>
+    <p class="hint">↓ この下に、まとめマップ（K）とまとめ文（S）を書こう</p>
+  
+
+  <div class="cut"></div>
 
 </div>
 

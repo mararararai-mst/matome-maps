@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>多細胞生物の細胞｜まとめマップ（P.102）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+@page { size: A4 landscape; margin: 8mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "BIZ UDPGothic", "Meiryo", sans-serif;
+  background: white;
+  color: #222;
+  padding: 12px 16px;
+}
+.wrap { max-width: 1280px; margin: 0 auto; }
+h1 {
+  font-size: 18px;
+  text-align: center;
+  color: #222;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #222;
+  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+}
+.meta { text-align: center; font-size: 12px; color: #888; margin-bottom: 12px; }
+
+svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1280px; }
+
+.node { fill: white; stroke: #222; stroke-width: 1.6; }
+.node-main { fill: #fff9ec; stroke: #222; stroke-width: 2.5; }
+.node-yellow { fill: #fff4c2; stroke: #C8961E; stroke-width: 2; }
+.node-green { fill: #d8f3dc; stroke: #2E7D32; stroke-width: 2; }
+.node-pink { fill: #ffe3ec; stroke: #D63384; stroke-width: 2; }
+.node-info { fill: #f7f7f0; stroke: #888; stroke-width: 1.2; }
+.label { font-family: inherit; font-size: 14px; fill: #222; text-anchor: middle; dominant-baseline: central; }
+.label-main { font-size: 17px; font-weight: bold; }
+.label-leaf { font-weight: bold; font-size: 15px; }
+.label-yellow { fill: #6b4a00; }
+.label-green { fill: #1b5e20; }
+.label-pink { fill: #b03856; }
+.label-ex { font-size: 12px; fill: #555; font-style: italic; }
+.criterion {
+  font-size: 12px; fill: #555; text-anchor: middle; dominant-baseline: central;
+  font-style: italic; font-weight: bold;
+}
+.answer { font-size: 11px; fill: #888; text-anchor: middle; dominant-baseline: central; }
+.link { stroke: #222; stroke-width: 1.4; fill: none; }
+.page-title { font-size: 13px; fill: #888; text-anchor: middle; font-weight: bold; letter-spacing: 0.05em; }
+.page-divider { stroke: #ccc; stroke-width: 1; stroke-dasharray: 5,5; }
+
+.point-box {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.point-card {
+  text-wrap: pretty;
+  padding: 10px 14px;
+  background: #fff8e8;
+  border: 2px dashed #c8961e;
+  border-radius: 10px;
+  font-size: 12px;
+  line-height: 1.7;
+  color: #5a4030;
+}
+.point-card strong { color: #946800; }
+
+.summary {
+  text-wrap: pretty;
+  margin-top: 16px;
+  padding: 12px 16px;
+  border: 1.5px solid #222;
+  font-size: 13px;
+  line-height: 1.9;
+}
+.summary strong { display: block; margin-bottom: 4px; font-size: 14px; }
+.summary .blank {
+  display: inline-block;
+  border-bottom: 1.5px solid #222;
+  min-width: 70px;
+  text-align: center;
+  padding: 0 6px;
+  color: #666;
+  font-size: 12px;
+}
+.summary h3 {
+  font-size: 13px;
+  margin: 8px 0 4px;
+  color: #946800;
+}
+.back-btn {
+  display: inline-block; padding: 4px 14px; background: #74c69d; color: white;
+  border-radius: 14px; text-decoration: none; font-family: inherit; font-size: 12px;
+  font-weight: bold; margin-left: 8px; vertical-align: middle;
+}
+.back-btn:hover { background: #57b387; }
+.words-btn {
+  display: inline-block; padding: 4px 14px; background: #f0a000; color: white;
+  border: none; border-radius: 14px; cursor: pointer; font-family: inherit; font-size: 12px;
+  font-weight: bold; margin-left: 8px; vertical-align: middle;
+}
+.words-btn:hover { background: #d68a00; }
+.words-only {
+  margin-top: 24px; padding: 28px 24px 50px; text-align: center;
+  background: #fff8e8; border: 2px dashed #e8c84a; border-radius: 16px;
+}
+.words-only h2 { font-size: 20px; margin-bottom: 8px; color: #946800; }
+.words-only .hint { color: #886a3a; font-size: 13px; margin-bottom: 26px; line-height: 1.7; }
+.words-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 14px; max-width: 820px; margin: 0 auto;
+}
+.word-card {
+  background: #fff4c2; border: 2px solid #e8c84a; border-radius: 12px;
+  padding: 18px 10px; font-size: 17px; font-weight: bold; color: #6b4a00;
+  box-shadow: 0 2px 4px rgba(216,173,105,0.2);
+}
+.print-btn {
+  display: inline-block; padding: 4px 14px; background: #D63384; color: white;
+  border: none; border-radius: 14px; cursor: pointer; font-family: inherit; font-size: 12px;
+  font-weight: bold; margin-left: 8px; vertical-align: middle;
+}
+@media print {
+  .bones-btn,
+  .print-btn, .back-btn, .words-btn, .words-only { display: none; }
+  body { padding: 0; }
+}
+.start-choice{position:fixed;inset:0;background:linear-gradient(160deg,#fffaf2 0%,#fff5e9 100%);z-index:9999;display:flex;align-items:center;justify-content:center;padding:40px 28px;overflow:auto;}
+.sc-inner{text-align:center;max-width:1180px;width:100%;}
+.sc-inner h2{font-size:35px;color:#BF360C;margin-bottom:14px;letter-spacing:.04em;}
+.sc-inner .sc-lead{font-size:17.5px;color:#8a7a6a;margin-bottom:44px;line-height:2;}
+.sc-btns{display:flex;gap:34px;flex-wrap:wrap;justify-content:center;align-items:stretch;}
+.sc-btns button{flex:1 1 300px;max-width:352px;border:3px solid #FFA000;background:#fff;border-radius:24px;padding:44px 32px 38px;cursor:pointer;font-family:inherit;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;transition:.16s;box-shadow:0 3px 10px rgba(230,81,0,.06);}
+.sc-btns button:hover{background:#fffdf8;transform:translateY(-5px);box-shadow:0 12px 26px rgba(230,81,0,.16);}
+.sc-btns button .em{font-size:58px;line-height:1;}
+.sc-btns button b{font-size:24px;color:#BF360C;letter-spacing:.03em;}
+.sc-btns button small{font-size:15px;color:#7a7066;line-height:1.95;}
+.sc-btns button .tag{margin-top:8px;font-size:13.5px;font-weight:bold;color:#E65100;background:#fff3e0;border-radius:12px;padding:8px 14px;line-height:1.7;width:100%;box-sizing:border-box;}
+.sc-btns button .tag.warn{color:#9a6a00;background:#fff8e1;}
+.sc-btns button .tag.steps{text-align:left;line-height:2;padding:10px 16px;}
+.sc-btns button.mihon{border-color:#74c69d;}
+.sc-btns button.mihon b{color:#2E7D32;}
+.sc-btns button.mihon .tag{color:#2E7D32;background:#e6f4ea;}
+.sc-btns button.mihon .tag.steps{color:#2E7D32;}
+.sc-foot{margin-top:34px;font-size:13px;color:#bbb;}
+@media print{.start-choice{display:none!important;}}
+
+/* 骨組み版：語句ノード(kw)と線だけ残す */
+svg.bones text:not(.kw), svg.bones rect:not(.kw) { display: none; }
+svg.bones .kw { display: initial; }
+.bones-btn {
+  display: inline-block; padding: 4px 14px; background: #4a6fa5; color: white;
+  border: none; border-radius: 14px; cursor: pointer; font-family: inherit; font-size: 12px;
+  font-weight: bold; margin-left: 8px; vertical-align: middle;
+}
+.easy-btn {
+  float: right; padding: 3px 12px; background: #74c69d; color: #fff; border: none;
+  border-radius: 12px; cursor: pointer; font-family: inherit; font-size: 11.5px; font-weight: bold;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="startChoice" class="start-choice">
+  <div class="sc-inner">
+    <h2>多細胞生物の細胞マップ — どうやって学ぶ？</h2>
+    <p class="sc-lead">いきなり答えを見ないで、まず自分で組み立ててみよう！<br>（自分で試してから、見本で答え合わせ）</p>
+    <div class="sc-btns">
+      <button onclick="chooseMode('words')"><span class="em">📝</span><b>語句のみ</b><small>使う語句を確認して、<br>自分のノートに組み立てる</small><span class="tag">💪 いちばん考えて、いちばん残る</span></button>
+      <button class="mihon" onclick="chooseMode('mihon')"><span class="em">👁️</span><b>見本を見る</b><small>見て書く・ヒントにする・<br>答え合わせ、どれもOK</small><span class="tag warn steps">⚠ 写すだけでは頭に残らない。<br>① 教科書を読み返す<br>② わからないところを質問する<br>③ ノートに肉付けする</span></button>
+    </div>
+    <div class="sc-foot">あとで上のボタンでいつでも切りかえできます</div>
+  </div>
+</div>
+
+
+<h1>多細胞生物の細胞｜まとめマップ <a href="index.html" class="back-btn">📋 一覧へ</a><button class="words-btn" onclick="toggleWords(this)">📝 語句のみ</button><button class="bones-btn" onclick="toggleBones(this)">🦴 骨組みだけ</button><button class="print-btn" onclick="window.print()">🖨 印刷</button></h1>
+<div class="meta">中2理科 単元2「生物の体のつくりと働き」1章 生物と細胞｜3節 生物のからだと細胞 ③　P.102</div>
+
+<svg viewBox="0 0 1280 560" xmlns="http://www.w3.org/2000/svg">
+  <rect class="node-main" x="470" y="20" width="340" height="46" rx="10"/>
+  <text class="label label-main" x="640" y="43">多細胞生物の細胞</text>
+
+  <line class="link" x1="640" y1="66" x2="640" y2="104"/>
+  <text class="criterion" x="640" y="86">どのように 組み立てられている？</text>
+
+  <rect class="node-yellow kw" x="520" y="104" width="240" height="50" rx="8"/>
+  <text class="label label-leaf label-yellow kw" x="640" y="129">細胞</text>
+  <rect class="node-info" x="800" y="106" width="330" height="46" rx="6"/>
+  <text class="label label-ex" x="965" y="129">さまざまな形のものがある</text>
+  <line class="link" x1="760" y1="129" x2="800" y2="129" stroke-dasharray="3,3"/>
+
+  <line class="link" x1="640" y1="154" x2="640" y2="188"/>
+  <text class="label" x="640" y="176" style="font-size:22px;fill:#2E7D32;text-anchor:middle;">▼</text>
+  <text class="criterion" x="440" y="171">同じ細胞が集まる</text>
+
+  <rect class="node-yellow kw" x="520" y="188" width="240" height="50" rx="8"/>
+  <text class="label label-leaf label-yellow kw" x="640" y="213">組織</text>
+  <rect class="node-info" x="800" y="190" width="330" height="46" rx="6"/>
+  <text class="label label-ex" x="965" y="213">形やはたらきが同じ細胞の集まり</text>
+  <line class="link" x1="760" y1="213" x2="800" y2="213" stroke-dasharray="3,3"/>
+
+  <line class="link" x1="640" y1="238" x2="640" y2="272"/>
+  <text class="label" x="640" y="260" style="font-size:22px;fill:#2E7D32;text-anchor:middle;">▼</text>
+  <text class="criterion" x="440" y="255">組織が集まる</text>
+
+  <rect class="node-yellow kw" x="520" y="272" width="240" height="50" rx="8"/>
+  <text class="label label-leaf label-yellow kw" x="640" y="297">器官</text>
+  <rect class="node-info" x="800" y="274" width="330" height="46" rx="6"/>
+  <text class="label label-ex" x="965" y="297">特定のはたらきをする まとまり</text>
+  <line class="link" x1="760" y1="297" x2="800" y2="297" stroke-dasharray="3,3"/>
+
+  <line class="link" x1="640" y1="322" x2="640" y2="356"/>
+  <text class="label" x="640" y="344" style="font-size:22px;fill:#2E7D32;text-anchor:middle;">▼</text>
+  <text class="criterion" x="440" y="339">器官が集まる</text>
+
+  <rect class="node-green kw" x="520" y="356" width="240" height="50" rx="8"/>
+  <text class="label label-leaf label-green kw" x="640" y="381">個体</text>
+  <rect class="node-info" x="800" y="358" width="330" height="46" rx="6"/>
+  <text class="label label-ex" x="965" y="381">からだ全体（１ぴきの生物）</text>
+  <line class="link" x1="760" y1="381" x2="800" y2="381" stroke-dasharray="3,3"/>
+
+  <rect x="240" y="440" width="800" height="56" rx="8" style="fill:#fff8e8;stroke:#c8961e;stroke-width:1.2;stroke-dasharray:4,3;"/>
+  <text class="extra" x="640" y="462" style="font-size:13.5px;fill:#946800;text-anchor:middle;font-weight:bold;">小さい順に 集まって 大きくなる</text>
+  <text class="extra" x="640" y="483" style="font-size:12.5px;fill:#946800;text-anchor:middle;">細胞 → 組織 → 器官 → 個体　この順番が そのままテストに出る</text>
+
+  <rect x="40" y="512" width="1200" height="34" rx="8" style="fill:#fafafa;stroke:#ccc;stroke-width:1;"/>
+  <rect class="node-yellow" x="300" y="521" width="20" height="14" rx="3"/>
+  <text class="extra" x="400" y="530" style="font-size:11px;fill:#6b4a00;text-anchor:middle;">集まってできるもの</text>
+  <rect class="node-green" x="600" y="521" width="20" height="14" rx="3"/>
+  <text class="extra" x="680" y="530" style="font-size:11px;fill:#1b5e20;text-anchor:middle;">いちばん大きい</text>
+  <text class="extra" x="950" y="530" style="font-size:11px;fill:#888;text-anchor:middle;font-style:italic;">▼ は順序（下ほど大きい）　／　⋯⋯ 説明</text>
+</svg>
+
+<div class="point-box">
+  <div class="point-card">
+    <strong>★ 順番</strong><br>
+    <strong>細胞 → 組織 → 器官 → 個体</strong>。小さい順に集まって大きくなる。
+  </div>
+  <div class="point-card">
+    <strong>★ ちがい</strong><br>
+    組織は「同じ細胞の集まり」、器官は「組織が集まって<strong>特定のはたらき</strong>をするもの」。
+  </div>
+</div>
+
+<div class="summary">
+  <button class="easy-btn" onclick="toggleEasy(this)">🍵 かんたん版にする</button>
+  <div class="sum-full">
+  <strong>📝 まとめ文（マップを矢印の順になぞって書こう）</strong>
+  <h3>📗 P.102 ｜多細胞生物の細胞</h3>
+  多細胞生物のからだの <span class="blank">細胞</span> には、さまざまな形のものが見られる。形やはたらきが同じ細胞が集まって <span class="blank">組織</span> をつくる。さらに、いくつかの組織が集まって１つのまとまったつくりとなり、特定のはたらきをする <span class="blank">器官</span> となる。いくつかの器官が集まり <span class="blank">個体</span> となる。
+</div>
+  <div class="sum-easy" hidden>
+    <strong>📝 まとめ文（かんたん版）</strong>
+    <h3>📗 P.102 ｜多細胞生物の細胞</h3>
+    形やはたらきが同じ <span class="blank">細胞</span> が集まって <span class="blank">組織</span> をつくり、組織が集まって <span class="blank">器官</span> となり、器官が集まって <span class="blank">個体</span> となる。
+  </div>
+</div>
+
+<div class="words-only" hidden>
+  <h2>📝 語句チェック</h2>
+  <p class="hint">この語句が、マップのどこにあって、どうつながっていたか思い出せるかな？</p>
+  <div class="words-grid">
+    <div class="word-card">細胞</div>
+    <div class="word-card">組織</div>
+    <div class="word-card">器官</div>
+    <div class="word-card">個体</div>
+  </div>
+</div>
+
+<script>
+function toggleWords(btn) {
+  const svg = document.querySelector('svg');
+  const summary = document.querySelector('.summary');
+  const points = document.querySelector('.point-box');
+  const words = document.querySelector('.words-only');
+  if (words.hidden) {
+    svg.style.display = 'none';
+    summary.style.display = 'none';
+    if (points) points.style.display = 'none';
+    words.hidden = false;
+    btn.textContent = '🗺️ マップへ戻る';
+  } else {
+    svg.style.display = '';
+    summary.style.display = '';
+    if (points) points.style.display = '';
+    words.hidden = true;
+    btn.textContent = '📝 語句のみ';
+  }
+}
+function toggleBones(btn){
+  var svg=document.querySelector('svg');
+  var on=svg.classList.toggle('bones');
+  btn.textContent = on ? '\uD83D\uDDFA\uFE0F 説明ありに戻す' : '\uD83E\uDDB4 骨組みだけ';
+  var pb=document.querySelector('.point-box'); if(pb) pb.style.display = on ? 'none' : '';
+}
+function toggleEasy(btn){
+  var f=document.querySelector('.sum-full'), e=document.querySelector('.sum-easy');
+  var toEasy = e.hidden;
+  e.hidden = !toEasy; f.hidden = toEasy;
+  btn.textContent = toEasy ? '\uD83D\uDCD6 くわしい版にする' : '\uD83C\uDF75 かんたん版にする';
+}
+function chooseMode(m){
+  var sc=document.getElementById('startChoice'); if(sc) sc.style.display='none';
+  if(m==='words'){ var b=document.querySelector('.words-btn'); if(b) toggleWords(b); }
+}
+</script>
+
+</div>
+</body>
+</html>
