@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>健康と環境｜まとめマップ</title>
+<style>
+@page { size: A4 landscape; margin: 8mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "UD デジタル 教科書体 NP-B", "Hiragino Maru Gothic ProN", "Meiryo", sans-serif;
+  background: white;
+  color: #222;
+  padding: 12px 16px;
+}
+.wrap { max-width: 1280px; margin: 0 auto; }
+h1 {
+  font-size: 18px;
+  text-align: center;
+  color: #222;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #222;
+  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+}
+.meta { text-align: center; font-size: 12px; color: #888; margin-bottom: 12px; }
+
+svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1280px; }
+
+.node-main { fill: #d8ecf7; stroke: #1565C0; stroke-width: 2.5; }
+.node-pillar { fill: #fff3e0; stroke: #E65100; stroke-width: 2.2; }
+.node-item { fill: #ffffff; stroke: #555; stroke-width: 1.5; }
+.node-limit { fill: #ffe3ec; stroke: #D63384; stroke-width: 2; }
+.label { font-family: inherit; fill: #222; text-anchor: middle; dominant-baseline: central; }
+.label-main { font-size: 17px; font-weight: bold; fill: #0D47A1; }
+.label-pillar { font-size: 13.5px; font-weight: bold; fill: #BF360C; }
+.label-item { font-size: 12.5px; font-weight: bold; fill: #0D47A1; }
+.label-word { fill: #333; font-size: 10.5px; text-anchor: middle; dominant-baseline: central; }
+.note { font-size: 10.5px; fill: #777; text-anchor: middle; dominant-baseline: central; font-style: italic; }
+.link { stroke: #222; stroke-width: 1.4; fill: none; }
+.link-cause { stroke: #E65100; stroke-width: 1.8; fill: none; }
+.sep { stroke: #bbb; stroke-width: 1; }
+
+.summary {
+  margin-top: 14px;
+  padding: 12px 16px;
+  border: 1.5px solid #222;
+  font-size: 12.5px;
+  line-height: 1.95;
+}
+.summary strong { display: block; margin-bottom: 4px; font-size: 13px; }
+.summary .blank {
+  display: inline-block;
+  border-bottom: 1.5px solid #222;
+  min-width: 60px;
+  text-align: center;
+  padding: 0 5px;
+  color: #666;
+  font-size: 11.5px;
+}
+.back-btn, .words-btn, .print-btn {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 8px;
+  vertical-align: middle;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.back-btn { background: #74c69d; }
+.words-btn { background: #f0a000; }
+.print-btn { background: #D63384; }
+.words-only {
+  margin-top: 24px;
+  padding: 28px 24px 50px;
+  text-align: center;
+  background: #eaf4fb;
+  border: 2px dashed #5BA3D9;
+  border-radius: 16px;
+}
+.words-only h2 { font-size: 20px; margin-bottom: 8px; color: #0D47A1; }
+.words-only .hint { color: #1565C0; font-size: 13px; margin-bottom: 26px; line-height: 1.7; }
+.words-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.word-card {
+  background: #d8ecf7;
+  border: 2px solid #5BA3D9;
+  border-radius: 10px;
+  padding: 12px 8px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #0D47A1;
+}
+.svg-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; margin: 0 auto; }
+@media print {
+  .print-btn, .back-btn, .words-btn, .words-only { display: none; }
+  body { padding: 0; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>健康と環境｜まとめマップ
+  <a href="index.html" class="back-btn">📋 一覧へ</a>
+  <button class="words-btn" onclick="toggleWords(this)">📝 語句のみ</button>
+  <button class="print-btn" onclick="window.print()">🖨 印刷</button>
+</h1>
+<div class="meta">中3保健 6章「健康と環境」P.170-183</div>
+
+<div class="svg-scroll"><svg viewBox="0 0 1600 400" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Level 0: 中心 -->
+  <rect class="node-main" x="690" y="14" width="180" height="44" rx="10"/>
+  <text class="label label-main" x="780" y="36">健康と環境</text>
+
+  <!-- 中心 → 3本柱 -->
+  <line class="link" x1="780" y1="58" x2="780" y2="86"/>
+  <line class="link" x1="200" y1="86" x2="1145" y2="86"/>
+  <line class="link" x1="200" y1="86" x2="200" y2="114"/>
+  <line class="link" x1="515" y1="86" x2="515" y2="114"/>
+  <line class="link" x1="1145" y1="86" x2="1145" y2="114"/>
+
+  <!-- Level 1: 3本柱（横に並べ、因果でつなぐ） -->
+  <rect class="node-pillar" x="100" y="114" width="200" height="44" rx="8"/>
+  <text class="label label-pillar" x="200" y="136">体が調節する</text>
+
+  <rect class="node-pillar" x="415" y="114" width="200" height="44" rx="8"/>
+  <text class="label label-pillar" x="515" y="136">環境を整える</text>
+
+  <rect class="node-pillar" x="1045" y="114" width="200" height="44" rx="8"/>
+  <text class="label label-pillar" x="1145" y="136">社会の仕組みで守る</text>
+
+  <!-- 因果の矢印（体 → 環境 → 社会） -->
+  <line class="link-cause" x1="300" y1="136" x2="405" y2="136"/>
+  <path class="link-cause" d="M405,136 L397,132 L397,140 Z" fill="#E65100"/>
+  <text class="note" x="352" y="122">力に限界</text>
+
+  <line class="link-cause" x1="615" y1="136" x2="1035" y2="136"/>
+  <path class="link-cause" d="M1035,136 L1027,132 L1027,140 Z" fill="#E65100"/>
+  <text class="note" x="825" y="122">個人の工夫だけでは足りない</text>
+
+  <!-- 3本柱 → 7項目 -->
+  <line class="link" x1="200" y1="158" x2="200" y2="206"/>
+
+  <line class="link" x1="515" y1="158" x2="515" y2="182"/>
+  <line class="link" x1="410" y1="182" x2="620" y2="182"/>
+  <line class="link" x1="410" y1="182" x2="410" y2="206"/>
+  <line class="link" x1="620" y1="182" x2="620" y2="206"/>
+
+  <line class="link" x1="1145" y1="158" x2="1145" y2="182"/>
+  <line class="link" x1="830" y1="182" x2="1460" y2="182"/>
+  <line class="link" x1="830" y1="182" x2="830" y2="206"/>
+  <line class="link" x1="1040" y1="182" x2="1040" y2="206"/>
+  <line class="link" x1="1250" y1="182" x2="1250" y2="206"/>
+  <line class="link" x1="1460" y1="182" x2="1460" y2="206"/>
+
+  <!-- Level 2: 7項目（横一列） -->
+  <!-- 1 -->
+  <rect class="node-item" x="110" y="206" width="180" height="150" rx="8"/>
+  <text class="label label-item" x="200" y="222">1 環境の変化と</text>
+  <text class="label label-item" x="200" y="241">適応能力</text>
+  <line class="sep" x1="126" y1="253" x2="274" y2="253"/>
+  <text class="label-word" x="200" y="268">適応・適応能力</text>
+  <text class="label-word" x="200" y="290">熱の発生／熱の放射</text>
+  <text class="label-word" x="200" y="312">限界＝熱中症・低体温症</text>
+  <text class="label-word" x="200" y="334" style="fill:#D63384;">41℃・43℃・30℃</text>
+
+  <!-- 2 -->
+  <rect class="node-item" x="320" y="206" width="180" height="150" rx="8"/>
+  <text class="label label-item" x="410" y="222">2 活動に適した</text>
+  <text class="label label-item" x="410" y="241">環境</text>
+  <line class="sep" x1="336" y1="253" x2="484" y2="253"/>
+  <text class="label-word" x="410" y="268">気温・湿度・気流</text>
+  <text class="label-word" x="410" y="290">至適温度</text>
+  <text class="label-word" x="410" y="312">17〜28℃／30〜80％</text>
+  <text class="label-word" x="410" y="338">明るさ（ルクス）</text>
+
+  <!-- 3 -->
+  <rect class="node-item" x="530" y="206" width="180" height="150" rx="8"/>
+  <text class="label label-item" x="620" y="222">3 室内の空気の</text>
+  <text class="label label-item" x="620" y="241">条件</text>
+  <line class="sep" x1="546" y1="253" x2="694" y2="253"/>
+  <text class="label-word" x="620" y="268">二酸化炭素</text>
+  <text class="label-word" x="620" y="286" style="font-size:9.5px;fill:#777;">＝空気の汚れの指標</text>
+  <text class="label-word" x="620" y="308">一酸化炭素</text>
+  <text class="label-word" x="620" y="326" style="font-size:9.5px;fill:#777;">無色・無臭／ヘモグロビン</text>
+  <text class="label-word" x="620" y="346">換気</text>
+
+  <!-- 4 -->
+  <rect class="node-item" x="740" y="206" width="180" height="150" rx="8"/>
+  <text class="label label-item" x="830" y="222">4 水の役割と</text>
+  <text class="label label-item" x="830" y="241">飲料水の確保</text>
+  <line class="sep" x1="756" y1="253" x2="904" y2="253"/>
+  <text class="label-word" x="830" y="268">体重の60〜70％</text>
+  <text class="label-word" x="830" y="290">1日2〜2.5L</text>
+  <text class="label-word" x="830" y="312">浄水場</text>
+  <text class="label-word" x="830" y="332" style="font-size:9.5px;fill:#777;">沈殿→ろ過→消毒</text>
+
+  <!-- 5 -->
+  <rect class="node-item" x="950" y="206" width="180" height="150" rx="8"/>
+  <text class="label label-item" x="1040" y="222">5 生活排水の</text>
+  <text class="label label-item" x="1040" y="241">処理</text>
+  <line class="sep" x1="966" y1="253" x2="1114" y2="253"/>
+  <text class="label-word" x="1040" y="268">生活排水</text>
+  <text class="label-word" x="1040" y="286" style="font-size:9.5px;fill:#777;">し尿を含んだ水＋生活雑排水</text>
+  <text class="label-word" x="1040" y="308">下水処理場／浄化槽</text>
+  <text class="label-word" x="1040" y="332">合併処理浄化槽</text>
+
+  <!-- 6 -->
+  <rect class="node-item" x="1160" y="206" width="180" height="150" rx="8"/>
+  <text class="label label-item" x="1250" y="231">6 ごみの処理</text>
+  <line class="sep" x1="1176" y1="253" x2="1324" y2="253"/>
+  <text class="label-word" x="1250" y="268">1人1年 約350kg</text>
+  <text class="label-word" x="1250" y="292">3R</text>
+  <text class="label-word" x="1250" y="310" style="font-size:9.5px;fill:#777;">Reduce・Reuse・Recycle</text>
+  <text class="label-word" x="1250" y="334">循環型社会</text>
+
+  <!-- 7 -->
+  <rect class="node-item" x="1370" y="206" width="180" height="150" rx="8"/>
+  <text class="label label-item" x="1460" y="222">7 環境の汚染と</text>
+  <text class="label label-item" x="1460" y="241">保全</text>
+  <line class="sep" x1="1386" y1="253" x2="1534" y2="253"/>
+  <text class="label-word" x="1460" y="268">公害</text>
+  <text class="label-word" x="1460" y="286" style="font-size:9.5px;fill:#777;">水俣病・イタイイタイ病</text>
+  <text class="label-word" x="1460" y="308">環境基本法</text>
+  <text class="label-word" x="1460" y="332">空間と時間の広がり</text>
+
+</svg></div>
+
+<div class="summary">
+  <strong>📝 まとめ文（マップの矢印の順になぞって書こう）</strong>
+  体には、環境の変化に合わせて自分を調節する<span class="blank">適応能力</span>がある。暑いときは毛細血管を広げて<span class="blank">汗</span>を出し、寒いときは血管を縮めて体を震わせる。しかしその力には<span class="blank">限界</span>があり、超えると<span class="blank">熱中症</span>や低体温症になる。<br>
+  だから、気温・湿度・気流を調節して<span class="blank">至適温度</span>に保ち、<span class="blank">二酸化炭素</span>を空気の汚れの指標として<span class="blank">換気</span>をし、活動に適した環境を自分たちで整える。<br>
+  それでも個人の工夫だけでは足りないので、<span class="blank">浄水場</span>で安全な水をつくり、<span class="blank">合併処理浄化槽</span>などで生活排水を処理し、<span class="blank">3R</span>でごみを減らし、<span class="blank">環境基本法</span>のもとで環境を守るという、社会の仕組みがある。
+</div>
+
+<div class="words-only" hidden>
+  <h2>📝 語句のみ</h2>
+  <p class="hint">この語句を使って、自分でマップを組み立ててみよう。<br>3本の柱（体が調節する／環境を整える／社会の仕組みで守る）にどう分かれるかを考える。</p>
+  <div class="words-grid">
+    <div class="word-card">適応・適応能力</div>
+    <div class="word-card">熱の発生／熱の放射</div>
+    <div class="word-card">熱中症</div>
+    <div class="word-card">低体温症</div>
+    <div class="word-card">気温・湿度・気流</div>
+    <div class="word-card">至適温度</div>
+    <div class="word-card">明るさ（ルクス）</div>
+    <div class="word-card">二酸化炭素</div>
+    <div class="word-card">一酸化炭素</div>
+    <div class="word-card">換気</div>
+    <div class="word-card">浄水場</div>
+    <div class="word-card">生活排水</div>
+    <div class="word-card">合併処理浄化槽</div>
+    <div class="word-card">3R</div>
+    <div class="word-card">循環型社会</div>
+    <div class="word-card">公害</div>
+    <div class="word-card">環境基本法</div>
+    <div class="word-card">空間と時間の広がり</div>
+  </div>
+</div>
+
+</div>
+<script>
+const MAP_WORDS = ["適応・適応能力","熱の発生／熱の放射","熱中症","低体温症","気温・湿度・気流","至適温度","明るさ（ルクス）","二酸化炭素","一酸化炭素","換気","浄水場","生活排水","合併処理浄化槽","3R","循環型社会","公害","環境基本法","空間と時間の広がり"];
+function toggleWords(btn) {
+  const svg = document.querySelector('svg');
+  const summary = document.querySelector('.summary');
+  const words = document.querySelector('.words-only');
+  if (words.hidden) {
+    svg.style.display = 'none';
+    summary.style.display = 'none';
+    words.hidden = false;
+    btn.textContent = '🗺️ マップへ戻る';
+  } else {
+    svg.style.display = '';
+    summary.style.display = '';
+    words.hidden = true;
+    btn.textContent = '📝 語句のみ';
+  }
+}
+</script>
+</body>
+</html>
