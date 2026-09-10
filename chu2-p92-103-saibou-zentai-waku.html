@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>生物と細胞まとめ（完成見本）｜まとめマップ</title>
-<meta property="og:title" content="生物と細胞まとめ（完成見本）｜まとめマップ">
-<meta property="og:description" content="中2理科 生物1章「生物と細胞」P.92-103 の全体まとめマップ完成見本。パフォーマンステストの答え合わせ用。">
+<title>生物と細胞まとめ（枠あり・書きこみ用）｜まとめマップ</title>
+<meta property="og:title" content="生物と細胞まとめ（枠あり・書きこみ用）｜まとめマップ">
+<meta property="og:description" content="中2理科 生物1章「生物と細胞」P.92-103 の枠あり版。空の枠に語句を書きこんで、まとめマップを完成させる。">
 <meta property="og:type" content="article">
 <style>
-@page { size: A4 landscape; margin: 10mm; }
+@page { size: A3 landscape; margin: 10mm; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   font-family: "UD デジタル 教科書体 NP-B", "Hiragino Maru Gothic ProN", "Meiryo", sans-serif;
@@ -70,14 +70,20 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1280
   .words-grid { gap: 8px; grid-template-columns: repeat(auto-fill, minmax(95px, 1fr)); }
   .word-card { font-size: 14px; padding: 12px 6px; }
 }
-
+.bank { margin-top: 14px; padding: 14px 18px 18px; border: 2px dashed #888; border-radius: 12px; }
+.bank h2 { font-size: 14px; margin-bottom: 4px; }
+.bank .hint { font-size: 11.5px; color: #666; margin-bottom: 12px; }
+.bank .words-grid { grid-template-columns: repeat(auto-fill, minmax(115px, 1fr)); gap: 9px; max-width: none; }
+.bank .word-card { background: #fff; border: 1.6px solid #555; color: #222; box-shadow: none; padding: 9px 6px; font-size: 14px; }
+.summary .blank { min-width: 96px; }
+@media print { .svg-scroll svg { width: auto; max-height: 198mm; } }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<h1>生物と細胞まとめ（完成見本）｜まとめマップ <a href="index.html" class="back-btn">📋 一覧へ</a><button class="words-btn" onclick="toggleWords(this)">📝 語句のみ</button><button class="print-btn" onclick="window.print()">🖨 印刷</button></h1>
-<div class="meta">中2理科 生物1章「生物と細胞」P.92-103 ／ Lv3 見本（答え）</div>
+<h1>生物と細胞まとめ（枠あり）｜まとめマップ <a href="index.html" class="back-btn">📋 一覧へ</a><button class="print-btn" onclick="window.print()">🖨 印刷</button></h1>
+<div class="meta">中2理科 生物1章「生物と細胞」P.92-103 ／ Lv2 枠に語句を書きこむ</div>
 
 <div class="svg-scroll"><svg viewBox="0 0 1280 760" xmlns="http://www.w3.org/2000/svg">
   <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#444"/></marker></defs>
@@ -126,60 +132,39 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1280
   <polyline class="flow" marker-end="url(#ar)" points="740,476 740,510"/>
   <polyline class="flow" marker-end="url(#ar)" points="740,556 740,590"/>
   <polyline class="flow" marker-end="url(#ar)" points="1070,496 1070,530"/>
-  <rect class="node-main" x="530" y="17" width="220" height="46" rx="9"/>
+  <rect class="node-main" x="530" y="17" width="220" height="46" rx="9" style="fill:#ffffff"/>
   <text class="label label-main" x="640" y="40" style="font-size:17px">生物のからだ</text>
-  <rect class="node-main" x="565" y="88" width="150" height="44" rx="9"/>
-  <text class="label label-main" x="640" y="110" style="font-size:17px">細胞</text>
-  <rect class="node-yellow" x="120" y="183" width="200" height="42" rx="9"/>
+  <rect class="node-main" x="565" y="88" width="150" height="44" rx="9" style="fill:#ffffff"/>
+  <rect class="node-yellow" x="120" y="183" width="200" height="42" rx="9" style="fill:#ffffff"/>
   <text class="label label-leaf label-yellow" x="220" y="204" style="font-size:15px">細胞のつくり</text>
-  <rect class="node-orange" x="530" y="183" width="220" height="42" rx="9"/>
+  <rect class="node-orange" x="530" y="183" width="220" height="42" rx="9" style="fill:#ffffff"/>
   <text class="label label-leaf label-orange" x="640" y="204" style="font-size:15px">からだの成り立ち</text>
-  <rect class="node-blue" x="955" y="183" width="210" height="42" rx="9"/>
+  <rect class="node-blue" x="955" y="183" width="210" height="42" rx="9" style="fill:#ffffff"/>
   <text class="label label-leaf label-blue" x="1060" y="204" style="font-size:15px">細胞のはたらき</text>
-  <rect class="node-green" x="30" y="282" width="160" height="44" rx="9"/>
-  <text class="label label-leaf label-green" x="110" y="304" style="font-size:15px">植物の細胞</text>
-  <rect class="node-pink" x="250" y="282" width="160" height="44" rx="9"/>
-  <text class="label label-leaf label-pink" x="330" y="304" style="font-size:15px">動物の細胞</text>
-  <rect class="node-yellow" x="130" y="360" width="180" height="44" rx="9"/>
+  <rect class="node-green" x="30" y="282" width="160" height="44" rx="9" style="fill:#ffffff"/>
+  <rect class="node-pink" x="250" y="282" width="160" height="44" rx="9" style="fill:#ffffff"/>
+  <rect class="node-yellow" x="130" y="360" width="180" height="44" rx="9" style="fill:#ffffff"/>
   <text class="label label-leaf label-yellow" x="220" y="382" style="font-size:15px">共通のつくり</text>
-  <rect class="node-yellow" x="60" y="438" width="100" height="44" rx="9"/>
-  <text class="label label-leaf label-yellow" x="110" y="460" style="font-size:15px">核</text>
-  <rect class="node-yellow" x="170" y="438" width="100" height="44" rx="9"/>
-  <text class="label label-leaf label-yellow" x="220" y="460" style="font-size:15px">細胞膜</text>
-  <rect class="node-yellow" x="280" y="438" width="100" height="44" rx="9"/>
-  <text class="label label-leaf label-yellow" x="330" y="460" style="font-size:15px">細胞質</text>
-  <rect class="node-green" x="45" y="516" width="130" height="44" rx="9"/>
-  <text class="label label-leaf label-green" x="110" y="538" style="font-size:15px">孔辺細胞</text>
-  <rect class="node-green" x="27.5" y="594" width="165" height="44" rx="9"/>
+  <rect class="node-yellow" x="60" y="438" width="100" height="44" rx="9" style="fill:#ffffff"/>
+  <rect class="node-yellow" x="170" y="438" width="100" height="44" rx="9" style="fill:#ffffff"/>
+  <rect class="node-yellow" x="280" y="438" width="100" height="44" rx="9" style="fill:#ffffff"/>
+  <rect class="node-green" x="45" y="516" width="130" height="44" rx="9" style="fill:#ffffff"/>
+  <rect class="node-green" x="27.5" y="594" width="165" height="44" rx="9" style="fill:#ffffff"/>
   <text class="label label-leaf label-green" x="110" y="616" style="font-size:14px">植物だけにある</text>
-  <rect class="node-yellow" x="10" y="672" width="100" height="44" rx="9"/>
-  <text class="label label-leaf label-yellow" x="60" y="694" style="font-size:15px">細胞壁</text>
-  <rect class="node-yellow" x="120" y="672" width="100" height="44" rx="9"/>
-  <text class="label label-leaf label-yellow" x="170" y="694" style="font-size:15px">葉緑体</text>
-  <rect class="node-yellow" x="230" y="672" width="100" height="44" rx="9"/>
-  <text class="label label-leaf label-yellow" x="280" y="694" style="font-size:15px">液胞</text>
-  <rect class="node-orange" x="455" y="282" width="170" height="44" rx="9"/>
-  <text class="label label-leaf label-orange" x="540" y="304" style="font-size:15px">単細胞生物</text>
-  <rect class="node-orange" x="655" y="282" width="170" height="44" rx="9"/>
-  <text class="label label-leaf label-orange" x="740" y="304" style="font-size:15px">多細胞生物</text>
-  <rect class="node-orange" x="665" y="352" width="150" height="44" rx="9"/>
-  <text class="label label-leaf label-orange" x="740" y="374" style="font-size:15px">細胞</text>
-  <rect class="node-orange" x="665" y="432" width="150" height="44" rx="9"/>
-  <text class="label label-leaf label-orange" x="740" y="454" style="font-size:15px">組織</text>
-  <rect class="node-orange" x="665" y="512" width="150" height="44" rx="9"/>
-  <text class="label label-leaf label-orange" x="740" y="534" style="font-size:15px">器官</text>
-  <rect class="node-orange" x="665" y="592" width="150" height="44" rx="9"/>
-  <text class="label label-leaf label-orange" x="740" y="614" style="font-size:15px">個体</text>
-  <rect class="node-blue" x="965" y="252" width="190" height="44" rx="9"/>
-  <text class="label label-leaf label-blue" x="1060" y="274" style="font-size:15px">細胞の呼吸</text>
-  <rect class="node-blue" x="930" y="356" width="120" height="44" rx="9"/>
-  <text class="label label-leaf label-blue" x="990" y="378" style="font-size:15px">酸素</text>
-  <rect class="node-blue" x="1055" y="356" width="190" height="44" rx="9"/>
-  <text class="label label-leaf label-blue" x="1150" y="378" style="font-size:15px">養分（有機物）</text>
-  <rect class="node-blue" x="1000" y="452" width="140" height="44" rx="9"/>
-  <text class="label label-leaf label-blue" x="1070" y="474" style="font-size:15px">分解</text>
-  <rect class="node-blue" x="980" y="532" width="180" height="44" rx="9"/>
-  <text class="label label-leaf label-blue" x="1070" y="554" style="font-size:15px">エネルギー</text>
+  <rect class="node-yellow" x="10" y="672" width="100" height="44" rx="9" style="fill:#ffffff"/>
+  <rect class="node-yellow" x="120" y="672" width="100" height="44" rx="9" style="fill:#ffffff"/>
+  <rect class="node-yellow" x="230" y="672" width="100" height="44" rx="9" style="fill:#ffffff"/>
+  <rect class="node-orange" x="455" y="282" width="170" height="44" rx="9" style="fill:#ffffff"/>
+  <rect class="node-orange" x="655" y="282" width="170" height="44" rx="9" style="fill:#ffffff"/>
+  <rect class="node-orange" x="665" y="352" width="150" height="44" rx="9" style="fill:#ffffff"/>
+  <rect class="node-orange" x="665" y="432" width="150" height="44" rx="9" style="fill:#ffffff"/>
+  <rect class="node-orange" x="665" y="512" width="150" height="44" rx="9" style="fill:#ffffff"/>
+  <rect class="node-orange" x="665" y="592" width="150" height="44" rx="9" style="fill:#ffffff"/>
+  <rect class="node-blue" x="965" y="252" width="190" height="44" rx="9" style="fill:#ffffff"/>
+  <rect class="node-blue" x="930" y="356" width="120" height="44" rx="9" style="fill:#ffffff"/>
+  <rect class="node-blue" x="1055" y="356" width="190" height="44" rx="9" style="fill:#ffffff"/>
+  <rect class="node-blue" x="1000" y="452" width="140" height="44" rx="9" style="fill:#ffffff"/>
+  <rect class="node-blue" x="980" y="532" width="180" height="44" rx="9" style="fill:#ffffff"/>
   <text class="criterion" x="640" y="76" style="text-anchor:middle;font-size:12px">からだは何からできている？</text>
   <text class="criterion" x="220" y="243" style="text-anchor:middle;font-size:12px">植物と動物でくらべると？</text>
   <text class="criterion" x="110" y="502" style="text-anchor:middle;font-size:12px">葉の表皮に見られる細胞</text>
@@ -193,35 +178,11 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1280
   <text class="chg-label" x="655" y="574" style="text-anchor:end;font-size:11px">いくつかが集まる</text>
   <text class="criterion" x="1060" y="316" style="text-anchor:middle;font-size:12px">細胞の内部で起こる</text>
   <text class="chg-label" x="1085" y="514" style="text-anchor:start;font-size:11px">エネルギーがとり出される</text>
-  <rect x="950" y="640" width="300" height="100" rx="8" style="fill:#fafafa;stroke:#ccc;stroke-width:1;"/>
-  <text x="1100" y="656" style="font-size:11px;fill:#666;text-anchor:middle;font-weight:bold;">凡例</text>
-  <rect class="node-main" x="970" y="670" width="18" height="13" rx="3"/>
-  <text x="994" y="677" style="font-size:11px;fill:#555;dominant-baseline:central;">中心となる語句</text>
-  <rect class="node-pink" x="1110" y="670" width="18" height="13" rx="3"/>
-  <text x="1134" y="677" style="font-size:11px;fill:#555;dominant-baseline:central;">動物の細胞</text>
-  <rect class="node-yellow" x="970" y="692" width="18" height="13" rx="3"/>
-  <text x="994" y="699" style="font-size:11px;fill:#555;dominant-baseline:central;">細胞のつくり</text>
-  <rect class="node-orange" x="1110" y="692" width="18" height="13" rx="3"/>
-  <text x="1134" y="699" style="font-size:11px;fill:#555;dominant-baseline:central;">からだの成り立ち</text>
-  <rect class="node-green" x="970" y="714" width="18" height="13" rx="3"/>
-  <text x="994" y="721" style="font-size:11px;fill:#555;dominant-baseline:central;">植物の細胞</text>
-  <rect class="node-blue" x="1110" y="714" width="18" height="13" rx="3"/>
-  <text x="1134" y="721" style="font-size:11px;fill:#555;dominant-baseline:central;">はたらき</text>
 </svg></div>
 
-<div class="summary">
-  <strong>📝 まとめ文（マップを矢印の順になぞって書こう）</strong>
-  生物のからだは、すべて <span class="blank">細胞</span> からできている。<br>
-  細胞を顕微鏡で観察すると、<span class="blank">植物の細胞</span> にも <span class="blank">動物の細胞</span> にも <span class="blank">核</span>・<span class="blank">細胞膜</span>・<span class="blank">細胞質</span> が見られる。
-  いっぽう <span class="blank">細胞壁</span>・<span class="blank">葉緑体</span>・<span class="blank">液胞</span> は <span class="blank">植物の細胞</span> だけに見られ、葉の表皮には三日月形をした <span class="blank">孔辺細胞</span> がある。<br>
-  からだが１つの細胞からできている生物を <span class="blank">単細胞生物</span>、多くの細胞からできている生物を <span class="blank">多細胞生物</span> という。<br>
-  <span class="blank">多細胞生物</span> では、形やはたらきが同じ <span class="blank">細胞</span> が集まって <span class="blank">組織</span> をつくり、いくつかの <span class="blank">組織</span> が集まって特定のはたらきをする <span class="blank">器官</span> となり、いくつかの <span class="blank">器官</span> が集まって <span class="blank">個体</span> となる。<br>
-  細胞の内部では、<span class="blank">酸素</span> が使われて <span class="blank">養分（有機物）</span> が <span class="blank">分解</span> され、<span class="blank">エネルギー</span> がとり出される。このはたらきを <span class="blank">細胞の呼吸</span> という。
-</div>
-
-<div class="words-only" hidden>
-  <h2>📝 語句チェック</h2>
-  <p class="hint">この語句が、マップのどこにあって、どうつながっていたか思い出せるかな？</p>
+<div class="bank">
+  <h2>📝 使う語句（20）</h2>
+  <p class="hint">※ 何回つかってもかまいません。ここに無い語句を書き加えるのもOK。</p>
   <div class="words-grid">
     <div class="word-card">細胞</div>
     <div class="word-card">植物の細胞</div>
@@ -246,20 +207,17 @@ svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1280
   </div>
 </div>
 
+<div class="summary">
+  <strong>📝 まとめ文（マップを矢印の順になぞって書こう）</strong>
+  生物のからだは、すべて <span class="blank">　</span> からできている。<br>
+  細胞を顕微鏡で観察すると、<span class="blank">　</span> にも <span class="blank">　</span> にも <span class="blank">　</span>・<span class="blank">　</span>・<span class="blank">　</span> が見られる。
+  いっぽう <span class="blank">　</span>・<span class="blank">　</span>・<span class="blank">　</span> は <span class="blank">　</span> だけに見られ、葉の表皮には三日月形をした <span class="blank">　</span> がある。<br>
+  からだが１つの細胞からできている生物を <span class="blank">　</span>、多くの細胞からできている生物を <span class="blank">　</span> という。<br>
+  <span class="blank">　</span> では、形やはたらきが同じ <span class="blank">　</span> が集まって <span class="blank">　</span> をつくり、いくつかの <span class="blank">　</span> が集まって特定のはたらきをする <span class="blank">　</span> となり、いくつかの <span class="blank">　</span> が集まって <span class="blank">　</span> となる。<br>
+  細胞の内部では、<span class="blank">　</span> が使われて <span class="blank">　</span> が <span class="blank">　</span> され、<span class="blank">　</span> がとり出される。このはたらきを <span class="blank">　</span> という。
 </div>
-<script>
-function toggleWords(btn) {
-  const svg = document.querySelector('.svg-scroll');
-  const summary = document.querySelector('.summary');
-  const words = document.querySelector('.words-only');
-  if (words.hidden) {
-    svg.style.display = 'none'; summary.style.display = 'none';
-    words.hidden = false; btn.textContent = '\u{1F5FA}\u{FE0F} マップへ戻る';
-  } else {
-    svg.style.display = ''; summary.style.display = '';
-    words.hidden = true; btn.textContent = '\u{1F4DD} 語句のみ';
-  }
-}
-</script>
+
+</div>
+
 </body>
 </html>
