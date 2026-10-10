@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>肺のつくりと肺呼吸｜まとめマップ（P.136〜137）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+@page { size: A4 landscape; margin: 8mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "BIZ UDPGothic", "Meiryo", sans-serif;
+  background: white;
+  color: #222;
+  padding: 12px 16px;
+}
+.wrap { max-width: 1280px; margin: 0 auto; }
+h1 {
+  font-size: 18px;
+  text-align: center;
+  color: #222;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #222;
+  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+}
+.meta { text-align: center; font-size: 12px; color: #888; margin-bottom: 12px; }
+
+svg { display: block; margin: 0 auto; width: 100%; height: auto; max-width: 1280px; }
+
+.node { fill: white; stroke: #222; stroke-width: 1.6; }
+.node-main { fill: #fff9ec; stroke: #222; stroke-width: 2.5; }
+.node-yellow { fill: #fff4c2; stroke: #C8961E; stroke-width: 2; }
+.node-green { fill: #d8f3dc; stroke: #2E7D32; stroke-width: 2; }
+.node-info { fill: #f7f7f0; stroke: #888; stroke-width: 1.2; }
+.label { font-family: inherit; font-size: 14px; fill: #222; text-anchor: middle; dominant-baseline: central; }
+.label-main { font-size: 17px; font-weight: bold; }
+.label-leaf { font-weight: bold; font-size: 15px; }
+.label-yellow { fill: #6b4a00; }
+.label-green { fill: #1b5e20; }
+.label-ex { font-size: 12px; fill: #555;}
+.criterion {
+  font-size: 12px; fill: #555; text-anchor: middle; dominant-baseline: central;
+font-weight: bold;
+  paint-order: stroke; stroke: #fff; stroke-width: 3px; stroke-linejoin: round;
+}
+.link { stroke: #222; stroke-width: 1.4; fill: none; }
+
+.summary {
+  text-wrap: pretty;
+  margin-top: 16px;
+  padding: 12px 16px;
+  border: 1.5px solid #222;
+  font-size: 13px;
+  line-height: 1.9;
+}
+.summary { break-inside: avoid; }
+.summary .nw { white-space: nowrap; }
+.summary strong { display: block; margin-bottom: 4px; font-size: 14px; }
+.summary .blank {
+  display: inline-block;
+  border-bottom: 1.5px solid #222;
+  min-width: 70px;
+  text-align: center;
+  padding: 0 6px;
+  color: #666;
+  font-size: 12px;
+}
+.summary h3 { font-size: 13px; margin: 8px 0 4px; color: #946800; }
+.back-btn {
+  display: inline-block; padding: 4px 14px; background: #74c69d; color: white;
+  border-radius: 14px; text-decoration: none; font-family: inherit; font-size: 12px;
+  font-weight: bold; margin-left: 8px; vertical-align: middle;
+}
+.back-btn:hover { background: #57b387; }
+.words-btn {
+  display: inline-block; padding: 4px 14px; background: #f0a000; color: white;
+  border: none; border-radius: 14px; cursor: pointer; font-family: inherit; font-size: 12px;
+  font-weight: bold; margin-left: 8px; vertical-align: middle;
+}
+.words-btn:hover { background: #d68a00; }
+.words-only {
+  margin-top: 24px; padding: 28px 24px 50px; text-align: center;
+  background: #fff8e8; border: 2px dashed #e8c84a; border-radius: 16px;
+}
+.words-only h2 { font-size: 20px; margin-bottom: 8px; color: #946800; }
+.words-only .hint { color: #886a3a; font-size: 13px; margin-bottom: 26px; line-height: 1.7; }
+.words-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 14px; max-width: 820px; margin: 0 auto;
+}
+.word-card {
+  background: #fff4c2; border: 2px solid #e8c84a; border-radius: 12px;
+  padding: 18px 10px; font-size: 17px; font-weight: bold; color: #6b4a00;
+  box-shadow: 0 2px 4px rgba(216,173,105,0.2);
+}
+.easy-btn {
+  float: right; padding: 3px 12px; background: #74c69d; color: #fff; border: none;
+  border-radius: 12px; cursor: pointer; font-family: inherit; font-size: 11.5px; font-weight: bold;
+}
+.print-btn {
+  display: inline-block; padding: 4px 14px; background: #D63384; color: white;
+  border: none; border-radius: 14px; cursor: pointer; font-family: inherit; font-size: 12px;
+  font-weight: bold; margin-left: 8px; vertical-align: middle;
+}
+.bones-btn {
+  display: inline-block; padding: 4px 14px; background: #4a6fa5; color: white;
+  border: none; border-radius: 14px; cursor: pointer; font-family: inherit; font-size: 12px;
+  font-weight: bold; margin-left: 8px; vertical-align: middle;
+}
+@media print {
+  .bones-btn, .easy-btn, .print-btn, .back-btn, .words-btn, .words-only { display: none; }
+  body { padding: 0; }
+}
+.start-choice{position:fixed;inset:0;background:linear-gradient(160deg,#fffaf2 0%,#fff5e9 100%);z-index:9999;display:flex;align-items:center;justify-content:center;padding:40px 28px;overflow:auto;}
+.sc-inner{text-align:center;max-width:1180px;width:100%;}
+.sc-inner h2{font-size:35px;color:#BF360C;margin-bottom:14px;letter-spacing:.04em;}
+.sc-inner .sc-lead{font-size:17.5px;color:#8a7a6a;margin-bottom:44px;line-height:2;}
+.sc-btns{display:flex;gap:34px;flex-wrap:wrap;justify-content:center;align-items:stretch;}
+.sc-btns button{flex:1 1 300px;max-width:352px;border:3px solid #FFA000;background:#fff;border-radius:24px;padding:44px 32px 38px;cursor:pointer;font-family:inherit;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;transition:.16s;box-shadow:0 3px 10px rgba(230,81,0,.06);}
+.sc-btns button:hover{background:#fffdf8;transform:translateY(-5px);box-shadow:0 12px 26px rgba(230,81,0,.16);}
+.sc-btns button .em{font-size:58px;line-height:1;}
+.sc-btns button b{font-size:24px;color:#BF360C;letter-spacing:.03em;}
+.sc-btns button small{font-size:15px;color:#7a7066;line-height:1.95;}
+.sc-btns button .tag{margin-top:8px;font-size:13.5px;font-weight:bold;color:#E65100;background:#fff3e0;border-radius:12px;padding:8px 14px;line-height:1.7;width:100%;box-sizing:border-box;}
+.sc-btns button .tag.warn{color:#9a6a00;background:#fff8e1;}
+.sc-btns button .tag.steps{text-align:left;line-height:2;padding:10px 16px;}
+.sc-btns button.mihon{border-color:#74c69d;}
+.sc-btns button.mihon b{color:#2E7D32;}
+.sc-btns button.mihon .tag{color:#2E7D32;background:#e6f4ea;}
+.sc-btns button.mihon .tag.steps{color:#2E7D32;}
+.sc-foot{margin-top:34px;font-size:13px;color:#bbb;}
+@media print{.start-choice{display:none!important;}}
+
+.hint-btns{display:inline-flex;gap:4px;margin-left:8px;vertical-align:middle;}
+.hint-btn{padding:4px 12px;background:#4a6fa5;color:white;border:3px solid transparent;border-radius:14px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:bold;transition:transform .08s;}
+.hint-btn:active{transform:translateY(4px);}
+.hint-btn.on{border-color:#1B2A4A;background:#fff;color:#1B2A4A;}
+@media print{.hint-btns{display:none;}}
+svg g.w.blank rect, svg g.w.blank polygon{fill:#fcfcfc !important;stroke:#bbb !important;stroke-dasharray:6,4;}
+svg g.w.blank text{visibility:hidden;}
+svg.hinting .dt{display:none !important;}
+.easymap-btn{display:inline-block;padding:4px 14px;background:#74c69d;color:white;border:none;border-radius:14px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:bold;margin-left:8px;vertical-align:middle;}
+@media print{.easymap-btn{display:none;}}
+svg .dt{display:none;}
+svg.detail .dt{display:inline;}
+.node-sub{fill:#efe4fb;stroke:#7b52ab;stroke-width:2;}
+.label-sub{fill:#4a2c73;}
+.inner{fill:none!important;stroke-width:1.2!important;}
+.node-work{fill:#d6f0ee;stroke:#1f7a72;stroke-width:2;}
+.label-work{fill:#0f4d47;}
+svg.bones text:not(.kw), svg.bones rect:not(.kw) { display: none; }
+svg.bones .kw { display: initial; }
+
+/* 画面の高さに合わせて、マップ全体が1画面に収まるようにする */
+svg { max-height: calc(100vh - 150px); }
+@media print { svg { max-height: 168mm; } }
+@media (max-height: 860px) {
+  .start-choice { padding: 18px 20px; }
+  .sc-inner h2 { font-size: 26px; margin-bottom: 8px; }
+  .sc-inner .sc-lead { font-size: 14px; margin-bottom: 20px; line-height: 1.7; }
+  .sc-btns { gap: 20px; }
+  .sc-btns button { padding: 20px 20px 18px; gap: 10px; }
+  .sc-btns button b { font-size: 19px; }
+  .sc-btns button small { font-size: 13px; line-height: 1.7; }
+  .sc-btns button .tag { font-size: 12px; padding: 6px 10px; line-height: 1.6; }
+  .sc-foot { margin-top: 16px; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="startChoice" class="start-choice">
+  <div class="sc-inner">
+  <h2>肺のつくりと肺呼吸マップ — どうやって学ぶ？</h2>
+  <p class="sc-lead">いきなり答えを見ないで、まず自分で組み立ててみよう！<br>（自分で試してから、見本で答え合わせ）</p>
+  <div class="sc-btns">
+  <button onclick="chooseMode('words')"><b>語句のみ</b><small>使う語句を確認して、<br>自分のノートに組み立てる</small><span class="tag"> いちばん考えて、いちばん残る</span></button>
+  <button class="mihon" onclick="chooseMode('mihon')"><b>見本を見る</b><small>見て書く・ヒントにする・<br>答え合わせ、どれもOK</small><span class="tag warn steps"> 写すだけでは頭に残らない。<br>① 教科書を読み返す<br>② わからないところを質問する<br>③ ノートに肉付けする</span></button>
+  </div>
+  <div class="sc-foot">あとで上のボタンでいつでも切りかえできます</div>
+  </div>
+</div>
+
+<h1>肺のつくりと肺呼吸｜まとめマップ <a href="index.html" class="back-btn"> 一覧へ</a><button class="words-btn" onclick="toggleWords(this)"> 語句のみ</button><button class="easymap-btn" onclick="toggleDetail(this)"> くわしい版</button><span class="hint-btns"><button class="hint-btn" data-lv="1" onclick="setHint(1)">ヒント1</button><button class="hint-btn" data-lv="2" onclick="setHint(2)">ヒント2</button><button class="hint-btn on" data-lv="3" onclick="setHint(3)">見本</button></span><button class="print-btn" onclick="window.print()"> 印刷</button></h1>
+<div class="meta">中2理科 単元2「生物の体のつくりと働き」3章 動物の体のつくりと働き｜3 呼吸のはたらき　P.136〜137　● 細胞の呼吸に必要な酸素のとり入れ</div>
+
+<svg viewBox="0 0 1180 662" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+  <marker id="arw" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+  <path d="M0 0 L10 5 L0 10 Z" fill="#222"/></marker>
+  </defs>
+  <rect class="node-main" x="330" y="9" width="520" height="42" rx="10"/>
+  <text class="label label-main" x="590" y="30">細胞の呼吸に必要な酸素のとり入れ</text>
+  <line class="link" x1="590" y1="51" x2="590" y2="72"/>
+  <line class="link" x1="400" y1="72" x2="930" y2="72"/>
+  <line class="link" x1="400" y1="72" x2="400" y2="92"/>
+  <line class="link" x1="930" y1="72" x2="930" y2="92"/>
+  <rect class="node" x="325" y="92" width="150" height="38" rx="1"/>
+  <text class="label label-leaf" x="400" y="111">鼻や口</text>
+  <line class="link" x1="400" y1="130" x2="400" y2="161"/>
+  <text class="criterion" x="400" y="145.5">吸いこまれた空気が通る</text>
+  <g class="w" data-w="気管">
+  <rect class="node-yellow kw" x="325" y="161" width="150" height="38" rx="1"/>
+  <text class="label label-leaf label-yellow kw" x="400" y="180">気管</text>
+  </g>
+  <line class="link" x1="400" y1="199" x2="400" y2="229"/>
+  <text class="criterion" x="400" y="214">枝分かれして</text>
+  <g class="w" data-w="気管支">
+  <rect class="node-yellow kw" x="325" y="229" width="150" height="38" rx="1"/>
+  <text class="label label-leaf label-yellow kw" x="400" y="248">気管支</text>
+  </g>
+  <line class="link" x1="400" y1="267" x2="400" y2="297"/>
+  <text class="criterion" x="400" y="282">その先に たくさんの</text>
+  <g class="w" data-w="肺胞">
+  <rect class="node-yellow kw" x="325" y="297" width="150" height="38" rx="1"/>
+  <text class="label label-leaf label-yellow kw" x="400" y="316">肺胞</text>
+  </g>
+  <line class="link" x1="400" y1="335" x2="400" y2="365"/>
+  <text class="criterion" x="400" y="350">まわりにある</text>
+  <g class="w" data-w="毛細血管">
+  <rect class="node-yellow kw" x="315" y="365" width="170" height="38" rx="1"/>
+  <text class="label label-leaf label-yellow kw" x="400" y="384">毛細血管</text>
+  </g>
+  <line class="link" x1="400" y1="403" x2="400" y2="425"/>
+  <line class="link" x1="290" y1="425" x2="510" y2="425"/>
+  <line class="link" x1="290" y1="425" x2="290" y2="470"/>
+  <text class="criterion" x="290" y="447.5">肺胞 → 血液へ</text>
+  <line class="link" x1="510" y1="425" x2="510" y2="470"/>
+  <text class="criterion" x="510" y="447.5">血液 → 肺胞へ</text>
+  <g class="w" data-w="酸素">
+  <rect class="node-sub kw" x="220" y="470" width="140" height="38" rx="19"/>
+  <text class="label label-leaf label-sub kw" x="290" y="489">酸素</text>
+  </g>
+  <g class="w" data-w="二酸化炭素">
+  <rect class="node-sub kw" x="425" y="470" width="170" height="38" rx="19"/>
+  <text class="label label-leaf label-sub kw" x="510" y="489">二酸化炭素</text>
+  </g>
+  <line class="link dt" x1="595" y1="489" x2="618" y2="489" stroke-dasharray="3,3"/>
+  <rect class="node-info dt" x="618" y="472" width="144" height="32" rx="6"/>
+  <text class="label label-ex dt" x="690" y="488">気管を通って体外へ</text>
+  <line class="link" x1="290" y1="508" x2="290" y2="530"/>
+  <line class="link" x1="510" y1="508" x2="510" y2="530"/>
+  <line class="link" x1="290" y1="530" x2="510" y2="530"/>
+  <line class="link" x1="400" y1="530" x2="400" y2="566"/>
+  <text class="criterion" x="400" y="548">このような肺のはたらきを</text>
+  <g class="w" data-w="肺呼吸">
+  <polygon class="node-work kw" points="334,566 466,566 475,575 475,595 466,604 334,604 325,595 325,575"/>
+  <text class="label label-leaf label-work kw" x="400" y="585">肺呼吸</text>
+  </g>
+  <line class="link dt" x1="325" y1="180" x2="286" y2="196" stroke-dasharray="3,3"/>
+  <rect class="node-info dt" x="24" y="160" width="262" height="104" rx="6"/>
+  <text class="label label-ex dt" x="155" y="176">肺は ろっ骨や横隔膜に</text>
+  <text class="label label-ex dt" x="155" y="194">囲まれた空間の中にある</text>
+  <text class="label label-ex dt" x="155" y="212">ろっ骨や横隔膜が動いて</text>
+  <text class="label label-ex dt" x="155" y="230">空間が広がる → 肺が広がり</text>
+  <text class="label label-ex dt" x="155" y="248">空気が入る</text>
+  <rect class="node" x="805" y="92" width="250" height="38" rx="1"/>
+  <text class="label label-leaf" x="930" y="111">酸素の多い血液・少ない血液</text>
+  <line class="link" x1="930" y1="130" x2="930" y2="150"/>
+  <line class="link" x1="790" y1="150" x2="1070" y2="150"/>
+  <line class="link" x1="790" y1="150" x2="790" y2="172"/>
+  <line class="link" x1="1070" y1="150" x2="1070" y2="172"/>
+  <g class="w" data-w="動脈血">
+  <rect class="node-sub kw" x="715" y="172" width="150" height="38" rx="19"/>
+  <text class="label label-leaf label-sub kw" x="790" y="191">動脈血</text>
+  </g>
+  <g class="w" data-w="静脈血">
+  <rect class="node-sub kw" x="995" y="172" width="150" height="38" rx="19"/>
+  <text class="label label-leaf label-sub kw" x="1070" y="191">静脈血</text>
+  </g>
+  <line class="link" x1="993" y1="181" x2="867" y2="181" marker-end="url(#arw)"/>
+  <text class="criterion" x="930" y="168">肺で</text>
+  <line class="link" x1="867" y1="202" x2="993" y2="202" marker-end="url(#arw)"/>
+  <text class="criterion" x="930" y="222">全身を回る間に</text>
+  <line class="link dt" x1="790" y1="210" x2="790" y2="240"/>
+  <line class="link dt" x1="1070" y1="210" x2="1070" y2="240"/>
+  <rect class="node-info dt" x="695" y="240" width="190" height="50" rx="6"/>
+  <text class="label label-ex dt" x="790" y="256">酸素が多く</text>
+  <text class="label label-ex dt" x="790" y="274">二酸化炭素が少ない</text>
+  <rect class="node-info dt" x="975" y="240" width="190" height="50" rx="6"/>
+  <text class="label label-ex dt" x="1070" y="256">酸素が少なく</text>
+  <text class="label label-ex dt" x="1070" y="274">二酸化炭素が多い</text>
+  <line class="link" x1="930" y1="232" x2="930" y2="300" stroke-dasharray="3,3"/>
+  <g class="w" data-w="細胞の呼吸">
+  <polygon class="node-work kw" points="864,300 996,300 1005,309 1005,329 996,338 864,338 855,329 855,309"/>
+  <text class="label label-leaf label-work kw" x="930" y="319">細胞の呼吸</text>
+  </g>
+  <line class="link dt" x1="930" y1="338" x2="930" y2="356"/>
+  <rect class="node-info dt" x="830" y="356" width="200" height="50" rx="6"/>
+  <text class="label label-ex dt" x="930" y="372">全身の細胞で行われ</text>
+  <text class="label label-ex dt" x="930" y="390">二酸化炭素が生じる</text>
+  <rect x="40" y="620" width="1100" height="34" rx="8" style="fill:#fafafa;stroke:#ccc;stroke-width:1;"/>
+  <text class="lg" x="131.667" y="638" style="font-size:11px;fill:#3a3028;text-anchor:middle;dominant-baseline:central;">色つきの箱＝覚える語句</text>
+  <rect class="node-yellow" x="253" y="629" width="26" height="16" rx="1"/>
+  <text class="lg" x="325" y="638" style="font-size:11px;fill:#6b4a00;text-anchor:middle;dominant-baseline:central;">場所・つくり</text>
+  <rect class="node-sub" x="436.333" y="629" width="26" height="16" rx="8"/>
+  <text class="lg" x="508.333" y="638" style="font-size:11px;fill:#4a2c73;text-anchor:middle;dominant-baseline:central;">物質</text>
+  <polygon class="node-work" points="624.667,629 640.667,629 645.667,634 645.667,640 640.667,645 624.667,645 619.667,640 619.667,634"/>
+  <text class="lg" x="691.667" y="638" style="font-size:11px;fill:#0f4d47;text-anchor:middle;dominant-baseline:central;">はたらき・流れ</text>
+  <rect class="node-info dt" x="803" y="629" width="26" height="16" rx="3"/>
+  <text class="lg dt" x="875" y="638" style="font-size:11px;fill:#555;text-anchor:middle;dominant-baseline:central;">せつめい</text>
+  <text class="lg" x="1048.33" y="638" style="font-size:11px;fill:#888;text-anchor:middle;dominant-baseline:central;">問い：グレー</text>
+</svg>
+
+<div class="summary">
+  <div class="sum-full" hidden>
+  <strong> まとめ文（くわしい版）</strong>
+  <h3> P.136〜137 ｜● 肺のつくりと肺呼吸</h3>
+  鼻や口から吸いこまれた空気は、<span class="blank">気管</span> を通って肺に入る。肺は、ろっ骨や横隔膜に囲まれた空間の中にあり、この空間が広がると肺が広がって空気が入る。気管は枝分かれして <span class="blank">気管支</span> となり、その先には <span class="blank">肺胞</span> という小さなふくろがたくさんある。肺胞のまわりにある <span class="blank">毛細血管</span> を流れる血液へ、空気中の <span class="blank">酸素</span> の一部がとりこまれ、血液中の <span class="blank">二酸化炭素</span> は肺胞へわたされ、気管を通って体外に放出される。このような肺のはたらきを <span class="blank">肺呼吸</span> という。酸素を多くふくみ、二酸化炭素の少ない血液を <span class="blank">動脈血</span>、酸素が少なくなり、二酸化炭素を多くふくむ血液を <span class="blank">静脈血</span> という。肺では静脈血が動脈血に変わり、全身を循環して肺にもどる間に、<span class="blank">細胞の呼吸</span> によって生じた二酸化炭素を多くふくむ静脈<span class="nw">血になる。</span>
+  </div>
+  <div class="sum-easy">
+  <strong> まとめ文（マップを矢印の順になぞって書こう）</strong>
+  <h3> P.136〜137 ｜● 肺のつくりと肺呼吸</h3>
+  空気は <span class="blank">気管</span> → <span class="blank">気管支</span> → <span class="blank">肺胞</span> と進み、肺胞のまわりの <span class="blank">毛細血管</span> で、<span class="blank">酸素</span> が血液へ、<span class="blank">二酸化炭素</span> が肺胞へわたされる（<span class="blank">肺呼吸</span>）。酸素が多く二酸化炭素が少ない血液を <span class="blank">動脈血</span>、全身を回る間に <span class="blank">細胞の呼吸</span> で生じた二酸化炭素を多くふくむ血液を <span class="blank">静脈血</span><span class="nw"> という。</span>
+  </div>
+</div>
+
+<div class="words-only" hidden>
+  <h2> 語句チェック</h2>
+  <p class="hint">この語句が、マップのどこにあって、どうつながっていたか思い出せるかな？</p>
+  <div class="words-grid">
+  <div class="word-card">気管</div>
+  <div class="word-card">気管支</div>
+  <div class="word-card">肺胞</div>
+  <div class="word-card">毛細血管</div>
+  <div class="word-card">酸素</div>
+  <div class="word-card">二酸化炭素</div>
+  <div class="word-card">肺呼吸</div>
+  <div class="word-card">動脈血</div>
+  <div class="word-card">静脈血</div>
+  <div class="word-card">細胞の呼吸</div>
+  </div>
+</div>
+</div>
+
+<script>
+const MAP_WORDS = ["気管","気管支","肺胞","毛細血管","酸素","二酸化炭素","肺呼吸","動脈血","静脈血","細胞の呼吸"];
+function toggleWords(btn) {
+  const svg = document.querySelector('svg');
+  const summary = document.querySelector('.summary');
+  const words = document.querySelector('.words-only');
+  if (words.hidden) {
+  svg.style.display = 'none';
+  summary.style.display = 'none';
+  words.hidden = false;
+  btn.textContent = ' マップへ戻る';
+  } else {
+  svg.style.display = '';
+  summary.style.display = '';
+  words.hidden = true;
+  btn.textContent = ' 語句のみ';
+  }
+}
+const HINTS = {1: ["気管", "動脈血"], 2: ["気管", "動脈血", "気管支", "肺胞", "毛細血管", "酸素", "二酸化炭素", "肺呼吸"]};
+function setHint(lv){
+  var svg = document.querySelector('svg');
+  svg.classList.toggle('hinting', lv < 3);
+  document.querySelectorAll('svg g.w').forEach(function(g){
+    g.classList.toggle('blank', lv < 3 && HINTS[lv].indexOf(g.dataset.w) < 0);
+  });
+  document.querySelectorAll('.hint-btn').forEach(function(b){ b.classList.toggle('on', +b.dataset.lv === lv); });
+}
+function toggleDetail(btn){
+  var svg = document.querySelector('svg');
+  var on = svg.classList.toggle('detail');
+  btn.textContent = on ? ' くわしい版をとじる' : ' くわしい版';
+  document.querySelector('.sum-full').hidden = !on;
+  document.querySelector('.sum-easy').hidden = on;
+}
+function toggleBones(btn){
+  var svg = document.querySelector('svg');
+  var on = svg.classList.toggle('bones');
+  btn.textContent = on ? ' 説明ありに戻す' : ' 骨組みだけ';
+}
+function chooseMode(m){
+  var sc = document.getElementById('startChoice'); if (sc) sc.style.display = 'none';
+  if (m === 'words') { var b = document.querySelector('.words-btn'); if (b) toggleWords(b); }
+  if (m === 'mihon') { setHint(1); }
+}
+</script>
+
+</body>
+</html>
