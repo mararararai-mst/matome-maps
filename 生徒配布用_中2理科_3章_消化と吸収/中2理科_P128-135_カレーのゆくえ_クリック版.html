@@ -1,0 +1,325 @@
+<title>カレーのゆくえ</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;--bg:#ffffff;--ink:#222;--sub:#5a5048;--acc:#d6452c;--G:#3f9153;--P:#7b52a8;--O:#e2822a;--W:#2b6cd4;--pane:#f6f2ea}
+
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Meiryo",sans-serif;background:white;color:#222;padding:12px 16px}
+.wrap{max-width:1000px;margin:0 auto}
+h1{font-size:18px;text-align:center;border-bottom:2px solid #222;padding-bottom:6px;margin-bottom:8px;letter-spacing:.06em}
+.meta{text-align:center;font-size:12px;color:#555;margin-bottom:10px}
+svg{display:block;width:100%;height:auto}
+.card{fill:white;stroke:#111;stroke-width:3}
+.ct{font-weight:900;text-anchor:middle;dominant-baseline:central;letter-spacing:.02em}
+.label-ex{font-size:12.5px;fill:#555;text-anchor:middle;dominant-baseline:central}
+.criterion{font-size:13px;fill:#555;font-weight:bold;dominant-baseline:central}
+.note{margin-top:8px;font-size:12px;color:#555;text-align:right}
+@media print{body{padding:0} .wrap{max-width:none;width:270mm}}
+
+body{background:var(--bg);color:var(--ink);padding-block:8px}
+h1{margin-bottom:6px;padding-bottom:4px;font-size:16px}
+.wrap{max-width:1100px}
+.head{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:6px;display:flex;flex-direction:column;gap:6px;border-bottom:1px solid #e5ded2}
+.top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
+.pick{font-family:inherit;font-weight:900;font-size:15px;color:#fff;border:3px solid transparent;border-radius:999px;padding:6px 13px;cursor:pointer;transition:transform .08s}
+.pick:active,.go:active,.sub:active{transform:translateY(4px)}
+.pick[aria-pressed="true"]{border-color:#222}
+.go{font-family:inherit;font-weight:900;font-size:18px;color:#fff;background:var(--acc);border:none;border-radius:999px;padding:8px 24px;cursor:pointer;transition:transform .08s}
+.go:disabled{opacity:.4;cursor:default}
+.sub{font-family:inherit;font-size:14px;color:var(--sub);background:var(--pane);border:none;border-radius:999px;padding:8px 14px;cursor:pointer}
+.sub:disabled{opacity:.4;cursor:default}
+button:focus-visible{outline:3px solid #222;outline-offset:2px}
+.cap{width:100%;max-width:960px;margin:0 auto;background:var(--pane);border-radius:14px;padding:10px 18px;font-size:20px;font-weight:700;text-align:center;text-wrap:balance;min-height:2.6em;display:flex;align-items:center;justify-content:center;gap:12px}
+.cap .n{font-size:13px;color:var(--sub);white-space:nowrap}
+#tok{transition:transform .6s cubic-bezier(.3,1.2,.5,1)}
+.hlr{fill:none;stroke:#ffc61a;stroke-width:5;opacity:.95}
+.note{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (prefers-reduced-motion:reduce){#tok{transition:none}}
+</style>
+<div class="wrap">
+<h1>カレーライスのゆくえ｜押すと少しずつ進む</h1>
+<div class="head" id="head">
+<div class="top">
+  <button class="pick" id="p0" style="background:var(--G)" aria-pressed="true">ごはん（デンプン）</button>
+  <button class="pick" id="p1" style="background:var(--P)" aria-pressed="false">肉（タンパク質）</button>
+  <button class="pick" id="p2" style="background:var(--O)" aria-pressed="false">油（脂肪）</button>
+  <button class="pick" id="p3" style="background:var(--W)" aria-pressed="false">のこり（水分・繊維）</button>
+  <button class="go" id="go">すすむ ▶</button>
+  <button class="sub" id="back">◀ もどる</button>
+  <button class="sub" id="reset">はじめから</button>
+</div>
+<div class="cap" id="cap"><span id="capt"></span><span class="n" id="cnt"></span></div>
+</div>
+<svg id="map" viewBox="-34 0 1056 1400" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="ar" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0 L12 6 L0 12 Z" fill="#444"/></marker><marker id="arG" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0 L12 6 L0 12 Z" fill="#2E7D32"/></marker><marker id="arP" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0 L12 6 L0 12 Z" fill="#6A4C93"/></marker><marker id="arO" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0 L12 6 L0 12 Z" fill="#E65100"/></marker></defs>
+<rect x="6" y="290" width="128" height="914" rx="14" style="fill:#efe9dd"/>
+<line x1="900" y1="282" x2="900" y2="820" style="stroke:#E65100;stroke-width:3.2" marker-end="url(#arO)"/>
+<line x1="735" y1="282" x2="735" y2="820" style="stroke:#6A4C93;stroke-width:3.2" marker-end="url(#arP)"/>
+<line x1="575" y1="282" x2="575" y2="820" style="stroke:#2E7D32;stroke-width:3.2" marker-end="url(#arG)"/>
+<rect class="card" x="635" y="10" width="200" height="124"/>
+<svg x="643.0" y="16.0" width="184.0" height="84.0" preserveAspectRatio="xMidYMid meet" viewBox="0 0 200 120"><ellipse cx="100" cy="74" rx="94" ry="40" fill="#cfd8dc"/><ellipse cx="100" cy="70" rx="80" ry="31" fill="#eceff1"/><path d="M24 70 Q40 34 92 38 Q104 60 96 92 Q50 98 24 70 Z" fill="#ffffff" stroke="#b0bec5" stroke-width="2"/><path d="M92 38 Q150 30 176 66 Q160 98 96 92 Q104 60 92 38 Z" fill="#a0561d"/><rect x="122" y="52" width="16" height="12" rx="3" fill="#ff8f00"/><rect x="146" y="66" width="15" height="13" rx="4" fill="#ffd54f"/><rect x="112" y="72" width="14" height="11" rx="3" fill="#8d4a2b"/><rect x="140" y="44" width="10" height="9" rx="2" fill="#ffd54f"/></svg>
+<text class="ct" x="735.0" y="116.0" style="font-size:21.6px;fill:#222">カレーライス</text>
+<text class="criterion" x="747" y="150" style="text-anchor:start">何がふくまれる？</text>
+<line x1="735" y1="134" x2="735" y2="164" style="stroke:#444;stroke-width:1.6"/>
+<line x1="575" y1="164" x2="900" y2="164" style="stroke:#444;stroke-width:1.6"/>
+<line x1="575" y1="164" x2="575" y2="178" style="stroke:#444;stroke-width:1.6"/>
+<rect class="card" x="500" y="178" width="150" height="104"/>
+<svg x="508.0" y="184.0" width="134.0" height="64.0" preserveAspectRatio="xMidYMid meet" viewBox="0 0 120 40"><polygon points="25.0,20.0 19.5,29.5 8.5,29.5 3.0,20.0 8.5,10.5 19.5,10.5" fill="#2E7D32"/><polygon points="48.0,20.0 42.5,29.5 31.5,29.5 26.0,20.0 31.5,10.5 42.5,10.5" fill="#2E7D32"/><polygon points="71.0,20.0 65.5,29.5 54.5,29.5 49.0,20.0 54.5,10.5 65.5,10.5" fill="#2E7D32"/><polygon points="94.0,20.0 88.5,29.5 77.5,29.5 72.0,20.0 77.5,10.5 88.5,10.5" fill="#2E7D32"/><polygon points="117.0,20.0 111.5,29.5 100.5,29.5 95.0,20.0 100.5,10.5 111.5,10.5" fill="#2E7D32"/><rect x="23" y="18" width="6" height="4" fill="#2E7D32"/><rect x="46" y="18" width="6" height="4" fill="#2E7D32"/><rect x="69" y="18" width="6" height="4" fill="#2E7D32"/><rect x="92" y="18" width="6" height="4" fill="#2E7D32"/></svg>
+<text class="ct" x="575.0" y="264.0" style="font-size:13.4px;fill:#2E7D32">炭水化物（デンプン）</text>
+<line x1="735" y1="164" x2="735" y2="178" style="stroke:#444;stroke-width:1.6"/>
+<rect class="card" x="660" y="178" width="150" height="104"/>
+<svg x="668.0" y="184.0" width="134.0" height="64.0" preserveAspectRatio="xMidYMid meet" viewBox="0 0 120 40"><circle cx="13.0" cy="20" r="9" fill="#6A4C93"/><rect x="27.5" y="11" width="18" height="18" rx="2" fill="#6A4C93"/><polygon points="60.0,9 71.0,29 49.0,29" fill="#6A4C93"/><circle cx="83.5" cy="20" r="9" fill="#6A4C93"/><rect x="98.0" y="11" width="18" height="18" rx="2" fill="#6A4C93"/><rect x="21.0" y="18" width="8" height="4" fill="#6A4C93"/><rect x="44.5" y="18" width="8" height="4" fill="#6A4C93"/><rect x="68.0" y="18" width="8" height="4" fill="#6A4C93"/><rect x="91.5" y="18" width="8" height="4" fill="#6A4C93"/></svg>
+<text class="ct" x="735.0" y="264.0" style="font-size:21.6px;fill:#6A4C93">タンパク質</text>
+<line x1="900" y1="164" x2="900" y2="178" style="stroke:#444;stroke-width:1.6"/>
+<rect class="card" x="825" y="178" width="150" height="104"/>
+<svg x="833.0" y="184.0" width="134.0" height="64.0" preserveAspectRatio="xMidYMid meet" viewBox="0 0 60 50"><rect x="8" y="34" width="44" height="12" rx="3" fill="#E65100"/><rect x="12" y="4" width="7" height="31" rx="3" fill="#F2B705" stroke="#8a6b12" stroke-width="1.5"/><rect x="27" y="4" width="7" height="31" rx="3" fill="#F2B705" stroke="#8a6b12" stroke-width="1.5"/><rect x="42" y="4" width="7" height="31" rx="3" fill="#F2B705" stroke="#8a6b12" stroke-width="1.5"/></svg>
+<text class="ct" x="900.0" y="264.0" style="font-size:21.6px;fill:#E65100">脂肪</text>
+<text class="label-ex" x="583" y="298" style="text-anchor:start;fill:#555">カレーでは：ごはん</text>
+<text class="label-ex" x="743" y="298" style="text-anchor:start;fill:#555">カレーでは：肉</text>
+<text class="label-ex" x="908" y="298" style="text-anchor:start;fill:#555">カレーでは：油</text>
+<rect class="card" x="20" y="210" width="96" height="40" style="fill:#D81B60"/>
+<text class="ct" x="68.0" y="230.0" style="font-size:22.0px;fill:#fff">消化</text>
+<text class="criterion" x="126" y="230" style="text-anchor:start">どこで、何によって分解される？</text>
+<rect class="card" x="20" y="300" width="100" height="34"/>
+<text class="ct" x="70.0" y="317.0" style="font-size:19.0px;fill:#222">消化管</text>
+<text class="label-ex" x="192" y="317" style="text-anchor:middle;fill:#888">どこから出る？</text>
+<rect class="card" x="258" y="300" width="100" height="34"/>
+<text class="ct" x="308.0" y="317.0" style="font-size:19.0px;fill:#1565C0">消化液</text>
+<rect class="card" x="372" y="300" width="110" height="34"/>
+<text class="ct" x="427.0" y="317.0" style="font-size:19.0px;fill:#9A6B00">消化酵素</text>
+<rect class="card" x="20" y="352" width="100" height="40"/>
+<text class="ct" x="70.0" y="372.0" style="font-size:22.0px;fill:#222">口</text>
+<rect class="card" x="20" y="408" width="100" height="34"/>
+<text class="ct" x="70.0" y="425.0" style="font-size:19.0px;fill:#222">食道</text>
+<rect class="card" x="20" y="460" width="100" height="40"/>
+<text class="ct" x="70.0" y="480.0" style="font-size:22.0px;fill:#222">胃</text>
+<rect class="card" x="20" y="540" width="100" height="262"/>
+<text class="ct" x="70.0" y="671.0" style="font-size:22.0px;fill:#222">小腸</text>
+<line x1="70" y1="392" x2="70" y2="408" style="stroke:#444;stroke-width:1.6" marker-end="url(#ar)"/>
+<line x1="70" y1="442" x2="70" y2="460" style="stroke:#444;stroke-width:1.6" marker-end="url(#ar)"/>
+<line x1="70" y1="500" x2="70" y2="540" style="stroke:#444;stroke-width:1.6" marker-end="url(#ar)"/>
+<rect class="card" x="140" y="355" width="105" height="34"/>
+<text class="ct" x="192.5" y="372.0" style="font-size:19.0px;fill:#8D3B2C">だ液せん</text>
+<line x1="245" y1="372" x2="254" y2="372" style="stroke:#444;stroke-width:1.6" marker-end="url(#ar)"/>
+<rect class="card" x="258" y="355" width="100" height="34"/>
+<text class="ct" x="308.0" y="372.0" style="font-size:19.0px;fill:#1565C0">だ液</text>
+<line x1="358" y1="372" x2="372" y2="372" style="stroke:#444;stroke-width:1.6"/>
+<rect class="card" x="372" y="355" width="110" height="34"/>
+<text class="ct" x="427.0" y="372.0" style="font-size:19.0px;fill:#9A6B00">アミラーゼ</text>
+<line x1="482" y1="372" x2="561" y2="372" style="stroke:#777;stroke-width:1.6"/>
+<polygon points="575.0,359.0 577.5,366.0 584.2,362.8 581.0,369.5 588.0,372.0 581.0,374.5 584.2,381.2 577.5,378.0 575.0,385.0 572.5,378.0 565.8,381.2 569.0,374.5 562.0,372.0 569.0,369.5 565.8,362.8 572.5,366.0" style="fill:white;stroke:#2E7D32;stroke-width:2.2"/>
+<line x1="120" y1="480" x2="254" y2="480" style="stroke:#444;stroke-width:1.6" marker-end="url(#ar)"/>
+<rect class="card" x="258" y="463" width="100" height="34"/>
+<text class="ct" x="308.0" y="480.0" style="font-size:19.0px;fill:#1565C0">胃液</text>
+<line x1="358" y1="480" x2="372" y2="480" style="stroke:#444;stroke-width:1.6"/>
+<rect class="card" x="372" y="463" width="110" height="34"/>
+<text class="ct" x="427.0" y="480.0" style="font-size:19.0px;fill:#9A6B00">ペプシン</text>
+<line x1="482" y1="480" x2="721" y2="480" style="stroke:#777;stroke-width:1.6"/>
+<polygon points="735.0,467.0 737.5,474.0 744.2,470.8 741.0,477.5 748.0,480.0 741.0,482.5 744.2,489.2 737.5,486.0 735.0,493.0 732.5,486.0 725.8,489.2 729.0,482.5 722.0,480.0 729.0,477.5 725.8,470.8 732.5,474.0" style="fill:white;stroke:#6A4C93;stroke-width:2.2"/>
+<rect class="card" x="140" y="544" width="105" height="34"/>
+<text class="ct" x="192.5" y="561.0" style="font-size:19.0px;fill:#8D3B2C">肝臓</text>
+<line x1="192.5" y1="578" x2="192.5" y2="598" style="stroke:#444;stroke-width:1.6" marker-end="url(#ar)"/>
+<text class="label-ex" x="200.5" y="589" style="text-anchor:start;fill:#888">つくる→ためる</text>
+<rect class="card" x="140" y="600" width="105" height="34"/>
+<text class="ct" x="192.5" y="617.0" style="font-size:19.0px;fill:#8D3B2C">胆のう</text>
+<line x1="245" y1="617" x2="254" y2="617" style="stroke:#444;stroke-width:1.6" marker-end="url(#ar)"/>
+<rect class="card" x="258" y="600" width="100" height="34"/>
+<text class="ct" x="308.0" y="617.0" style="font-size:19.0px;fill:#1565C0">胆汁</text>
+<text class="label-ex" x="427.0" y="617" style="text-anchor:middle;fill:#b03856">消化酵素なし</text>
+<line x1="358" y1="617" x2="380" y2="617" style="stroke:#777;stroke-width:1.4" stroke-dasharray="7,5"/>
+<line x1="476" y1="617" x2="890" y2="617" style="stroke:#777;stroke-width:1.4" stroke-dasharray="7,5"/>
+<circle cx="900" cy="617" r="8" style="fill:white;stroke:#E65100;stroke-width:2.2;stroke-dasharray:3,2"/>
+<rect class="card" x="140" y="678" width="105" height="34"/>
+<text class="ct" x="192.5" y="695.0" style="font-size:19.0px;fill:#8D3B2C">すい臓</text>
+<line x1="245" y1="695" x2="254" y2="695" style="stroke:#444;stroke-width:1.6" marker-end="url(#ar)"/>
+<rect class="card" x="258" y="663" width="100" height="64"/>
+<text class="ct" x="308.0" y="695.0" style="font-size:22.0px;fill:#1565C0">すい液</text>
+<line x1="358" y1="675" x2="372" y2="675" style="stroke:#444;stroke-width:1.6"/>
+<line x1="358" y1="715" x2="372" y2="715" style="stroke:#444;stroke-width:1.6"/>
+<rect class="card" x="372" y="659" width="110" height="32"/>
+<text class="ct" x="427.0" y="675.0" style="font-size:17.9px;fill:#9A6B00">トリプシン</text>
+<rect class="card" x="372" y="699" width="110" height="32"/>
+<text class="ct" x="427.0" y="715.0" style="font-size:17.9px;fill:#9A6B00">リパーゼ</text>
+<line x1="358" y1="695" x2="561" y2="695" style="stroke:#777;stroke-width:1.6"/>
+<polygon points="575.0,682.0 577.5,689.0 584.2,685.8 581.0,692.5 588.0,695.0 581.0,697.5 584.2,704.2 577.5,701.0 575.0,708.0 572.5,701.0 565.8,704.2 569.0,697.5 562.0,695.0 569.0,692.5 565.8,685.8 572.5,689.0" style="fill:white;stroke:#2E7D32;stroke-width:2.2"/>
+<line x1="482" y1="675" x2="721" y2="675" style="stroke:#777;stroke-width:1.6"/>
+<polygon points="735.0,662.0 737.5,669.0 744.2,665.8 741.0,672.5 748.0,675.0 741.0,677.5 744.2,684.2 737.5,681.0 735.0,688.0 732.5,681.0 725.8,684.2 729.0,677.5 722.0,675.0 729.0,672.5 725.8,665.8 732.5,669.0" style="fill:white;stroke:#6A4C93;stroke-width:2.2"/>
+<line x1="482" y1="715" x2="886" y2="715" style="stroke:#777;stroke-width:1.6"/>
+<polygon points="900.0,702.0 902.5,709.0 909.2,705.8 906.0,712.5 913.0,715.0 906.0,717.5 909.2,724.2 902.5,721.0 900.0,728.0 897.5,721.0 890.8,724.2 894.0,717.5 887.0,715.0 894.0,712.5 890.8,705.8 897.5,709.0" style="fill:white;stroke:#E65100;stroke-width:2.2"/>
+<rect class="card" x="140" y="755" width="218" height="34"/>
+<text class="ct" x="249.0" y="772.0" style="font-size:19.0px;fill:#1565C0">小腸のかべの消化酵素</text>
+<line x1="358" y1="772" x2="721" y2="772" style="stroke:#777;stroke-width:1.6"/>
+<polygon points="575.0,759.0 577.5,766.0 584.2,762.8 581.0,769.5 588.0,772.0 581.0,774.5 584.2,781.2 577.5,778.0 575.0,785.0 572.5,778.0 565.8,781.2 569.0,774.5 562.0,772.0 569.0,769.5 565.8,762.8 572.5,766.0" style="fill:white;stroke:#2E7D32;stroke-width:2.2"/>
+<polygon points="735.0,759.0 737.5,766.0 744.2,762.8 741.0,769.5 748.0,772.0 741.0,774.5 744.2,781.2 737.5,778.0 735.0,785.0 732.5,778.0 725.8,781.2 729.0,774.5 722.0,772.0 729.0,769.5 725.8,762.8 732.5,766.0" style="fill:white;stroke:#6A4C93;stroke-width:2.2"/>
+<rect class="card" x="515" y="822" width="120" height="40"/>
+<svg x="520.0" y="826.0" width="32.0" height="32.0" preserveAspectRatio="xMidYMid meet" viewBox="0 0 40 40"><polygon points="35.0,20.0 27.5,33.0 12.5,33.0 5.0,20.0 12.5,7.0 27.5,7.0" fill="#2E7D32"/></svg>
+<text class="ct" x="593.5" y="842.0" style="font-size:17.9px;fill:#2E7D32">ブドウ糖</text>
+<rect class="card" x="675" y="822" width="120" height="40"/>
+<svg x="680.0" y="826.0" width="32.0" height="32.0" preserveAspectRatio="xMidYMid meet" viewBox="0 0 40 40"><polygon points="20,7 34,33 6,33" fill="#6A4C93"/></svg>
+<text class="ct" x="753.5" y="842.0" style="font-size:17.9px;fill:#6A4C93">アミノ酸</text>
+<rect class="card" x="830" y="822" width="140" height="40"/>
+<svg x="835.0" y="826.0" width="32.0" height="32.0" preserveAspectRatio="xMidYMid meet" viewBox="0 0 40 40"><rect x="16" y="4" width="8" height="32" rx="3" fill="#F2B705" stroke="#8a6b12" stroke-width="1.5"/></svg>
+<text class="ct" x="918.5" y="842.0" style="font-size:20.0px;fill:#9A7400">脂肪酸</text>
+<text class="ct" x="900" y="871" style="font-size:18px;fill:#E65100">＋</text>
+<rect class="card" x="830" y="880" width="140" height="40"/>
+<svg x="835.0" y="884.0" width="32.0" height="32.0" preserveAspectRatio="xMidYMid meet" viewBox="0 0 40 40"><rect x="5" y="26" width="30" height="10" rx="3" fill="#E65100"/><rect x="16" y="3" width="8" height="24" rx="3" fill="#F2B705" stroke="#8a6b12" stroke-width="1.5"/></svg>
+<text class="ct" x="918.5" y="900.0" style="font-size:13.0px;fill:#E65100">モノグリセリド</text>
+<rect x="140" y="950" width="850" height="100" rx="8" style="fill:#fff4c2;stroke:#C8961E;stroke-width:2"/>
+<line x1="575" y1="862" x2="575" y2="950" style="stroke:#2E7D32;stroke-width:3.2"/>
+<line x1="735" y1="862" x2="735" y2="950" style="stroke:#6A4C93;stroke-width:3.2"/>
+<line x1="900" y1="920" x2="900" y2="950" style="stroke:#E65100;stroke-width:3.2"/>
+<rect class="card" x="150" y="962" width="86" height="36" style="fill:#1565C0"/>
+<text class="ct" x="193.0" y="980.0" style="font-size:20.2px;fill:#fff">吸収</text>
+<text class="label-ex" x="246" y="980" style="text-anchor:start;fill:#6b4a00">小腸のかべの</text>
+<rect class="card" x="328" y="964" width="62" height="32"/>
+<text class="ct" x="359.0" y="980.0" style="font-size:17.9px;fill:#C2185B">柔毛</text>
+<text class="label-ex" x="398" y="980" style="text-anchor:start;fill:#6b4a00">から、からだの中へ</text>
+<rect class="card" x="150" y="1008" width="74" height="32"/>
+<text class="ct" x="187.0" y="1024.0" style="font-size:17.9px;fill:#0277BD">水分</text>
+<text class="label-ex" x="232" y="1024" style="text-anchor:start;fill:#6b4a00">主に小腸</text>
+<text class="label-ex" x="306" y="1016" style="text-anchor:start;fill:#6b4a00">ここより上＝消化管の中</text>
+<text class="label-ex" x="306" y="1034" style="text-anchor:start;fill:#6b4a00">ここより下＝からだの中</text>
+<line x1="120" y1="792" x2="147" y2="1022" style="stroke:#1565C0;stroke-width:1.8" marker-end="url(#ar)"/>
+<line x1="70" y1="802" x2="70" y2="1080" style="stroke:#444;stroke-width:1.6" marker-end="url(#ar)"/>
+<rect class="card" x="20" y="1082" width="100" height="40"/>
+<text class="ct" x="70.0" y="1102.0" style="font-size:22.0px;fill:#222">大腸</text>
+<text class="label-ex" x="128" y="1102" style="text-anchor:start;fill:#555">水分の一部を吸収</text>
+<line x1="70" y1="1122" x2="70" y2="1160" style="stroke:#444;stroke-width:1.6" marker-end="url(#ar)"/>
+<rect class="card" x="20" y="1162" width="100" height="40"/>
+<text class="ct" x="70.0" y="1182.0" style="font-size:22.0px;fill:#222">肛門</text>
+<text class="label-ex" x="128" y="1182" style="text-anchor:start;fill:#555">消化されなかった繊維など</text>
+<line x1="70" y1="1202" x2="70" y2="1250" style="stroke:#444;stroke-width:1.6" marker-end="url(#ar)"/>
+<text class="label-ex" x="78" y="1228" style="text-anchor:start;fill:#6D4C41">からだの外へ</text>
+<rect class="card" x="20" y="1252" width="120" height="108"/>
+<svg x="28.0" y="1258.0" width="104.0" height="68.0" preserveAspectRatio="xMidYMid meet" viewBox="0 0 120 110"><path d="M10 100 Q6 78 30 76 Q20 60 40 54 Q38 34 58 34 Q56 16 70 6 Q74 20 82 26 Q96 34 88 52 Q108 56 100 76 Q118 80 110 100 Z" fill="#8d5b3a"/><path d="M30 76 Q60 84 90 76 M40 54 Q62 62 86 54" stroke="#6d4428" stroke-width="4" fill="none" stroke-linecap="round"/></svg>
+<text class="ct" x="80.0" y="1342.0" style="font-size:21.6px;fill:#6D4C41">便</text>
+<text class="criterion" x="561" y="1072" style="text-anchor:end">どこへ運ばれる？</text>
+<line x1="575" y1="1050" x2="575" y2="1098" style="stroke:#2E7D32;stroke-width:3.2" marker-end="url(#arG)"/>
+<line x1="735" y1="1050" x2="735" y2="1098" style="stroke:#6A4C93;stroke-width:3.2" marker-end="url(#arP)"/>
+<rect class="card" x="505" y="1100" width="300" height="36"/>
+<text class="ct" x="655.0" y="1118.0" style="font-size:20.2px;fill:#C62828">毛細血管</text>
+<line x1="900" y1="1050" x2="900" y2="1080" style="stroke:#E65100;stroke-width:3.2" marker-end="url(#arO)"/>
+<rect class="card" x="830" y="1082" width="140" height="40"/>
+<svg x="835.0" y="1086.0" width="32.0" height="32.0" preserveAspectRatio="xMidYMid meet" viewBox="0 0 60 50"><rect x="8" y="34" width="44" height="12" rx="3" fill="#E65100"/><rect x="12" y="4" width="7" height="31" rx="3" fill="#F2B705" stroke="#8a6b12" stroke-width="1.5"/><rect x="27" y="4" width="7" height="31" rx="3" fill="#F2B705" stroke="#8a6b12" stroke-width="1.5"/><rect x="42" y="4" width="7" height="31" rx="3" fill="#F2B705" stroke="#8a6b12" stroke-width="1.5"/></svg>
+<text class="ct" x="918.5" y="1102.0" style="font-size:20.0px;fill:#E65100">脂肪</text>
+<text class="label-ex" x="880" y="1062" style="text-anchor:end;fill:#555">柔毛の中で再び</text>
+<line x1="900" y1="1122" x2="900" y2="1146" style="stroke:#E65100;stroke-width:3.2" marker-end="url(#arO)"/>
+<rect class="card" x="840" y="1148" width="120" height="34"/>
+<text class="ct" x="900.0" y="1165.0" style="font-size:19.0px;fill:#9A7400">リンパ管</text>
+<line x1="900" y1="1182" x2="900" y2="1222" style="stroke:#E65100;stroke-width:3.2" marker-end="url(#arO)"/>
+<text class="label-ex" x="890" y="1203" style="text-anchor:end;fill:#555">心臓の近くで合流</text>
+<rect class="card" x="828" y="1224" width="144" height="36"/>
+<text class="ct" x="900.0" y="1242.0" style="font-size:20.2px;fill:#1E4FA0">血管（静脈）</text>
+<line x1="655.0" y1="1136" x2="655.0" y2="1172" style="stroke:#444;stroke-width:1.6" marker-end="url(#ar)"/>
+<rect class="card" x="600.0" y="1174" width="110" height="36"/>
+<text class="ct" x="655.0" y="1192.0" style="font-size:20.2px;fill:#8D3B2C">肝臓</text>
+<line x1="600.0" y1="1192" x2="502" y2="1192" style="stroke:#444;stroke-width:1.6" marker-end="url(#ar)"/>
+<text class="label-ex" x="551" y="1177" style="text-anchor:middle;fill:#555">ブドウ糖の一部</text>
+<rect class="card" x="380" y="1174" width="120" height="36"/>
+<text class="ct" x="440.0" y="1192.0" style="font-size:17.5px;fill:#2E7D32">グリコーゲン</text>
+<text class="label-ex" x="440" y="1224" style="text-anchor:middle;fill:#555">としてたくわえる</text>
+<text class="label-ex" x="655.0" y="1226" style="text-anchor:middle;fill:#555">アミノ酸の一部→タンパク質につくりかえる</text>
+<rect class="card" x="595" y="1290" width="280" height="40"/>
+<text class="ct" x="735.0" y="1310.0" style="font-size:22.0px;fill:#00796B">全身の細胞</text>
+<line x1="655.0" y1="1238" x2="685" y2="1286" style="stroke:#444;stroke-width:1.6" marker-end="url(#ar)"/>
+<line x1="900" y1="1260" x2="795" y2="1286" style="stroke:#444;stroke-width:1.6" marker-end="url(#ar)"/>
+<text class="label-ex" x="735" y="1348" style="text-anchor:middle;fill:#555">細胞の呼吸に使われ、エネルギーがとり出される（P.103）</text>
+<rect x="160" y="1364" width="830" height="32" rx="8" style="fill:#fafafa;stroke:#ccc"/>
+<polygon points="184.0,1367.0 186.5,1374.0 193.2,1370.8 190.0,1377.5 197.0,1380.0 190.0,1382.5 193.2,1389.2 186.5,1386.0 184.0,1393.0 181.5,1386.0 174.8,1389.2 178.0,1382.5 171.0,1380.0 178.0,1377.5 174.8,1370.8 181.5,1374.0" style="fill:white;stroke:#555;stroke-width:2.2"/>
+<text class="label-ex" x="202" y="1380" style="text-anchor:start;fill:#555">消化酵素で分解される</text>
+<circle cx="352" cy="1380" r="8" style="fill:white;stroke:#555;stroke-width:2.2;stroke-dasharray:3,2"/>
+<text class="label-ex" x="366" y="1380" style="text-anchor:start;fill:#555">分解を助ける（胆汁）</text>
+<line x1="520" y1="1380" x2="550" y2="1380" style="stroke:#2E7D32;stroke-width:3.2"/>
+<text class="label-ex" x="558" y="1380" style="text-anchor:start;fill:#555">デンプンの流れ</text>
+<line x1="678" y1="1380" x2="708" y2="1380" style="stroke:#6A4C93;stroke-width:3.2"/>
+<text class="label-ex" x="716" y="1380" style="text-anchor:start;fill:#555">タンパク質の流れ</text>
+<line x1="836" y1="1380" x2="866" y2="1380" style="stroke:#E65100;stroke-width:3.2"/>
+<text class="label-ex" x="874" y="1380" style="text-anchor:start;fill:#555">脂肪の流れ</text>
+<g id="hl"></g><g id="tok"><circle r="16" id="tokc" style="fill:#3f9153;stroke:#222;stroke-width:2.5"/></g></svg>
+<div class="note"><span>キー：→・スペース・PageDown＝すすむ　←・PageUp＝もどる　1～4＝えらぶ</span><span>教科書 P.128～135（P.133 表1・表2、P.134 図2、P.135 図4）より</span></div>
+</div>
+<script>
+const COL=['#3f9153','#7b52a8','#e2822a','#2b6cd4'];
+const TOPS=['炭水化物（デンプン）','タンパク質','脂肪'];
+// [位置の目印にする文字（#2＝同じ文字の2つめ）, 'box'＝その箱の左どなり／'boxR'＝右どなり／'row'＝その段の高さで自分の列の線の上（＋横のずらし）, 横のずらし, 説明, 光らせるカード]
+const STEPS=[
+ [['炭水化物（デンプン）','box',0,'カレーのごはんには、デンプン（炭水化物）が多くふくまれる',['炭水化物（デンプン）']],
+  ['アミラーゼ','row',-30,'口：だ液のアミラーゼで、デンプンが小さく分解される（麦芽糖など）',['口','だ液せん','だ液','アミラーゼ']],
+  ['食道','row',-30,'食道：通りぬけて、胃へ送られる',['食道']],
+  ['ペプシン','row',-30,'胃：胃液はデンプンにははたらかない。そのまま通る',['胃','胃液']],
+  ['すい液','row',-30,'小腸：すい液の消化酵素で、さらに小さく分解される',['小腸','すい臓','すい液']],
+  ['小腸のかべの消化酵素','row',-30,'小腸：小腸のかべの消化酵素で、ブドウ糖まで分解される',['小腸','小腸のかべの消化酵素']],
+  ['ブドウ糖','box',0,'ブドウ糖になった',['ブドウ糖']],
+  ['吸収','row',0,'小腸のかべの柔毛から吸収される',['吸収','柔毛']],
+  ['毛細血管','box',0,'毛細血管に入る',['毛細血管']],
+  ['肝臓#2','boxR',0,'肝臓へ。一部はグリコーゲンとして一時的にたくわえられる',['肝臓#2','グリコーゲン']],
+  ['全身の細胞','box',0,'全身の細胞へ運ばれる',['全身の細胞']]],
+ [['タンパク質','box',0,'カレーの肉には、タンパク質が多くふくまれる',['タンパク質']],
+  ['アミラーゼ','row',-30,'口：だ液はタンパク質にははたらかない。そのまま通る',['口','だ液せん','だ液']],
+  ['食道','row',-30,'食道：通りぬけて、胃へ送られる',['食道']],
+  ['ペプシン','row',-30,'胃：胃液のペプシンで分解される',['胃','胃液','ペプシン']],
+  ['トリプシン','row',-30,'小腸：すい液のトリプシンなどで、さらに分解される',['小腸','すい臓','すい液','トリプシン']],
+  ['小腸のかべの消化酵素','row',-30,'小腸：小腸のかべの消化酵素で、アミノ酸まで分解される',['小腸','小腸のかべの消化酵素']],
+  ['アミノ酸','box',0,'アミノ酸になった',['アミノ酸']],
+  ['吸収','row',0,'小腸のかべの柔毛から吸収される',['吸収','柔毛']],
+  ['毛細血管','box',0,'毛細血管に入る',['毛細血管']],
+  ['肝臓#2','boxR',0,'肝臓へ。一部はタンパク質につくりかえられる',['肝臓#2']],
+  ['全身の細胞','box',0,'全身の細胞へ運ばれる',['全身の細胞']]],
+ [['脂肪','box',0,'カレーの油には、脂肪が多くふくまれる',['脂肪']],
+  ['アミラーゼ','row',-30,'口：だ液は脂肪にははたらかない。そのまま通る',['口','だ液せん','だ液']],
+  ['食道','row',-30,'食道：通りぬけて、胃へ送られる',['食道']],
+  ['ペプシン','row',-30,'胃：胃液も脂肪にははたらかない。そのまま通る',['胃','胃液']],
+  ['胆汁','row',-30,'小腸：肝臓でつくられ胆のうから出る胆汁が、脂肪の分解を助ける（胆汁に消化酵素はない）',['小腸','肝臓','胆のう','胆汁']],
+  ['リパーゼ','row',-30,'小腸：すい液のリパーゼで、脂肪酸とモノグリセリドに分解される',['小腸','すい臓','すい液','リパーゼ']],
+  ['脂肪酸','boxR',0,'脂肪酸とモノグリセリドになった',['脂肪酸','モノグリセリド']],
+  ['吸収','row',0,'小腸のかべの柔毛から吸収される',['吸収','柔毛']],
+  ['柔毛の中で再び','row',0,'柔毛の中で、再び脂肪になる',['脂肪#2']],
+  ['リンパ管','box',0,'リンパ管に入る',['リンパ管']],
+  ['血管（静脈）','box',0,'心臓の近くで、血管（静脈）に合流する',['血管（静脈）']],
+  ['全身の細胞','box',0,'全身の細胞へ運ばれる',['全身の細胞']]],
+ [['カレーライス','box',0,'カレーには、水分や、消化されない繊維などもふくまれる',['カレーライス']],
+  ['口','box',0,'口から入る',['口']],
+  ['食道','box',0,'食道を通る',['食道']],
+  ['胃','box',0,'胃を通る',['胃']],
+  ['小腸','box',0,'小腸：水分の多くは、ここで吸収される',['小腸','水分']],
+  ['大腸','box',0,'大腸：残りの水分の一部が吸収される',['大腸']],
+  ['肛門','box',0,'消化されなかった繊維などは、肛門から出される',['肛門']],
+  ['便','box',0,'便になる',['便']]]];
+const $=id=>document.getElementById(id);
+const map=$('map'), VB=map.viewBox.baseVal, TX=[...map.querySelectorAll('text')], RC=[...map.querySelectorAll('rect.card')];
+const findT=s=>{const m=s.replace(/^!/,'').split('#');return TX.filter(e=>e.textContent.trim()===m[0])[(+m[1]||1)-1];};
+function boxOf(s){const t=findT(s); if(!t) return null; const b=t.getBBox(); if(s[0]==='!') return b; const cx=b.x+b.width/2, cy=b.y+b.height/2;
+  let best=null,ba=1e12; RC.forEach(r=>{const q=r.getBBox(); if(q.x<=cx&&cx<=q.x+q.width&&q.y<=cy&&cy<=q.y+q.height&&q.width*q.height<ba){best=q;ba=q.width*q.height;}});
+  return best||b;}
+function colX(k){const t=findT(TOPS[k]); const b=t.getBBox(); return b.x+b.width/2;}
+const POS=STEPS.map((st,k)=>st.map(s=>{const t=findT(s[0]);
+  if(s[1]==='box'){const b=boxOf(s[0]); return [Math.max(b.x-24,VB.x+18)+s[2], b.y+b.height/2];}
+  if(s[1]==='boxR'){const b=boxOf(s[0]); return [Math.min(b.x+b.width+24,VB.x+VB.width-18)+s[2], b.y+b.height/2];}
+  const b=t.getBBox(); return [colX(k)+s[2], b.y+b.height/2];}));
+const HL=STEPS.map(st=>st.map(s=>s[4].map(boxOf).filter(Boolean)));
+let k=0,i=0;
+function show(){const s=STEPS[k][i], p=POS[k][i];
+  $('tok').style.transform=`translate(${p[0]}px,${p[1]}px)`;
+  $('tokc').style.fill=COL[k];
+  $('hl').innerHTML=HL[k][i].map(b=>`<rect class="hlr" x="${b.x-5}" y="${b.y-5}" width="${b.width+10}" height="${b.height+10}" rx="12"/>`).join('');
+  $('capt').textContent=s[3];
+  $('cnt').textContent=(i+1)+' / '+STEPS[k].length;
+  $('go').disabled=i>=STEPS[k].length-1; $('back').disabled=i===0;
+  follow(p[1]);}
+// 印が画面の外に出そうなら、印が見える位置までページを動かす（説明文とボタンは上に固定）
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function follow(sy){const r=map.getBoundingClientRect(), y=r.top+sy*r.height/VB.height, hb=$('head').getBoundingClientRect().bottom;
+  if(y<hb+70||y>innerHeight-70) window.scrollBy({top:y-(hb+(innerHeight-hb)/2),behavior:RM?'auto':'smooth'});}
+function pick(n){k=n;i=0;[0,1,2,3].forEach(j=>$('p'+j).setAttribute('aria-pressed',j===n?'true':'false'));show();}
+const next=()=>{if(i<STEPS[k].length-1){i++;show();}}, prev=()=>{if(i>0){i--;show();}};
+[0,1,2,3].forEach(j=>$('p'+j).onclick=()=>pick(j));
+$('go').onclick=next; $('back').onclick=prev; $('reset').onclick=()=>{i=0;show();};
+document.addEventListener('keydown',e=>{
+  if(e.altKey||e.ctrlKey||e.metaKey) return;
+  if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();next();}
+  else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].includes(e.key)){e.preventDefault();prev();}
+  else if(['1','2','3','4'].includes(e.key)){pick(+e.key-1);}
+});
+show();
+</script>
