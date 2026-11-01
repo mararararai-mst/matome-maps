@@ -1,3 +1,6 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>カレーのゆくえ</title>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
 <style>
@@ -35,7 +38,7 @@ button:focus-visible{outline:3px solid #222;outline-offset:2px}
 #tok{transition:transform .6s cubic-bezier(.3,1.2,.5,1)}
 .hlr{fill:none;stroke:#ffc61a;stroke-width:5;opacity:.95}
 .note{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-@media (prefers-reduced-motion:reduce){#tok{transition:none}}
+/* 「動きを減らす」設定でもつぶの移動は止めない（2026-11-01） */
 </style>
 <div class="wrap">
 <h1>カレーライスのゆくえ｜押すと少しずつ進む</h1>
@@ -308,7 +311,7 @@ function show(){const s=STEPS[k][i], p=POS[k][i];
   $('go').disabled=i>=STEPS[k].length-1; $('back').disabled=i===0;
   follow(p[1]);}
 // 印が画面の外に出そうなら、印が見える位置までページを動かす（説明文とボタンは上に固定）
-const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const RM=false;   // Windows の「アニメーション効果」オフでも動きを止めない
 function follow(sy){const r=map.getBoundingClientRect(), y=r.top+sy*r.height/VB.height, hb=$('head').getBoundingClientRect().bottom;
   if(y<hb+70||y>innerHeight-70) window.scrollBy({top:y-(hb+(innerHeight-hb)/2),behavior:RM?'auto':'smooth'});}
 function pick(n){k=n;i=0;[0,1,2,3].forEach(j=>$('p'+j).setAttribute('aria-pressed',j===n?'true':'false'));show();}
